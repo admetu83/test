@@ -1,0 +1,66 @@
+{
+  "version": "3.0",
+  "format": "bb-150",
+  "meta": {
+    "brand": "BimehDotCom",
+    "scenario": "plus-bimeh-money-discovery-v3",
+    "width": 400,
+    "height": 150,
+    "duration": 22,
+    "loopTrigger": "tl.onComplete → kill pulses → fire LOOP → location.reload()",
+    "coverageSchedule": [
+      { "scene": 1, "from": 0.0,  "to": 3.5,  "bgCoverage": "~12%", "note": "phone center + logo badge pill — KV dominant" },
+      { "scene": 2, "from": 3.5,  "to": 6.5,  "bgCoverage": "~5%",  "note": "phone moves right, first bill emerges — near-transparent" },
+      { "scene": 3, "from": 6.5,  "to": 11.5, "bgCoverage": "~38%", "note": "bills cascade + panel reveals with headline" },
+      { "scene": 4, "from": 11.5, "to": 17.5, "bgCoverage": "~50%", "note": "phone pokes left, full panel + شروع کن! CTA" },
+      { "scene": 5, "from": 17.5, "to": 22.0, "bgCoverage": "~15%", "note": "panel collapses to urgency strip, CTA pulses" }
+    ],
+    "averageCoverage": "~28%",
+    "curveShape": "12 → 5 → 38 → 50 → 15 (sinusoidal ✓)"
+  },
+  "elements": [
+    { "id": "logoBadge",    "tag": "div", "z": 25, "pos": "right:8 top:6 pill",         "scenes": "all" },
+    { "id": "panel",        "tag": "div", "z": 5,  "pos": "right:5 top:30 w:245 h:115", "scenes": "3–5" },
+    { "id": "headlineText", "tag": "div", "z": 22, "pos": "inside panel, flex top",      "scenes": "3–5" },
+    { "id": "subText",      "tag": "div", "z": 22, "pos": "inside panel, flex below",    "scenes": "3–5" },
+    { "id": "phoneWrap",    "tag": "div", "z": 15,
+      "s1": "left:165 top:5 w:70 h:134",
+      "s2-s3": "left:316 top:24 w:54 h:100",
+      "s4-s5": "left:100 top:4 w:64 h:120" },
+    { "id": "bill0",        "tag": "img", "z": 10, "final": "left:8  top:22 rot:-12", "emerges": "4.5s" },
+    { "id": "bill1",        "tag": "img", "z": 11, "final": "left:30 top:27 rot:-4",  "emerges": "6.5s" },
+    { "id": "bill2",        "tag": "img", "z": 12, "final": "left:52 top:19 rot:5",   "emerges": "8.0s" },
+    { "id": "bill3",        "tag": "img", "z": 13, "final": "left:74 top:25 rot:12",  "emerges": "9.5s" },
+    { "id": "btn03",        "tag": "img", "z": 30, "s1": "left:147 top:108 w:106",     "s4": "left:79 top:82 w:106" },
+    { "id": "btn05",        "tag": "img", "z": 30, "pos": "right:14 bottom:14 w:150",  "scenes": "4–5" }
+  ],
+  "animations": [
+    { "id": "phone-enter",    "target": "#phoneWrap",    "at": 0.0,  "dur": 0.65, "props": "opacity 0→1" },
+    { "id": "btn03-s1-enter", "target": "#btn03",        "at": 0.9,  "dur": 0.40, "props": "opacity+scale" },
+    { "id": "btn03-pulse",    "target": "#btn03",        "at": 1.3,  "dur": "∞",  "props": "scale yoyo" },
+    { "id": "phone-to-right", "target": "#phoneWrap",    "at": 3.5,  "dur": 0.85, "props": "left+top+w+h" },
+    { "id": "bill0-emerge",   "target": "#bill0",        "at": 4.5,  "dur": 0.78, "props": "left+opacity+rot+scale" },
+    { "id": "bill1-emerge",   "target": "#bill1",        "at": 6.5,  "dur": 0.78, "props": "left+opacity+rot+scale" },
+    { "id": "bill2-emerge",   "target": "#bill2",        "at": 8.0,  "dur": 0.78, "props": "left+opacity+rot+scale" },
+    { "id": "bill3-emerge",   "target": "#bill3",        "at": 9.5,  "dur": 0.78, "props": "left+opacity+rot+scale" },
+    { "id": "panel-enter",    "target": "#panel",        "at": 8.5,  "dur": 0.55, "props": "opacity" },
+    { "id": "headline-enter", "target": "#headlineText", "at": 9.1,  "dur": 0.40, "props": "opacity+y" },
+    { "id": "subtext-enter",  "target": "#subText",      "at": 9.5,  "dur": 0.40, "props": "opacity+y" },
+    { "id": "phone-to-left",  "target": "#phoneWrap",    "at": 11.5, "dur": 0.90, "props": "left+top+w+h" },
+    { "id": "btn03-s4-enter", "target": "#btn03",        "at": 12.6, "dur": 0.40, "props": "opacity+scale (showBtn03S4)" },
+    { "id": "btn05-enter",    "target": "#btn05",        "at": 13.0, "dur": 0.40, "props": "opacity+scale" },
+    { "id": "btn05-pulse",    "target": "#btn05",        "at": 13.4, "dur": "∞",  "props": "scale yoyo" },
+    { "id": "panel-collapse", "target": "#panel",        "at": 17.8, "dur": 0.80, "props": "top+height+borderRadius" }
+  ],
+  "tracking": [
+    { "event": "VISIT_SLIDE01", "at": "DOMContentLoaded" },
+    { "event": "VISIT_SLIDE02", "at": "t=3.5s — phone moves right" },
+    { "event": "VISIT_SLIDE03", "at": "t=6.5s — bills cascade begins" },
+    { "event": "VISIT_SLIDE04", "at": "t=11.5s — phone moves left (finale)" },
+    { "event": "VISIT_SLIDE05", "at": "t=13.4s — CTA pulsing" },
+    { "event": "VISIT_SLIDE06", "at": "t=17.5s — urgency collapse" },
+    { "event": "CLICK1",        "at": "btn03 click (S1 skip / S4 extra bill)" },
+    { "event": "CLICK2",        "at": "btn05 click (شروع کن!)" },
+    { "event": "LOOP",          "at": "tl.onComplete t=22s" }
+  ]
+}
