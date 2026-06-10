@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FIFA World Cup 2026 Ball</title>
+  <title>FIFA World Cup 2026</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       background: radial-gradient(ellipse at center, #0a0a2e 0%, #000000 100%);
       min-height: 100vh;
@@ -14,119 +13,32 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Arial', sans-serif;
       overflow: hidden;
+      font-family: 'Arial Black', Arial, sans-serif;
     }
-
-    .scene {
-      perspective: 800px;
-      width: 260px;
-      height: 260px;
-    }
-
-    .ball-wrapper {
-      width: 260px;
-      height: 260px;
-      position: relative;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-18px); }
-    }
-
-    .ball {
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      position: relative;
-      animation: spinY 6s linear infinite;
-      transform-style: preserve-3d;
-    }
-
-    @keyframes spinY {
-      from { transform: rotateY(0deg) rotateZ(-8deg); }
-      to   { transform: rotateY(360deg) rotateZ(-8deg); }
-    }
-
-    /* Base ball with 2026 Adidas "Conext25" inspired colors */
-    .ball-surface {
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e8e8e8 40%, #c0c0c0 100%);
-      position: absolute;
-      overflow: hidden;
-      box-shadow:
-        inset -30px -30px 60px rgba(0,0,0,0.35),
-        inset 15px 15px 30px rgba(255,255,255,0.6),
-        0 0 60px rgba(255,255,255,0.08),
-        0 20px 60px rgba(0,0,0,0.6);
-    }
-
-    /* Panels SVG overlay */
-    .ball-surface svg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
-
-    /* Shine overlay */
-    .ball-surface::after {
-      content: '';
-      position: absolute;
-      top: 10%;
-      left: 18%;
-      width: 38%;
-      height: 28%;
-      background: radial-gradient(ellipse, rgba(255,255,255,0.75) 0%, transparent 70%);
-      border-radius: 50%;
-      transform: rotate(-30deg);
-      pointer-events: none;
-    }
-
-    /* Shadow under ball */
-    .shadow {
-      width: 200px;
-      height: 30px;
-      background: radial-gradient(ellipse, rgba(0,0,0,0.5) 0%, transparent 70%);
-      border-radius: 50%;
-      margin-top: 10px;
-      animation: shadowPulse 3s ease-in-out infinite;
-    }
-
-    @keyframes shadowPulse {
-      0%, 100% { transform: scaleX(1);   opacity: 0.5; }
-      50%       { transform: scaleX(0.75); opacity: 0.25; }
-    }
-
+    canvas { display: block; }
     .title {
       color: #ffffff;
-      font-size: 1.4rem;
-      font-weight: bold;
-      letter-spacing: 3px;
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-top: 30px;
-      text-shadow: 0 0 20px rgba(255,200,0,0.7);
+      margin-top: 10px;
+      text-shadow: 0 0 20px rgba(255,200,0,0.8);
     }
-
     .subtitle {
       color: #ffcc00;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       letter-spacing: 5px;
-      margin-top: 6px;
-      opacity: 0.85;
+      margin-top: 5px;
+      opacity: 0.9;
     }
-
-    /* Stars background */
     .stars {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
     }
     .star {
       position: absolute;
@@ -135,124 +47,267 @@
       animation: twinkle 2s ease-in-out infinite alternate;
     }
     @keyframes twinkle {
-      from { opacity: 0.2; }
-      to   { opacity: 1; }
+      from { opacity: 0.15; }
+      to   { opacity: 0.9; }
     }
+    #canvas-container { z-index: 1; }
   </style>
 </head>
 <body>
 
-  <div class="stars" id="stars"></div>
+<div class="stars" id="stars"></div>
 
-  <div class="scene">
-    <div class="ball-wrapper">
-      <div class="ball">
-        <div class="ball-surface">
-          <!-- SVG panels inspired by Adidas World Cup 2026 ball design -->
-          <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <clipPath id="circle-clip">
-                <circle cx="130" cy="130" r="128"/>
-              </clipPath>
-              <radialGradient id="panelGrad1" cx="40%" cy="40%">
-                <stop offset="0%" stop-color="#1a1a2e" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#0d0d1a" stop-opacity="0.95"/>
-              </radialGradient>
-              <radialGradient id="panelGrad2" cx="50%" cy="50%">
-                <stop offset="0%" stop-color="#c8102e" stop-opacity="0.88"/>
-                <stop offset="100%" stop-color="#8b0000" stop-opacity="0.92"/>
-              </radialGradient>
-            </defs>
+<div id="canvas-container"></div>
+<div class="title" style="z-index:1;position:relative;">World Cup 2026</div>
+<div class="subtitle" style="z-index:1;position:relative;">USA &bull; Canada &bull; Mexico</div>
 
-            <g clip-path="url(#circle-clip)">
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-              <!-- Dark navy panels -->
-              <path d="M130,2 C160,2 185,20 200,45 L175,80 L145,65 L130,30 L115,65 L85,80 L60,45 C75,20 100,2 130,2 Z"
-                    fill="url(#panelGrad1)" opacity="0.85"/>
+<script>
+// ── Scene setup ──────────────────────────────────────────────
+const W = Math.min(window.innerWidth, 500);
+const H = Math.min(window.innerHeight * 0.72, 500);
 
-              <path d="M258,130 C258,160 240,185 215,200 L180,175 L195,145 L228,130 L195,115 L180,85 L215,60 C240,75 258,100 258,130 Z"
-                    fill="url(#panelGrad1)" opacity="0.85"/>
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.shadowMap.enabled = true;
+document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-              <path d="M2,130 C2,100 20,75 45,60 L80,85 L65,115 L32,130 L65,145 L80,175 L45,200 C20,185 2,160 2,130 Z"
-                    fill="url(#panelGrad1)" opacity="0.85"/>
+const scene = new THREE.Scene();
 
-              <path d="M130,258 C100,258 75,240 60,215 L85,180 L115,195 L130,228 L145,195 L175,180 L200,215 C185,240 160,258 130,258 Z"
-                    fill="url(#panelGrad1)" opacity="0.85"/>
+const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 100);
+camera.position.set(0, 0, 3.8);
 
-              <!-- Red accent panels -->
-              <path d="M200,45 L215,60 L180,85 L195,115 L175,80 Z"
-                    fill="url(#panelGrad2)" opacity="0.9"/>
+// ── Lights ───────────────────────────────────────────────────
+const ambient = new THREE.AmbientLight(0xffffff, 0.35);
+scene.add(ambient);
 
-              <path d="M60,45 L85,80 L65,115 L45,60 Z"
-                    fill="url(#panelGrad2)" opacity="0.9"/>
+const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+keyLight.position.set(3, 4, 4);
+scene.add(keyLight);
 
-              <path d="M45,200 L80,175 L65,145 L45,200 Z"
-                    fill="url(#panelGrad2)" opacity="0.9"/>
+const fillLight = new THREE.DirectionalLight(0x8899ff, 0.3);
+fillLight.position.set(-3, -1, 2);
+scene.add(fillLight);
 
-              <path d="M215,200 L180,175 L195,145 L215,200 Z"
-                    fill="url(#panelGrad2)" opacity="0.9"/>
+const rimLight = new THREE.DirectionalLight(0xffffff, 0.4);
+rimLight.position.set(0, -3, -3);
+scene.add(rimLight);
 
-              <!-- Panel seam lines -->
-              <g fill="none" stroke="rgba(80,80,80,0.5)" stroke-width="1.5">
-                <path d="M130,2 C160,2 185,20 200,45"/>
-                <path d="M200,45 L175,80 L145,65 L130,30"/>
-                <path d="M130,30 L115,65 L85,80 L60,45"/>
-                <path d="M60,45 C75,20 100,2 130,2"/>
+// ── Build soccer ball texture on a canvas ────────────────────
+function buildBallTexture(size = 1024) {
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  const ctx = c.getContext('2d');
+  const S = size;
 
-                <path d="M200,45 L215,60 L180,85 L195,115 L228,130"/>
-                <path d="M228,130 L195,145 L180,175 L215,200"/>
-                <path d="M215,200 C200,240 160,258 130,258"/>
+  // ── Adidas Conext25 – FIFA World Cup 2026 official ball ──
+  // Base: white
+  ctx.fillStyle = '#f8f8f8';
+  ctx.fillRect(0, 0, S, S);
 
-                <path d="M60,45 L45,60 L80,85 L65,115 L32,130"/>
-                <path d="M32,130 L65,145 L80,175 L45,200"/>
-                <path d="M45,200 C60,240 100,258 130,258"/>
+  function poly(pts, fill, strokeCol, lw) {
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0]*S, pts[0][1]*S);
+    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0]*S, pts[i][1]*S);
+    ctx.closePath();
+    if (fill)     { ctx.fillStyle = fill; ctx.fill(); }
+    if (strokeCol){ ctx.strokeStyle = strokeCol; ctx.lineWidth = (lw||3); ctx.stroke(); }
+  }
 
-                <path d="M130,258 L145,195 L175,180 L195,145"/>
-                <path d="M130,258 L115,195 L85,180 L65,145"/>
+  // ── CONEXT25 geometric star/arrow panels ─────────────────
+  // The real ball has bold angular arrow-star shapes in red, blue, black.
+  // We replicate the look: 3 large angular "wing" shapes spread around center.
 
-                <path d="M175,80 L195,115 L175,180 L145,195 L115,195 L85,180 L65,115 L85,80 L115,65 L145,65 Z"/>
-              </g>
+  const RED   = '#e8001c';
+  const BLUE  = '#002868';
+  const BLACK = '#1a1a1a';
+  const SEAM  = 'rgba(60,60,80,0.4)';
 
-              <!-- FIFA World Cup 2026 text on ball -->
-              <text x="130" y="124" text-anchor="middle"
-                    font-family="Arial Black, Arial" font-weight="900"
-                    font-size="13" fill="rgba(255,255,255,0.95)"
-                    letter-spacing="1">FIFA</text>
-              <text x="130" y="140" text-anchor="middle"
-                    font-family="Arial Black, Arial" font-weight="900"
-                    font-size="10.5" fill="rgba(255,200,0,0.95)"
-                    letter-spacing="1.5">WORLD CUP</text>
-              <text x="130" y="155" text-anchor="middle"
-                    font-family="Arial Black, Arial" font-weight="900"
-                    font-size="13" fill="rgba(255,255,255,0.95)"
-                    letter-spacing="2">2026</text>
-            </g>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
+  // ── Large star-wings radiating from center ────────────────
+  // Wing 1 – pointing upper-right (RED)
+  poly([
+    [0.50,0.50],[0.56,0.30],[0.75,0.18],[0.80,0.28],
+    [0.66,0.38],[0.62,0.50]
+  ], RED, null);
 
-  <div class="shadow"></div>
-  <div class="title">World Cup 2026</div>
-  <div class="subtitle">USA &bull; Canada &bull; Mexico</div>
+  // Wing 2 – pointing lower-right (BLUE)
+  poly([
+    [0.50,0.50],[0.68,0.58],[0.80,0.75],[0.70,0.82],
+    [0.58,0.68],[0.50,0.62]
+  ], BLUE, null);
 
-  <script>
-    // Generate random stars
-    const starsEl = document.getElementById('stars');
-    for (let i = 0; i < 120; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      const size = Math.random() * 2.5 + 0.5;
-      star.style.cssText = `
-        width:${size}px; height:${size}px;
-        top:${Math.random()*100}%;
-        left:${Math.random()*100}%;
-        animation-delay:${Math.random()*3}s;
-        animation-duration:${1.5 + Math.random()*2}s;
-      `;
-      starsEl.appendChild(star);
-    }
-  </script>
+  // Wing 3 – pointing left (BLACK)
+  poly([
+    [0.50,0.50],[0.30,0.58],[0.14,0.50],[0.14,0.38],
+    [0.32,0.44],[0.44,0.50]
+  ], BLACK, null);
+
+  // Wing 4 – pointing upper-left (RED, darker)
+  poly([
+    [0.50,0.50],[0.44,0.30],[0.28,0.18],[0.20,0.28],
+    [0.36,0.38],[0.40,0.50]
+  ], '#c8001a', null);
+
+  // Wing 5 – pointing lower-left (BLUE lighter)
+  poly([
+    [0.50,0.50],[0.32,0.62],[0.20,0.78],[0.30,0.84],
+    [0.44,0.68],[0.50,0.60]
+  ], '#1a3a8a', null);
+
+  // Wing 6 – pointing upper (BLACK)
+  poly([
+    [0.50,0.50],[0.56,0.28],[0.50,0.06],[0.44,0.28],[0.44,0.50]
+  ], '#111', null);
+
+  // Wing 7 – pointing lower (RED-darker)
+  poly([
+    [0.50,0.50],[0.44,0.74],[0.50,0.96],[0.56,0.74],[0.56,0.50]
+  ], '#b50018', null);
+
+  // ── Repeating wrap-around on left/right edges ─────────────
+  poly([
+    [1.00,0.50],[0.94,0.30],[0.85,0.18],[0.80,0.28],[0.94,0.42],[0.94,0.50]
+  ], RED, null);
+  poly([
+    [0.00,0.50],[0.06,0.30],[0.15,0.18],[0.20,0.28],[0.06,0.42],[0.06,0.50]
+  ], RED, null);
+
+  // ── Seam / panel outlines ─────────────────────────────────
+  ctx.strokeStyle = SEAM;
+  ctx.lineWidth = S * 0.0035;
+
+  // 6-panel curved seams (classic ball feel)
+  const seams = [
+    // vertical
+    [[0.5,0],[0.5,1]],
+    // horizontal
+    [[0,0.5],[1,0.5]],
+    // diagonals
+    [[0.25,0],[0.75,1]],[[0.75,0],[0.25,1]],
+  ];
+  seams.forEach(([a,b]) => {
+    ctx.beginPath();
+    ctx.moveTo(a[0]*S, a[1]*S);
+    // gentle curve through center
+    ctx.quadraticCurveTo(S*0.5 + (Math.random()-0.5)*80, S*0.5, b[0]*S, b[1]*S);
+    ctx.stroke();
+  });
+
+  // Additional curved seams
+  [[0,0.25],[0,0.75],[1,0.25],[1,0.75]].forEach(([x,y]) => {
+    ctx.beginPath();
+    ctx.moveTo(x*S, y*S);
+    ctx.quadraticCurveTo(S*0.5, S*0.5, (1-x)*S, (1-y)*S);
+    ctx.stroke();
+  });
+
+  // ── Adidas 3-stripe logo area ─────────────────────────────
+  // Three diagonal stripes (white) top-right area
+  ctx.save();
+  ctx.translate(S*0.70, S*0.20);
+  ctx.rotate(-Math.PI/4);
+  for(let i=0; i<3; i++){
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillRect(i*S*0.035, -S*0.04, S*0.022, S*0.09);
+  }
+  // Adidas trefoil outline below stripes
+  ctx.rotate(Math.PI/4);
+  ctx.translate(-S*0.70, -S*0.20);
+  ctx.restore();
+
+  // ── FIFA WORLD CUP 2026 text ──────────────────────────────
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  // Shadow
+  ctx.shadowColor = 'rgba(0,0,0,0.5)';
+  ctx.shadowBlur = 6;
+
+  ctx.font = `900 ${S*0.058}px Arial Black, Arial`;
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText('FIFA', S*0.5, S*0.44);
+
+  ctx.font = `900 ${S*0.040}px Arial Black, Arial`;
+  ctx.fillStyle = '#ffcc00';
+  ctx.fillText('WORLD CUP', S*0.5, S*0.505);
+
+  ctx.font = `900 ${S*0.062}px Arial Black, Arial`;
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText('2026', S*0.5, S*0.575);
+
+  ctx.shadowBlur = 0;
+  ctx.restore();
+
+  return new THREE.CanvasTexture(c);
+}
+
+// ── Sphere ───────────────────────────────────────────────────
+const geo = new THREE.SphereGeometry(1, 64, 64);
+const mat = new THREE.MeshStandardMaterial({
+  map: buildBallTexture(1024),
+  roughness: 0.42,
+  metalness: 0.0,
+  envMapIntensity: 0.5,
+});
+const ball = new THREE.Mesh(geo, mat);
+scene.add(ball);
+
+// ── Floor shadow (fake) ───────────────────────────────────────
+const shadowGeo = new THREE.PlaneGeometry(2.5, 0.6);
+const shadowMat = new THREE.MeshBasicMaterial({
+  color: 0x000000,
+  transparent: true,
+  opacity: 0.35,
+});
+const shadow = new THREE.Mesh(shadowGeo, shadowMat);
+shadow.rotation.x = -Math.PI / 2;
+shadow.position.set(0, -1.35, 0);
+scene.add(shadow);
+
+// ── Animation ────────────────────────────────────────────────
+let t = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  t += 0.008;
+
+  // slow spin on Y + slight tilt on X
+  ball.rotation.y += 0.006;
+  ball.rotation.x = Math.sin(t * 0.4) * 0.08;
+
+  // gentle float
+  ball.position.y = Math.sin(t) * 0.12;
+
+  // shadow scales with float height
+  const scale = 1 - ball.position.y * 0.15;
+  shadow.scale.set(scale, scale, 1);
+  shadow.material.opacity = 0.35 - ball.position.y * 0.07;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+// ── Resize ────────────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  const nw = Math.min(window.innerWidth, 500);
+  const nh = Math.min(window.innerHeight * 0.72, 500);
+  renderer.setSize(nw, nh);
+  camera.aspect = nw / nh;
+  camera.updateProjectionMatrix();
+});
+
+// ── Stars ────────────────────────────────────────────────────
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 130; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2}s;`;
+  starsEl.appendChild(s);
+}
+</script>
 </body>
 </html>
