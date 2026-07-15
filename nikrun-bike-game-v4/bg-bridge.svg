@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="44" viewBox="0 0 400 44">
+  <defs>
+    <linearGradient id="bsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#08102a"/>
+      <stop offset="100%" stop-color="#101c40"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="44" fill="url(#bsky)"/>
+  <!-- Stars -->
+  <rect x="50"  y="2" width="1.5" height="1.5" fill="#c8d8ff" opacity="0.6"/>
+  <rect x="130" y="4" width="1"   height="1"   fill="#c8d8ff" opacity="0.5"/>
+  <rect x="210" y="2" width="1.5" height="1.5" fill="#c8d8ff" opacity="0.55"/>
+  <rect x="290" y="5" width="1"   height="1"   fill="#c8d8ff" opacity="0.45"/>
+  <rect x="360" y="3" width="1.5" height="1.5" fill="#c8d8ff" opacity="0.5"/>
+  <!-- Water -->
+  <rect y="33" width="400" height="11" fill="#060e24"/>
+  <line x1="0" y1="34" x2="400" y2="34" stroke="#0e1e46" stroke-width="1.5"/>
+  <!-- Bridge deck -->
+  <rect y="17" width="400" height="7" fill="#1e1c54"/>
+  <!-- Upper parapet -->
+  <rect y="14" width="400" height="3" fill="#28267a"/>
+  <!-- Columns -->
+  <rect x="3"   y="24" width="7" height="9" fill="#181660"/>
+  <rect x="43"  y="24" width="7" height="9" fill="#181660"/>
+  <rect x="83"  y="24" width="7" height="9" fill="#181660"/>
+  <rect x="123" y="24" width="7" height="9" fill="#181660"/>
+  <rect x="163" y="24" width="7" height="9" fill="#181660"/>
+  <rect x="203" y="24" width="7" height="9" fill="#181660"/>
+  <rect x="243" y="24" width="7" height="9" fill="#181660"/>
+  <rect x="283" y="24" width="7" height="9" fill="#181660"/>
+  <rect x="323" y="24" width="7" height="9" fill="#181660"/>
+  <rect x="363" y="24" width="7" height="9" fill="#181660"/>
+  <!-- Arch curves -->
+  <path d="M10,17 Q26,10 40,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M50,17 Q66,10 80,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M90,17 Q106,10 120,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M130,17 Q146,10 160,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M170,17 Q186,10 200,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M210,17 Q226,10 240,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M250,17 Q266,10 280,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M290,17 Q306,10 320,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M330,17 Q346,10 360,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <path d="M370,17 Q386,10 400,17" stroke="#302e8a" stroke-width="2" fill="none"/>
+  <!-- Lamp posts -->
+  <rect x="7"   y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="47"  y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="87"  y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="127" y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="167" y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="207" y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="247" y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="287" y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="327" y="5" width="2" height="9" fill="#28266e"/>
+  <rect x="367" y="5" width="2" height="9" fill="#28266e"/>
+  <!-- Lamp glows -->
+  <circle cx="8"   cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="48"  cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="88"  cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="128" cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="168" cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="208" cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="248" cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="288" cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="328" cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <circle cx="368" cy="5" r="6" fill="#ffc840" opacity="0.22"/>
+  <!-- Lamp heads -->
+  <rect x="5"   y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="45"  y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="85"  y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="125" y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="165" y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="205" y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="245" y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="285" y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="325" y="4" width="6" height="2" fill="#ffd060"/>
+  <rect x="365" y="4" width="6" height="2" fill="#ffd060"/>
+  <!-- Water reflections -->
+  <rect x="5"   y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="45"  y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="85"  y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="125" y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="165" y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="205" y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="245" y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="285" y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="325" y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+  <rect x="365" y="35" width="6" height="5" fill="#ffc840" opacity="0.12"/>
+</svg>

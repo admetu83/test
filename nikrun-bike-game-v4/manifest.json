@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "format": "custom-400x240-interactive-game",
+  "meta": {
+    "brand": "Nikrun Motor",
+    "scenario": "Interactive bike-selection runner game",
+    "width": 400,
+    "height": 240,
+    "duration": 35,
+    "loopTrigger": "timeline.onComplete",
+    "plans": [
+      { "plan": 1, "name": "Intro / Bike Select", "duration": "0–5s (or until tap)", "desc": "N249R slides from left, TNT15 from right; tap to choose" },
+      { "plan": 2, "name": "Gameplay", "duration": "20s", "desc": "Side-scrolling runner; tap/click to jump obstacles; score counter" },
+      { "plan": 3, "name": "Outro / Branding", "duration": "~5s", "desc": "Logo White + Moto tagline fade-in; loop" }
+    ],
+    "autoDemo": "If no selection after 5s, red route demo plays for 10s then goes to outro"
+  },
+  "assets": [
+    { "file": "char-green.png", "role": "gameplay-character", "route": "green", "size": "200x140" },
+    { "file": "char-red.png",   "role": "gameplay-character", "route": "red",   "size": "190x136" },
+    { "file": "bg-green.png",   "role": "scrolling-background", "route": "green", "size": "400x118" },
+    { "file": "bg-red.png",     "role": "scrolling-background", "route": "red",   "size": "400x78" },
+    { "file": "obs-cone.png",   "role": "obstacle", "route": "red",   "size": "32x48" },
+    { "file": "obs-bush1.png",  "role": "obstacle", "route": "green", "size": "52x38" },
+    { "file": "obs-rock1.png",  "role": "obstacle", "route": "green", "size": "56x41" },
+    { "file": "obs-rock2.png",  "role": "obstacle", "route": "green", "size": "42x31" },
+    { "file": "obs-bush2.png",  "role": "obstacle", "route": "green", "size": "55x26" },
+    { "file": "bike-green.png", "role": "intro-selection", "route": "green", "size": "178x159" },
+    { "file": "bike-red.png",   "role": "intro-selection", "route": "red",   "size": "178x149" },
+    { "file": "model-green.png","role": "intro-model-name", "size": "120x21" },
+    { "file": "model-red.png",  "role": "intro-model-name", "size": "118x21" },
+    { "file": "text1.png",      "role": "intro-headline",   "size": "96x59" },
+    { "file": "logo.png",       "role": "outro-logo",       "size": "100x91" },
+    { "file": "moto.png",       "role": "outro-tagline",    "size": "178x26" }
+  ],
+  "tracking": [
+    { "event": "VISIT_SLIDE01", "at": "startIntro()" },
+    { "event": "CLICK1",        "at": "tap green bike" },
+    { "event": "CLICK2",        "at": "tap red bike" },
+    { "event": "VISIT_SLIDE02", "at": "gameplay start" },
+    { "event": "AUTOPLAY1",     "at": "demo mode trigger (5s no interaction)" },
+    { "event": "VISIT_SLIDE03", "at": "outro start" },
+    { "event": "LOOP",          "at": "tl.onComplete → location.reload()" }
+  ]
+}

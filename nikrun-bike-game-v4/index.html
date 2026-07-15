@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nikrun Motor — بیلبورد تعاملی</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="forest-loop.png" as="image" />
+  <link rel="preload" href="33pol-loop.png" as="image" />
+  <script src="https://cdn.yektanet.com/assets/3rdparty/gsap@3.12.5/gsap.min.js"></script>
+</head>
+<body>
+<div id="banner-content">
+
+  <!-- ── Shared background layers ── -->
+  <div id="sky"></div>
+  <div id="speed-particles"></div>
+
+  <div id="bg-wrap">
+    <div id="bg-track">
+      <div id="bg-a" class="bg-tile"></div>
+      <div id="bg-b" class="bg-tile"></div>
+    </div>
+  </div>
+
+  <div id="ground"></div>
+
+  <!-- ═══════════════════════════════
+       PLAN 1 — INTRO / BIKE SELECT
+       ═══════════════════════════════ -->
+  <div id="intro">
+    <div id="intro-divider"></div>
+    <div id="glow-left"></div>
+    <div id="glow-right"></div>
+
+    <!-- Green bike (N249R) — left side, flipped to face right toward red -->
+    <div id="bike-green-wrap">
+      <div class="brand-pill brand-pill-right">
+        <img src="logo-morbidelli.png" class="brand-logo-sm" alt="Morbidelli" />
+      </div>
+      <div class="flip-wrapper">
+        <img src="bike-green.png" class="intro-bike" alt="N249R" />
+      </div>
+      <div class="model-badge model-badge-green">
+        <img src="model-green.png" class="model-name" alt="N 249 R" />
+      </div>
+    </div>
+
+    <!-- Red bike (TNT15) — right side, flipped to face left toward green -->
+    <div id="bike-red-wrap">
+      <div class="brand-pill">
+        <img src="logo-benelli.png" class="brand-logo-sm" alt="Benelli" />
+      </div>
+      <div class="flip-wrapper">
+        <img src="bike-red.png" class="intro-bike" alt="TNT 15" />
+      </div>
+      <div class="model-badge model-badge-red">
+        <img src="model-red.png" class="model-name" alt="TNT 15" />
+      </div>
+    </div>
+
+    <!-- Center question text -->
+    <div id="intro-text">
+      <img id="text1-img" src="text1.png" alt="انتخابت کدومه؟" />
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════
+       PLAN 2 — GAMEPLAY
+       ═══════════════════════════════ -->
+  <div id="game" style="display:none">
+
+    <div id="hud-row">
+      <div id="model-badge-game">
+        <img id="model-img-game" src="" alt="" />
+      </div>
+      <div id="score-ui">
+        <span id="score-label">امتیاز&nbsp;<span id="score-val">0</span></span>
+        <span id="timer-val">20</span>
+      </div>
+    </div>
+
+    <!-- Game character (pixel art side-view) -->
+    <div id="game-char-wrap">
+      <img id="game-char" src="" alt="" />
+    </div>
+
+    <!-- Obstacles spawned here by JS -->
+    <div id="obstacles-layer"></div>
+
+  </div>
+
+  <!-- ═══════════════════════════════
+       PLAN 3 — OUTRO / BRANDING
+       ═══════════════════════════════ -->
+  <div id="outro" style="display:none">
+    <div id="outro-bg"></div>
+    <div id="confetti-layer"></div>
+
+    <!-- Left: logo + moto -->
+    <div id="outro-left">
+      <img id="outro-logo" src="logo.png" alt="نیکران موتور" />
+      <img id="outro-moto" src="moto.png" alt="همسفر همیشه" />
+    </div>
+
+    <!-- Right: score + play again -->
+    <div id="outro-right">
+      <div id="score-card">
+        <div id="score-glow-border"></div>
+        <div id="score-card-label">امتیاز شما</div>
+        <div id="score-card-val">0</div>
+      </div>
+      <button id="play-again">بازی مجدد <span style="display:inline-block;transform:translateY(1.5px)">&#9654;</span></button>
+    </div>
+  </div>
+
+</div><!-- /banner-content -->
+
+<script src="tags.js"></script>
+<script src="script.js"></script>
+<script>(function(){function gp(n){n=n.replace(/[\[]/,'\\[').replace(/[\]]/,'\\]');var r=new RegExp('[\\?&]'+n+'=([^&#]*)');var x=r.exec(location.search);return x===null?'':decodeURIComponent(x[1].replace(/\+/g,' '));}var cu=gp('click_url');if(cu){document.addEventListener('click',function(){window.open(cu,'_blank');});}})();</script>
+</body>
+</html>
