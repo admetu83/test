@@ -1,0 +1,1363 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>روایت یکتانت ۱۴۰۴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;700;800;900&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+/* Layout: a scrolling print report — yellow chapter openers, then "sheets" (text column + chart panel) in report order */
+:root {
+  --yellow: #ffde00;
+  --on-yellow: #0d0d0b;
+  --ink: #111110;
+  --bg: #ffffff;
+  --panel: #f6f6f2;
+  --fig: #f7f7f7;
+  --muted: #66655d;
+  --line: #e6e5dd;
+  --bar: #0d0d0b;
+  --on-bar: #ffffff;
+  --dot: #c9c8c0;
+  --font: "Vazirmatn", "Vazir", "IRANSans", Tahoma, "Segoe UI", sans-serif;
+  --fs-body: 1.0625rem;
+  --fs-small: .875rem;
+  --fs-h3: clamp(1.45rem, 1.1rem + 1.4vw, 2rem);
+  --fs-h2: clamp(2rem, 1.3rem + 3vw, 3.4rem);
+  --measure: 62ch;
+  --gut: clamp(16px, 4vw, 48px);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #f1f0ea; --bg: #10100e; --panel: #191916; --muted: #a8a69c; --line: #2b2a25;
+    --bar: #000000; --on-bar: #f1f0ea; --dot: #3a3933; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #f1f0ea; --bg: #10100e; --panel: #191916; --muted: #a8a69c; --line: #2b2a25;
+  --bar: #000000; --on-bar: #f1f0ea; --dot: #3a3933; color-scheme: dark;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-size: var(--fs-body); line-height: 1.95;
+  direction: rtl; text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01";
+}
+main { display: block; }
+.wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: var(--gut); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+h1, h2, h3, h4 { text-wrap: balance; margin: 0; line-height: 1.35; }
+p { margin: 0; }
+
+/* progress + topbar */
+.progress { position: fixed; inset-inline: 0; top: 0; height: 3px; z-index: 60; pointer-events: none; }
+.progress b { display: block; height: 100%; width: 100%; background: var(--yellow); transform-origin: right; transform: scaleX(0); }
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-in { display: flex; align-items: center; gap: 20px; max-width: 1180px; margin-inline: auto; padding: 10px var(--gut); }
+.logo {
+  display: inline-block; width: 104px; aspect-ratio: 754 / 262; max-width: 100%;
+  background: currentColor;
+  -webkit-mask: url(img/logo.png) center / contain no-repeat; mask: url(img/logo.png) center / contain no-repeat;
+}
+.brand { flex: none; display: flex; color: var(--ink); }
+.chapnav {
+  flex: 1; min-width: 0; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+  position: relative; padding-block: 2px 4px;
+}
+.chapnav::-webkit-scrollbar { display: none; }
+.chapnav a {
+  flex: 1 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  text-decoration: none; font-size: .75rem; color: var(--muted); padding-inline-end: 14px;
+  position: relative; white-space: nowrap;
+}
+.chapnav a::before { content: ""; position: absolute; inset-inline: 0; bottom: 4px; height: 1px; background: var(--line); }
+.chapnav a i { order: 2; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--muted); background: var(--bg); position: relative; z-index: 1; transition: background .3s, border-color .3s, transform .3s; }
+.chapnav a.on { color: var(--ink); font-weight: 800; }
+.chapnav a.on i, .chapnav a.done i { background: var(--ink); border-color: var(--ink); }
+.chapnav a.on i { background: var(--yellow); border-color: var(--ink); transform: scale(1.35); }
+
+/* hero = the cover */
+.hero { padding-block: clamp(28px, 6vw, 72px) 24px; }
+.hero-in { display: grid; gap: 28px; }
+.net { width: 100%; aspect-ratio: 13 / 7.4; max-height: 62vh; display: block; }
+.cover-bar { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; }
+.cover-bar h1 {
+  flex: 1 1 340px; background: var(--bar); color: var(--on-bar);
+  font-weight: 300; font-size: clamp(1.25rem, .8rem + 2vw, 2.1rem); padding: 14px 22px;
+}
+.cover-bar h1 b { font-weight: 900; }
+.year { background: var(--yellow); color: var(--on-yellow); font-weight: 900; font-size: clamp(1rem, .8rem + 1vw, 1.5rem); padding: 14px 22px; display: flex; align-items: center; }
+.cover-bar .logo.big { width: 150px; align-self: center; margin-inline-start: auto; padding: 0; margin-block: 14px; color: var(--ink); }
+
+/* toc + preface */
+.toc-wrap { padding-block: 40px 72px; }
+.toc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.toc { background: var(--bar); color: var(--on-bar); padding: 28px 28px 22px; }
+.toc h2 { font-size: 1.6rem; font-weight: 900; color: var(--yellow); margin-bottom: 12px; }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; }
+.toc a { display: grid; grid-template-columns: 2.6em 1fr; gap: 8px; padding-block: 9px; text-decoration: none; border-top: 1px solid color-mix(in srgb, var(--on-bar) 16%, transparent); font-size: .98rem; line-height: 1.6; }
+.toc a:hover .tn, .toc a:focus-visible .tn { color: var(--yellow); }
+.tn { font-weight: 300; color: color-mix(in srgb, var(--on-bar) 55%, transparent); font-variant-numeric: tabular-nums; }
+.preface h2 { font-size: var(--fs-h3); font-weight: 900; margin-bottom: 14px; display: flex; flex-direction: column; gap: 10px; }
+.preface h2::after, .txt h3::after, .opener h2::after { content: ""; width: 12px; height: 12px; background: var(--yellow); }
+.preface p + p { margin-top: 1em; }
+.preface { max-width: var(--measure); }
+
+/* chapter opener */
+.opener { position: relative; background: var(--yellow); color: var(--on-yellow); overflow: hidden; padding-block: clamp(48px, 8vw, 110px); }
+.opener .dots { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.opener-in { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.num {
+  font-size: clamp(7rem, 4rem + 14vw, 16rem); line-height: .8; font-weight: 200;
+  color: transparent; -webkit-text-stroke: 2px var(--on-yellow); letter-spacing: -.02em;
+  order: 2; justify-self: start; font-variant-numeric: tabular-nums;
+}
+.opener-txt { max-width: var(--measure); }
+.eyebrow { font-size: var(--fs-small); font-weight: 700; letter-spacing: .02em; margin-bottom: 6px; opacity: .75; }
+.opener h2 { font-size: var(--fs-h2); font-weight: 900; display: flex; flex-direction: column; gap: 16px; margin-bottom: 18px; }
+.opener h2::after { background: #fff; }
+.intro p { margin-top: .8em; font-weight: 400; }
+.intro h4.sub { font-size: 1.15rem; font-weight: 800; margin-top: 1em; }
+.intro .notes p { font-size: .95rem; }
+ul.q { list-style: none; margin: 1em 0 0; padding: 0; display: grid; gap: 4px; }
+ul.q li { position: relative; padding-inline-start: 22px; }
+ul.q li::before { content: ""; position: absolute; inset-inline-start: 2px; top: .8em; width: 8px; height: 8px; background: currentColor; }
+.opener ul.q li::before { background: #fff; outline: 1px solid var(--on-yellow); }
+
+/* sheets */
+.sheets { display: grid; gap: 0; padding-block: 24px 40px; }
+.sheet { display: grid; gap: 28px; padding-block: clamp(40px, 6vw, 72px); border-bottom: 1px solid var(--line); }
+.sheet:last-child { border-bottom: 0; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+.side { display: grid; gap: 18px; position: sticky; top: 92px; }
+.txt { max-width: var(--measure); }
+.txt.wide { max-width: none; columns: 2 26rem; column-gap: clamp(28px, 4vw, 56px); }
+.txt.wide h3 { column-span: all; }
+.txt h3 { font-size: var(--fs-h3); font-weight: 900; margin-bottom: 18px; display: flex; flex-direction: column; gap: 12px; }
+.txt h4 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
+.txt p { margin-bottom: .9em; break-inside: avoid-column; }
+.notes { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--fs-small); line-height: 1.8; break-inside: avoid; }
+.notes p { margin-bottom: .35em; }
+.txt.wide .notes { column-span: all; }
+
+figure { margin: 0; }
+.panel, .card { background: var(--fig); border-radius: 14px; overflow: hidden; }
+.card { background: #fff; border: 1px solid var(--line); }
+.fig { display: block; width: 100%; height: auto; }
+.zoom { cursor: zoom-in; position: relative; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+.zoom::after {
+  content: "بزرگ‌نمایی"; position: absolute; inset-inline-start: 12px; top: 12px;
+  background: var(--on-yellow); color: var(--yellow); font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 99px;
+  opacity: 0; transform: translateY(-4px); transition: opacity .25s, transform .25s;
+}
+.zoom:hover::after, .zoom:focus-visible::after { opacity: 1; transform: none; }
+.zoom:hover { box-shadow: 0 10px 40px -18px rgba(0,0,0,.35); }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; max-width: 900px; }
+.cards.n1 { grid-template-columns: minmax(0, 420px); }
+.src { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .8rem; }
+.src-logo { height: 22px; width: auto; border-radius: 4px; background: #fff; padding: 2px 6px; }
+
+/* team / partners / thanks / contact */
+.team { background: var(--bar); color: var(--on-bar); padding: clamp(28px, 5vw, 56px); margin-block: 40px 8px; display: grid; gap: 12px; }
+.team h3 { font-size: var(--fs-h3); font-weight: 900; display: flex; flex-direction: column; gap: 12px; }
+.team h3::after { content: ""; width: 12px; height: 12px; background: var(--yellow); }
+.team p { max-width: var(--measure); }
+.partners { display: grid; gap: 18px; padding-block: 18px; }
+.partner { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: clamp(18px, 3vw, 40px); align-items: center; padding-block: 8px; }
+.partner .logo { width: auto; aspect-ratio: auto; background: none; -webkit-mask: none; mask: none; }
+.partner figure.logo { border-radius: 14px; overflow: hidden; background: #fff; }
+.ptxt { font-size: .98rem; max-width: var(--measure); }
+.thanks { background: var(--panel); padding-block: clamp(48px, 7vw, 96px); }
+.thx-h { font-size: var(--fs-h3); font-weight: 900; margin-bottom: 28px; display: flex; flex-direction: column; gap: 12px; }
+.thx-h::after { content: ""; width: 12px; height: 12px; background: var(--yellow); }
+.people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 14px 28px; }
+.people li { display: grid; padding-inline-start: 14px; border-inline-start: 3px solid var(--yellow); line-height: 1.6; }
+.people b { font-weight: 800; }
+.people span { color: var(--muted); font-size: var(--fs-small); }
+.thx-tail { margin-top: 28px; color: var(--muted); max-width: var(--measure); }
+.contact { background: var(--bar); color: var(--on-bar); padding: clamp(28px, 5vw, 56px); margin-block: 40px; display: grid; gap: 12px; }
+.contact .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.addr { font-weight: 800; color: var(--yellow); user-select: all; font-size: 1.2rem; }
+.copy { font: inherit; font-size: .8rem; background: transparent; color: var(--on-bar); border: 1px solid color-mix(in srgb, var(--on-bar) 40%, transparent); border-radius: 99px; padding: 2px 14px; cursor: pointer; }
+.copy:hover { border-color: var(--yellow); color: var(--yellow); }
+
+.foot { background: var(--bar); color: var(--on-bar); padding-block: 40px; }
+.foot-in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
+.foot .logo { width: 130px; }
+.foot a { text-decoration: none; opacity: .8; }
+
+/* lightbox */
+.lightbox { border: 0; padding: 0; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; background: color-mix(in srgb, #000 88%, transparent); }
+.lightbox::backdrop { background: rgba(0,0,0,.6); }
+.lb-scroll { width: 100%; height: 100%; overflow: auto; display: grid; place-items: center; padding: 56px 16px 24px; }
+.lb-scroll img { width: min(1400px, 100%); height: auto; border-radius: 12px; background: #fff; }
+.lb-close { position: fixed; top: 12px; left: 12px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--yellow); color: #000; font-size: 1.6rem; line-height: 1; cursor: pointer; z-index: 2; }
+
+/* reveal: visible at rest; only below-the-fold items get the entrance */
+.reveal.pre { opacity: 0; transform: translateY(26px); }
+.reveal.in { opacity: 1; transform: none; transition: opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+@media (prefers-reduced-motion: reduce) { .reveal.pre { opacity: 1; transform: none; } .zoom, .reveal.in { transition: none; } }
+
+@media (max-width: 900px) {
+  .toc-grid, .split, .opener-in, .partner { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; }
+  .num { order: 0; font-size: clamp(5.5rem, 22vw, 9rem); }
+  .chapnav a span { font-size: .7rem; }
+  .txt.wide { columns: 1; }
+}
+@media (max-width: 560px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .topbar-in { gap: 12px; }
+  .brand .logo { width: 78px; }
+  .cover-bar .logo.big { margin-inline: 22px auto; }
+}
+
+.stack { display: grid; gap: 16px; max-width: 820px; }
+.panel.short { max-width: 820px; }
+
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><b></b></div>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#top" aria-label="یکتانت"><span class="logo"></span></a>
+    <nav class="chapnav" aria-label="فصل‌ها"><a href="#ch1" data-ch="1"><i></i><span>بازاریابی دیجیتال در جهان</span></a><a href="#ch2" data-ch="2"><i></i><span>رفتار مردم در فضای آنلاین</span></a><a href="#ch3" data-ch="3"><i></i><span>فراز و فرودهای ۱۴۰۴ و بهار ۱۴۰۵</span></a><a href="#ch4" data-ch="4"><i></i><span>وب‌سایت‌ها</span></a><a href="#ch5" data-ch="5"><i></i><span>اپلیکیشن‌ها</span></a><a href="#ch6" data-ch="6"><i></i><span>شبکه‌های اجتماعی</span></a><a href="#ch7" data-ch="7"><i></i><span>دیگر روش‌ها</span></a><a href="#ch8" data-ch="8"><i></i><span>تبلیغات محیطی و تلویزیونی</span></a></nav>
+  </div>
+</header>
+<main id="top" dir="rtl" lang="fa">
+<section class="hero">
+  <div class="wrap hero-in">
+    <canvas class="net" aria-hidden="true"></canvas>
+    <div class="cover-bar reveal">
+      <h1><b>روایت یکتانت</b> از بازاریابی دیجیتال ایران</h1>
+      <span class="year">۱۴۰۴ و بهار ۱۴۰۵</span>
+      <span class="logo big" role="img" aria-label="YEKTANET"></span>
+    </div>
+  </div>
+</section>
+<section class="toc-wrap">
+  <div class="wrap toc-grid">
+    <div class="toc reveal">
+      <h2>فهرست</h2>
+      <ol><li><a href="#ch1"><span class="tn">۰۱</span><span>بازاریابی دیجیتال در جهان</span></a></li><li><a href="#ch2"><span class="tn">۰۲</span><span>رفتار مردم ایران در فضای آنلاین</span></a></li><li><a href="#ch3"><span class="tn">۰۳</span><span>نبض تبلیغات دیجیتال در فراز و فرودهای سال ۱۴۰۴ و بهار ۱۴۰۵</span></a></li><li><a href="#ch4"><span class="tn">۰۴</span><span>کسب‌وکارها و تبلیغات در وب‌سایت‌های ایرانی</span></a></li><li><a href="#ch5"><span class="tn">۰۵</span><span>کاربران ایرانی و اپلیکیشن‌ها</span></a></li><li><a href="#ch6"><span class="tn">۰۶</span><span>کاربران ایرانی و تبلیغات در شبکه‌های اجتماعی</span></a></li><li><a href="#ch7"><span class="tn">۰۷</span><span>دیگر روش‌های بازاریابی دیجیتال</span></a></li><li><a href="#ch8"><span class="tn">۰۸</span><span>تبلیغات محیطی و تلویزیونی</span></a></li><li><a href="#ch9"><span class="tn">۰۹</span><span>پیوست</span></a></li></ol>
+    </div>
+    <div class="preface reveal" id="preface">
+      <h2>پیش‌گفتار</h2>
+      <p>سال ۱۴۰۴ برای اقتصاد دیجیتال ایران سال آرامی نبود. جنگ ۱۲روزه، اعتراضات دی، جنگ ۳۹روزه و قطعی‌های مکرر اینترنت، هر کدام برای مدتی رفتار کاربران و برنامه‌های بازاریابی کسب‌وکارها را تغییر دادند. با این حال، بازار تبلیغات دیجیتال پس از هر بحران به مسیر خود برگشت و در مقاطعی مانند ۷ آذر (بلک‌فرایدی) رکورد تازه‌ای هم ثبت کرد.</p>
+<p>در «روایت یکتانت از بازاریابی دیجیتال ایران در سال ۱۴۰۴ و بهار ۱۴۰۵» تلاش کرده‌ایم در کنار تصویر کلی بازار نشان دهیم این صنعت در برابر شوک‌های پی‌درپی چه واکنشی داشت و تبلیغ‌کنندگان، رسانه‌ها و کاربران چه‌طور خود را با شرایط تازه تطبیق دادند. گزارش با وضعیت تبلیغات دیجیتال در جهان آغاز می‌شود و سپس بازار تبلیغات ایران را در وب‌سایت‌ها، اپلیکیشن‌ها، شبکه‌های اجتماعی، دیگر روش‌های بازاریابی دیجیتال و تبلیغات محیطی و تلویزیونی بررسی می‌کند. پیمایش اختصاصی امسال هم با مشارکت ۹۵۹ نفر از سراسر کشور انجام شده است که علاوه‌بر عادت‌های آنلاین مردم، اعتماد آنان به تبلیغات، رفتارشان در روزهای قطع اینترنت و استفاده‌آنان از ابزارهای هوش مصنوعی را سنجیده است.</p>
+<p>گزارشی که در ادامه می‌خوانید را یکتانت با همکاری شرکت پژوهش بازار رسانه امروز (emrc)، مایکت، سیب‌اپ، ادتریس، زلکا، روبیکا، بله، سروش‌پلاس، ادیوری، جریان، تریبون، فرست‌ادز، نجوا و آی‌رسانه تدوین کرده است.</p>
+    </div>
+  </div>
+</section>
+<section class="chapter" id="ch1" data-ch="1">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۱</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۱</p>
+      <h2>بازاریابی دیجیتال در جهان</h2>
+      <div class="intro"><p>تا پیش از این، بررسی‌ها معطوف به چگونگی روند سهم‌گیری بازاریابی دیجیتال از بازاریابی سنتی بود و این‌که چگونه استراتژی‌ها و بودجه‌های بازاریابی به تناسب توسعه‌زیست دیجیتال کاربران و ارایه‌خدمات آنلاین، بیش‌تر به سمت بازاریابی دیجیتال می‌آیند؛ حال در کنار این ارزیابی‌ها باید نگاهی داشت به نقش فراگیر ابزارهای هوش مصنوعی که خود به زمینه‌ای برای رشد و نتیجه‌گیری بهتر در این حوزه تبدیل شده‌اند.</p>
+<p>در این بخش، به این پرسش‌ها پاسخ می‌دهیم:</p>
+<ul class="q"><li>بودجه‌های بازاریابی و تبلیغات در سال‌های آینده به کدام سو می‌روند؟</li><li>رسانه‌های دیجیتال و غیردیجیتال چه سهمی در جهان تبلیغات دارند؟</li><li>تغییرات سالانه بودجه‌های تبلیغات دیجیتال و سنتی چگونه بوده است؟</li><li>روند سالانه تغییر بودجه تبلیغات در رسانه‌های مختلف چگونه است؟</li><li>در نقاط مختلف جهان چه‌قدر برای تبلیغات دیجیتال هزینه می‌کنند؟</li><li>تاثیر هوش مصنوعی مولد بر آینده تبلیغات از نظر مدیران آژانس‌های تبلیغاتی جهان چگونه‌بوده است؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c1-p06">
+<div class="stack"><figure class="card"><img class="fig" src="img/c1-p06-1.webp" width="1452" height="391" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c1-p06-2.webp" width="1452" height="391" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c1-p06-3.webp" width="1452" height="390" loading="lazy" decoding="async" alt="کارت آماری"></figure></div>
+
+</article>
+<article class="sheet reveal" id="c1-p07">
+<div class="txt wide"><h3>بودجه‌های تبلیغاتی جهان در سال‌های پیش‌رو</h3>
+<p>نتایج پرسش‌نامه Global Entertainment &amp; Media Outlook ۲۰۲۵–۲۰۲۸ که از سوی PwC UK و Omdia اجرا شده است، نشان می‌دهد بودجه‌های تبلیغاتی* در جهان (دیجیتال و غیردیجیتال) در سال ۲۰۲۵ از ۱۰۰۰میلیارد دلار فراتر رفته‌اند؛ همچنین پیش‌بینی می‌کند، بودجه‌های تبلیغاتی سال‌های پیش رو با شیب ملایمی به‌شکل سالانه افزایش پیدا خواهند کرد.</p>
+<div class="notes"><p>* Advertising spending</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p07-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="بودجه‌های تبلیغاتی جهان در سال‌های پیش‌رو"></figure>
+
+</article>
+<article class="sheet reveal" id="c1-p08">
+<div class="txt wide"><h3>روند رشد سالانه بودجه‌های تبلیغاتی جهان</h3>
+<p>بودجه‌های تبلیغاتی خرج‌شده (دیجیتال و غیردیجیتال) در کشورهای گوناگون جهان در سال ۲۰۲۵ حدود ۸٫۴درصد نسبت به سال ۲۰۲۴ افزایش یافته‌اند. در سال ۲۰۲۴ میزان افزایش بودجه‌های تبلیغاتی نسبت به ۲۰۲۳، ۱۰٫۴درصد بوده است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p08-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="روند رشد سالانه بودجه‌های تبلیغاتی جهان"></figure>
+
+</article>
+<article class="sheet reveal" id="c1-p09">
+<div class="txt wide"><h3>بودجه‌های تبلیغاتی در کانال‌های دیجیتال در سال‌های پیش رو</h3>
+<p>شبکه تبلیغاتی Dentsu در گزارشی که در دسامبر ۲۰۲۵ ارائه داده، پیش‌بینی کرده است بودجه‌های سالانه خرج‌شده در کانال‌های دیجیتال* تا سال ۲۰۲۸ از ۸۰۰میلیارد دلار عبور خواهد کرد.</p>
+<div class="notes"><p>* Digital advertising expenditure</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p09-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="بودجه‌های تبلیغاتی در کانال‌های دیجیتال در سال‌های پیش رو"></figure>
+
+</article>
+<article class="sheet reveal" id="c1-p10">
+<div class="split">
+<div class="txt"><h3>پیش‌بینی سهم کانال‌های مختلف از بودجه‌های تبلیغاتی</h3>
+<p>مشاهده تجمیعی داده‌های Dentsu و Zenith در بررسی برنامه‌های تبلیغاتی در جهان نشان از افزایش تخصیص بودجه‌های تبلیغاتی به کانال‌های دیجیتال دارد. هم‌چنین بودجه‌های تبلیغاتی در کانال‌های دیجیتال در سال‌های آینده فاصله معناداری با کانال‌های غیردیجیتال خواهد داشت.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p10-1.webp" width="948" height="1369" loading="lazy" decoding="async" alt="پیش‌بینی سهم کانال‌های مختلف از بودجه‌های تبلیغاتی"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c1-p11">
+<div class="txt wide"><h3>مقایسه بودجه‌های تبلیغات دیجیتال در نقاط مختلف دنیا</h3>
+<p>هم‌راستا با افزایش بودجه‌های تبلیغات دیجیتال در جهان، در سال ۲۰۲۵ آمریکای شمالی با ۳۲۸میلیارد دلار و آسیا و اقیانوسیه با ۲۶۱میلیارد دلار، بیش‌ترین سهم را از کل بودجه تبلیغات دیجیتال جهان داشته‌اند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p11-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="مقایسه بودجه‌های تبلیغات دیجیتال در نقاط مختلف دنیا"></figure>
+
+</article>
+<article class="sheet reveal" id="c1-p12">
+<div class="txt wide"><h3>بیش‌ترین رشد بودجه تبلیغات دیجیتال در جهان مربوط به چه کشورهایی است؟</h3>
+<p>با بررسی بودجه‌های تبلیغات دیجیتال کشورهای مختلف در سال ۲۰۲۵ و مقایسه آن‌ها با مقدار بودجه‌های این نوع تبلیغات در سال ۲۰۲۴، بیش‌ترین افزایش بودجه تبلیغات دیجیتال به ترتیب به هند، ترکیه و اسپانیا مربوط می‌شود.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p12-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="بیش‌ترین رشد بودجه تبلیغات دیجیتال در جهان مربوط به چه کشورهایی است؟"></figure>
+
+</article>
+<article class="sheet reveal" id="c1-p13">
+<div class="txt wide"><h3>سهم بودجه‌های تبلیغات دیجیتال و سنتی در منطقه آسیا و اقیانوسیه</h3>
+<p>در میان نقاط مختلف منطقه آسیا و اقیانوسیه (Asia-Pacific) در سال ۲۰۲۵، کشورهای شرق آسیا ۵۲٫۵درصد از بودجه‌های تبلیغاتی خود را در کانال‌های دیجیتال خرج کرده‌اند؛ درحالی‌که سهم تبلیغات دیجیتال در منطقه جنوب‌غرب آسیا ۲۸٫۸درصد و در جنوب آسیا تنها ۱۹٫۶درصد است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p13-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="سهم بودجه‌های تبلیغات دیجیتال و سنتی در منطقه آسیا و اقیانوسیه"></figure>
+
+</article>
+<article class="sheet reveal" id="c1-p14">
+<div class="txt wide"><h3>سیر صعودی درآمد گوگل از تبلیغات</h3>
+<p>داده‌ها نشان می‌دهند که تبلیغات هم‌چنان ستون اصلی مدل درآمدی گوگل است و بخش عمده این درآمد از «جست‌وجو» تامین می‌شود. درآمد تبلیغاتی از جست‌وجوی گوگل از ۶۹میلیارد دلار در ۲۰۱۷ به ۱۹۸٫۱ میلیارد دلار در ۲۰۲۴ رسیده است. در همین بازه، درآمد تبلیغات یوتیوب نیز از ۸٫۲میلیارد دلار به ۳۶٫۱میلیارد دلار رسیده است.</p>
+<p>این در حالی است که درآمد حاصل از نمایش تبلیغات گوگل در سایت‌ها، اپلیکیشن‌ها و سایر ناشران، پس از رسیدن به حدود ۳۲٫۸ میلیارد دلار در ۲۰۲۲، به ۳۰٫۴میلیارد دلار در ۲۰۲۴ کاهش یافته است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p14-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="سیر صعودی درآمد گوگل از تبلیغات"></figure>
+
+</article>
+<article class="sheet reveal" id="c1-p15">
+<div class="txt wide"><h3>نگاه مدیران آژانس‌های تبلیغاتی به آینده هوش‌مصنوعی در تبلیغات</h3>
+<p>بر اساس نظرسنجی Basis Technologies که از سوی MarketingCharts در سال ۲۰۲۵ منتشر شد، تقریبا ۸۰درصد مدیران آژانس‌های تبلیغاتی آمریکای شمالی بر این باورند که هوش مصنوعی مولد (Generative AI) تاثیر «مثبت» یا «تا حدودی مثبت» بر آژانس‌های تبلیغاتی دارد.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c1-p15-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="نگاه مدیران آژانس‌های تبلیغاتی به آینده هوش‌مصنوعی در تبلیغات"></figure>
+
+</article>
+</div></section><section class="chapter" id="ch2" data-ch="2">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۲</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۲</p>
+      <h2>رفتار مردم ایران در فضای آنلاین</h2>
+      <div class="intro"><p>مطالعه ردپای دیجیتال ایرانیان و عادات رسانه‌ای‌شان می‌تواند بینش‌ارزشمندی درباره رفتار آنان در اختیار علاقه‌مندان بازاریابی دیجیتال قرار دهد. به این منظور با همکاری شرکت پژوهش بازار رسانه امروز (emrc) یک مطالعه پیمایشی اختصاصی برای این گزارش انجام شده است که در آن ۹۵۹نفر از ایرانیان سراسر کشور مشارکت داشته‌اند.</p>
+<p>برای دستیابی به تصویری که تا حد امکان نماینده جامعه ایران باشد، نمونه‌گیری به‌شکل تصادفی و با پوشش جغرافیایی شهرهای مختلف کشور انجام شده است. ترکیب نمونه پس از جمع‌آوری داده‌ها، بر اساس ویژگی‌های جمعیت‌شناختی جامعه ایران وزن‌دهی شده تا توزیع پاسخ‌دهندگان از نظر متغیرهایی مانند جنسیت، سن و پراکندگی جغرافیایی با ساختار جمعیتی کشور هم‌راستا شود. هم‌چنین سهم پاسخ‌دهندگان زن و مرد به شکل برابر در طراحی نمونه لحاظ شده و توزیع سنی نمونه متناسب با ساختار جمعیتی ایران تنظیم شده است.</p>
+<p>به‌منظور دسترسی به طیف متنوعی از پاسخ‌دهندگان، گردآوری داده‌ها به شکل تلفنی انجام شده است. به‌علاوه، حجم نمونه ۹۵۹نفر، در سطح اطمینان ۹۵درصد، امکان برآورد نتایج کلی با حاشیه خطایی حدود ۳٫۲درصد را فراهم می‌کند. بر این اساس، یافته‌های این پیمایش می‌تواند تصویری معتبر از الگوهای کلی رفتار، نگرش و عادات دیجیتال جامعه ایران را ارائه دهد.</p>
+<p>در این بخش به این سوال‌ها پاسخ داده شده است که مردم ایران:</p>
+<ul class="q"><li>چه میزان از وقت خود را در اینترنت سپری می‌کنند؟</li><li>با چه هدفی از اینترنت استفاده می‌کنند؟</li><li>از کدام پیام‌رسان‌ها استفاده می‌کنند؟</li><li>از اخبار ایران و جهان چه‌طور مطلع می‌شوند؟</li><li>تبلیغات کسب‌وکارها را چه‌طور ارزیابی می‌کنند؟</li><li>در زمان‌های قطع اینترنت چه می‌کنند؟</li><li>چه میزان و به چه علت از ابزارهای هوش‌مصنوعی استفاده می‌کنند؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c2-p03">
+<div class="cards n4"><figure class="card"><img class="fig" src="img/c2-p03-1.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c2-p03-2.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c2-p03-3.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c2-p03-4.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure></div>
+<div class="src"><span>منبع:</span><img class="src-logo" src="img/c2-p03-5.webp" width="125" height="30" loading="lazy" decoding="async" alt="منبع"></div>
+</article>
+<article class="sheet reveal" id="c2-p04">
+<div class="txt wide"><h3>مدت‌زمان استفاده از اینترنت در میان مردم ایران</h3>
+<p>مدت‌زمان استفاده روزانه از اینترنت با بالارفتن سن کاهش پیدا می‌کند. ۴۳درصد از نسل Z* روزانه بیش از ۴ساعت از اینترنت استفاده می‌کنند؛ درحالی‌که این سهم در نسل Y به ۳۴درصد و در نسل X به ۲۴درصد می‌رسد.</p>
+<p>در مقابل، نزدیک به نیمی از نسل X کم‌تر از ۲ساعت در روز آنلاین هستند. این یافته نشان می‌دهد تفاوت اصلی میان نسل‌ها دیگر در دسترسی به اینترنت نیست، بلکه در میزان حضور و شیوه استفاده از آن است.</p>
+<div class="notes"><p>* با توجه به اهمیت مطالعات نسلی در شناخت کاربران، پاسخ‌دهندگان بر اساس گروه‌های سنی زیر تقسیم‌بندی شده‌اند:</p><p>نسل Z: ترکیب‌گروه‌های سنی ۱۴ تا ۱۸ و ۱۹ تا ۲۷ سال نسل Y: ترکیب گروه‌های سنی ۲۸ تا ۳۶ و ٣۷ تا ۴۵ سال نسل X: ترکیب گروه‌های سنی ۴۶ تا ۵۴ و ۵۵ تا ۶۵ سال</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p04-1.webp" width="1453" height="783" loading="lazy" decoding="async" alt="مدت‌زمان استفاده از اینترنت در میان مردم ایران"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p05">
+<div class="split">
+<div class="txt"><h3>دلایل استفاده ایرانیان از اینترنت</h3>
+<p>الگوی استفاده از اینترنت در نسل‌های مختلف متفاوت است. نسل Z بیش از سایر نسل‌ها اینترنت را برای تماشای فیلم، سریال و ویدیو (۷۳درصد)، گوش دادن به موسیقی (۶۸درصد) و وقت‌گذرانی (۶۶درصد) استفاده می‌کند و در استفاده از ابزارهای هوش مصنوعی نیز با ۶۰درصد، فاصله محسوسی با نسل‌های Y و X دارد.</p>
+<p>در مقابل، نسل X سهم بالاتری در کاربردهایی مانند ارتباط با خانواده و دوستان (۶۵درصد)، دنبال کردن اخبار (۶۴درصد) و خدمات بانکی (۶۲درصد) دارد؛ درحالی‌که نسل Y در خرید اینترنتی (۶۲درصد) پیشتاز است.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p05-1.webp" width="861" height="1381" loading="lazy" decoding="async" alt="دلایل استفاده ایرانیان از اینترنت"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c2-p06">
+<div class="split">
+<div class="txt"><h3>اولین فعالیت ایرانیان پس از بیدارشدن از خواب</h3>
+<p>چک کردن شبکه‌های اجتماعی و پیام‌رسان‌ها، اولین اقدام صبح‌گاهی بیش از ۴۰درصد از افراد هر سه نسل است؛ ۴۶درصد از نسل Z، ۴۵درصد از نسل Y و ۴۱درصد از نسل X روز خود را با این کار آغاز می‌کنند.</p>
+<p>پس از آن، صرف صبحانه جایگاه پررنگ‌تری نسبت به سایر فعالیت‌ها در بین همه نسل‌ها پیدا می‌کند؛ ۳۴درصد از نسل X در مقایسه با ۲۷درصد از نسل Y و ۲۳درصد از نسل Z، روز خود را با آماده کردن و خوردن صبحانه شروع می‌کنند. این تفاوت نشان می‌دهد که حضور دیجیتال در لحظات ابتدایی روز، رفتاری فراگیر و فراتر از مرزهای نسلی است.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p06-1.webp" width="861" height="1381" loading="lazy" decoding="async" alt="اولین فعالیت ایرانیان پس از بیدارشدن از خواب"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c2-p07">
+<div class="txt wide"><h3>جایگاه پیام‌رسان‌ها در میان ایرانیان</h3>
+<p>دایرکت اینستاگرام و روبیکا با ۸۱درصد استفاده در یک سال گذشته، بالاترین میزان استفاده را در میان پلتفرم‌های بررسی‌شده دارند. پس از آن، واتس‌اپ، تلگرام، ایتا و بله با فاصله‌کمی از یک‌دیگر در رتبه‌های بعدی قرار دارند.</p>
+<p>در سوی دیگر، شاد با ۲۵درصد، سروش‌پلاس با ۲۰درصد و دایرکت ایکس با تنها ۱۱درصد استفاده، فاصله قابل‌توجهی با سایر پلتفرم‌ها دارند. با این حال، در میان کاربران هر پلتفرم، شدت استفاده متفاوت است و دایرکت اینستاگرام با ۴۰درصد «استفاده زیاد»، بالاترین سهم کاربران پرمصرف را دارد.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p07-1.webp" width="1453" height="880" loading="lazy" decoding="async" alt="جایگاه پیام‌رسان‌ها در میان ایرانیان"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p08">
+<div class="txt wide"><h3>روش‌های مختلف ایرانیان برای اطلاع از اخبار</h3>
+<p>پیام‌رسان‌ها با ۵۵درصد استفاده متوسط یا زیاد، مهم‌ترین کانال برای دریافت اخبار هستند. پس از آن، سایت‌های خبری با ۴۴درصد، دوستان و آشنایان با ۴۲درصد و تلویزیون با ۳۹درصد قرار دارند؛ ترکیبی که نشان می‌دهد دریافت اخبار هم‌چنان میان رسانه‌های رسمی، پلتفرم‌های دیجیتال و شبکه ارتباطی افراد توزیع شده است. در میان سایر موارد، اینستاگرام (با ۲۶درصد میزان استفاده بالاتر از متوسط) و دنبال‌کردن چهره‌های فعال در فضای مجازی (۲۰درصد)، جایگاه بالاتری از شبکه‌های تلویزیونی غیرداخلی (۱۶درصد) و پیشنهادهای گوگل (۱۵درصد) دارند. در مقابل، کانال‌هایی مانند روزنامه (۳درصد) و ایکس (۲درصد) نقش بسیار محدودتری در مطالعه مستمر اخبار دارند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p08-1.webp" width="1453" height="880" loading="lazy" decoding="async" alt="روش‌های مختلف ایرانیان برای اطلاع از اخبار"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p09">
+<div class="txt wide"><h3>مواجهه مردم با تبلیغات کسب‌وکارها در رسانه‌های مختلف</h3>
+<p>بیلبورد و تبلیغات محیطی با ۹۶درصد مواجهه، بیش‌ترین میزان دیده‌شدن را در میان مردم ایران دارد و پس از آن، تبلیغات داخل فروشگاه‌ها با ۹۲درصد مواجهه در رتبه دوم قرار می‌گیرد. در رتبه‌های بعدی، پیامک با ۹۱درصد، تبلیغات روی وسایل نقلیه با ۹۰درصد و وب‌سایت‌ها با ۸۶درصد مواجهه، کانال‌هایی هستند که بیش‌تر دیده شده‌اند. در نقطه مقابل این طیف، پادکست‌ها و رادیو با ۲۱ و ۱۹درصد مواجهه، کم‌ترین میزان دیده‌شدن را در میان پاسخ‌دهندگان و فاصله‌ای چشم‌گیر با سایر رسانه‌ها دارند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p09-1.webp" width="1453" height="880" loading="lazy" decoding="async" alt="مواجهه مردم با تبلیغات کسب‌وکارها در رسانه‌های مختلف"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p10">
+<div class="split">
+<div class="txt"><h3>از دیده‌شدن تبلیغ تا اقدام کاربر</h3>
+<p>برای مقایسه اثرگذاری تبلیغات در رسانه‌های مختلف، واکنش مخاطبان به تبلیغات برندها در ۱۰رسانه از مرحله «مواجهه و دیده‌شدن» تا «توجه» و در نهایت «پی‌گیری و اقدام» بررسی شده است.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p10-1.webp" width="1045" height="1381" loading="lazy" decoding="async" alt="از دیده‌شدن تبلیغ تا اقدام کاربر"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c2-p11">
+<div class="split">
+<div class="txt"><h3>اعتماد مردم ایران به تبلیغات در رسانه‌های مختلف</h3>
+<p>داده‌ها نشان می‌دهند «بی‌تفاوتی»، غالب‌ترین واکنش مخاطبان به کانال‌های تبلیغاتی است. در تمام کانال‌های بررسی‌شده، سهم پاسخ‌دهندگانی که هنوز نظر منفی شک‌ل گرفته‌شده‌ای اعلام نکرده‌اند از سهم بی‌اعتمادان بیش‌تر است.</p>
+<p>حدود یک‌چهارم پاسخ‌دهندگان به تبلیغات در تلویزیون و تبلیغات داخل فروشگاه‌ها اعتماد دارند. حتی کانال‌هایی مانند رادیو و پادکست که کم‌ترین سهم نظر منفی را دارند، عمدتا با بی‌تفاوتی مواجه‌اند تا مخالفت. این الگو نشان می‌دهد بیش‌تر مخاطبان، حتی نسبت به کانال‌هایی با کم‌ترین امتیاز اعتماد هم ذهنیت منفی قطعی ندارند.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p11-1.webp" width="897" height="1381" loading="lazy" decoding="async" alt="اعتماد مردم ایران به تبلیغات در رسانه‌های مختلف"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c2-p12">
+<div class="txt wide"><h3>ایرانیان و خرید آنلاین</h3>
+<p>حدود ۶۰درصد از ایرانیان حداقل یک‌بار در ماه خرید آنلاین انجام می‌دهند و با افزایش سن، فاصله در میزان استفاده از خرید آنلاین بیش‌تر می‌شود. نسل X نسبت به دو نسل دیگر، سهم بالاتری از نداشتن خرید ماهانه دارند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p12-1.webp" width="1453" height="827" loading="lazy" decoding="async" alt="ایرانیان و خرید آنلاین"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p13">
+<div class="split">
+<div class="txt"><h3>ایرانیان در زمان‌های قطع اینترنت چه می‌کردند؟</h3>
+<p>در دوره‌های قطع اینترنت، «گفت‌وگو با خانواده و دوستان»، «ورزش و پیاده‌روی» و «گشت‌وگذار در شهر» از رایج‌ترین فعالیت‌های جایگزین در بین همه افراد بوده است.</p>
+<p>در بین نسل Z پس از این موارد «گوش دادن به موسیقی»، «تماشای فیلم» و «بازی کردن با موبایل»، در اولویت بوده، درحالی‌که در نسل X و Y «آشپزی» نیز جزو موارد صدرنشین قرار داشته است.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p13-1.webp" width="894" height="1381" loading="lazy" decoding="async" alt="ایرانیان در زمان‌های قطع اینترنت چه می‌کردند؟"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c2-p14">
+<div class="txt wide"><h3>شیوه‌های ارتباطی ایرانیان در زمان قطع اینترنت</h3>
+<p>در دوران قطع اینترنت، تفاوت نسلی در شیوه‌های حفظ ارتباط با خانواده و دوستان مشهود است. نسل X و Y بیش‌تر به تماس تلفنی متکی بوده‌اند؛ ۷۰درصد از نسل X و ۶۲درصد از نسل Y از این روش استفاده کرده‌اند. در نسل Z اما ارتباط حضوری بیش‌ترین میزان را داشته است.</p>
+<p>این در حالی است که ۲درصد افراد گفته‌اند که در این شرایط نتوانسته‌اند به هیچ طریقی با دوستان و خانواده‌خود ارتباط برقرار کنند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p14-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="شیوه‌های ارتباطی ایرانیان در زمان قطع اینترنت"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p15">
+<div class="txt wide"><h3>تغییرات الگوی خرید آنلاین ایرانیان در زمان‌های قطع اینترنت</h3>
+<p>در دوره‌های قطع اینترنت، مهم‌ترین تغییر در الگوی خرید، تاخیر یا انصراف از خرید بوده است که این رفتار در نسل Z با ۵۲درصد بیش‌تر از نسل Y و X دیده می‌شود.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p15-1.webp" width="1453" height="862" loading="lazy" decoding="async" alt="تغییرات الگوی خرید آنلاین ایرانیان در زمان‌های قطع اینترنت"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p16">
+<div class="txt wide"><h3>واکنش ایرانیان به تبلیغات دیجیتال در دوران بحران</h3>
+<p>در شرایط بحرانی، تبلیغات دیجیتال برای بخش بزرگی از مخاطبان منجر به واکنش منفی نشده است. از میان افرادی که تبلیغی در این بازه‌ها مشاهده کرده‌اند، ۶۰درصد از نسل X، ۴۷درصد از نسل Y و ۶۵درصد از نسل Z گفته‌اند که مواجهه با تبلیغات برندها تفاوتی در واکنش آن‌ها ایجاد نکرده است.</p>
+<p>نگاه مثبت به حضور برند در شرایط سخت در هر سه نسل در رتبه دوم قرار گرفته است. با این حال، حدود یک‌چهارم مخاطبان واکنشی منفی یا انتقادی داشته‌اند؛ بنابراین در دوره‌های بحرانی، حضور تبلیغاتی برند ذاتا مسئله‌ساز نیست، اما تناسب پیام و شیوه حضور با شرایط جامعه اهمیت ویژه‌ای پیدا می‌کند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p16-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="واکنش ایرانیان به تبلیغات دیجیتال در دوران بحران"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p17">
+<div class="txt wide"><h3>میزان استفاده مردم ایران از ابزارهای هوش مصنوعی</h3>
+<p>بررسی میزان استفاده از ابزارهای هوش مصنوعی نشان می‌دهد که شکاف نسلی در شیوه مواجهه با این فناوری معنادار است. در نسل Z تنها ۲۶درصد هرگز از ابزارهای هوش مصنوعی استفاده نکرده‌اند و ۳۸درصد به‌طور مداوم و روزانه از آن‌ها استفاده می‌کنند؛ در مقابل، در نسل X، ۴۹درصد هیچ‌گاه از این ابزارها استفاده نکرده‌اند و تنها ۱۲درصد استفاده روزانه دارند. نسل Y نیز با ۴۲درصد عدم استفاده و ۱۹درصد استفاده روزانه، در میانه این دو نسل قرار می‌گیرد. بنابراین تفاوت اصلی میان نسل‌ها نه در تجربه اولیه یا استفاده گاه‌به‌گاه، بلکه در تبدیل هوش مصنوعی به بخشی از عادت‌های روزمره است؛ الگویی که در نسل Z به‌مراتب پررنگ‌تر دیده می‌شود.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p17-1.webp" width="1453" height="863" loading="lazy" decoding="async" alt="میزان استفاده مردم ایران از ابزارهای هوش مصنوعی"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p18">
+<div class="split">
+<div class="txt"><h3>ایرانیان در چه حوزه‌هایی از هوش مصنوعی کمک‌گرفته‌اند؟</h3>
+<p>در یک سال گذشته، «کسب اطلاعات و یادگیری»، مهم‌ترین کاربرد ابزارهای هوش مصنوعی در میان هر سه نسل بوده است؛ ۵۹درصد نسل Y، ۵۷درصد نسل Z و ۵۲درصد نسل X از هوش مصنوعی برای این منظور استفاده کرده‌اند. با این حال، تفاوت نسل‌ها در نوع استفاده از این ابزارها آشکار است: نسل X و نسل Y بیش‌تر به سمت استفاده‌های کاربردی و حرفه‌ای رفته‌اند؛ به‌طوری‌که استفاده از هوش مصنوعی برای امور کاری در نسل Y به ۴۳درصد و در نسل X به ۳۹درصد می‌رسد و استفاده برای پرسش‌های پزشکی و سلامت نیز در نسل X، ۴۸درصد است. در مقابل، نسل Z دامنه استفاده متنوع‌تر و شخصی‌تری دارد. در مجموع، به نظر می‌رسد هوش مصنوعی برای نسل‌های مختلف بیش‌از‌آن‌که یک ابزار با کاربرد واحد باشد، متناسب با نیازها و سبک زندگی هر نسل به شکل متفاوتی در حال تبدیل‌شدن به دستیار روزمره، حرفه‌ای و شخصی است.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p18-1.webp" width="891" height="1381" loading="lazy" decoding="async" alt="ایرانیان در چه حوزه‌هایی از هوش مصنوعی کمک‌گرفته‌اند؟"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c2-p19">
+<div class="txt wide"><h3>ابزارهای هوش مصنوعی پراستفاده در میان ایرانیان</h3>
+<p>در استفاده از ابزارهای هوش مصنوعی، چت‌جی‌پی‌تی با فاصله زیادی، ابزار غالب کاربران است؛ ۹۲درصد کاربران حداقل گاهی از آن استفاده کرده‌اند و ۳۴درصد نیز استفاده زیادی داشته‌اند. پس از آن، جمنای با ۱۹درصد، دستیار بله با ۱۷درصد و گپ جی‌پی‌تی با ۱۶درصد قرار دارند، در حالی که سایر ابزارها میزان استفاده بسیار پایین‌تری دارند.</p>
+<p>این الگو نشان می‌دهد که با وجود امکان استفاده هم‌زمان از چند ابزار، چت‌جی‌پی‌تی جایگاه غالب و کم‌رقیبی در میان کاربران ایرانی دارد و استفاده از سایر ابزارها عمدتا در سطح محدود و مکمل است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p19-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="ابزارهای هوش مصنوعی پراستفاده در میان ایرانیان"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p20">
+<div class="txt wide"><h3>۸۶درصد ایرانیان هیچ‌هزینه‌ای برای خرید ابزارهای هوش مصنوعی نکرده‌اند</h3>
+<p>در یک سال گذشته، ۸۶درصد از پاسخ‌دهندگان هیچ هزینه‌ای برای تهیه اکانت‌های هوش مصنوعی نکرده‌اند و تنها ۱۴درصد تجربه پرداخت داشته‌اند. در میان سطوح مختلف هزینه نیز سهم کاربران به‌طور محسوسی کاهش می‌یابد و تنها ۲درصد بیش از ۲میلیون تومان در ماه هزینه کرده‌اند. در مقایسه نسل‌های مختلف، تفاوت قابل‌توجه و معناداری مشاهده نمی‌شود؛ بنابراین می‌توان گفت تمایل به استفاده رایگان از ابزارهای هوش مصنوعی، الگویی فراگیر و مستقل از نسل‌هاست.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p20-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="۸۶درصد ایرانیان هیچ‌هزینه‌ای برای خرید ابزارهای هوش مصنوعی نکرده‌اند"></figure>
+
+</article>
+<article class="sheet reveal" id="c2-p21">
+<div class="split">
+<div class="txt"><h3>استفاده تخصصی از هوش مصنوعی در میان مردم ایران</h3>
+<p>بیش‌ترین استفاده تخصصی نسل Z، در زمینه «یادگیری و آموزش» و سپس «جست‌وجوی اطلاعات» است؛ درحالی‌که «جست‌وجوی اطلاعات» در نسل Y و X بیش‌ترین کاربرد را در یک سال گذشته داشته‌است.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p21-1.webp" width="929" height="1381" loading="lazy" decoding="async" alt="استفاده تخصصی از هوش مصنوعی در میان مردم ایران"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c2-p22">
+<div class="split">
+<div class="txt"><h3>برنامه مردم ایران برای استفاده بیش‌تر از ابزارهای هوش مصنوعی</h3>
+<p>در این داده، تفاوت نسلی بیش‌تر در میزان بلوغ استفاده از هوش مصنوعی دیده می‌شود: نسل Z با ۴۲درصد، بیش از سایر نسل‌ها سطح فعلی استفاده را کافی می‌داند، در حالی که در نسل X، ۲۸درصد هنوز استفاده نکرده‌اند و قصدی هم برای استفاده ندارند؛ بااین‌حال، ۲۶درصد از نسل X گفته‌اند می‌خواهند در سال آینده شروع کنند. در نسل Y نیز ۲۰درصد در آستانه ورود قرار دارند.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c2-p22-1.webp" width="929" height="1381" loading="lazy" decoding="async" alt="برنامه مردم ایران برای استفاده بیش‌تر از ابزارهای هوش مصنوعی"></figure></div>
+</div>
+
+</article>
+</div></section><section class="chapter" id="ch3" data-ch="3">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۳</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۳</p>
+      <h2>نبض تبلیغات دیجیتال در فراز و فرودهای سال ۱۴۰۴ و بهار ۱۴۰۵</h2>
+      <div class="intro"><p>سال ۱۴۰۴ سالی پرنوسان برای بازار تبلیغات دیجیتال ایران بود. جنگ ۱۲روزه در خرداد، اعتراضات دی‌و جنگ ۳۹روزه‌ای که از اسفند آغاز شد، هر کدام به‌نوبه خود رفتار کاربران و روند فعالیت کسب‌وکارها را دست‌خوش تغییر کردند و قطعی‌های مکرر اینترنت در این بازه‌ها فشار مضاعفی به کسب‌وکارهای دیجیتال وارد کرد. اما تصویر این ایام، فقط افت و توقف نبود. در کنار این دوره‌های دشوار، بازار تبلیغات دیجیتال ایران بازه‌هایی با رونق قابل‌توجه را هم پشت سر گذاشت. ۷ آذر ۱۴۰۴ (بلک‌فرایدی) نمونه‌روشنی از این موضوع بود؛ بازه‌ای که با وجود شرایط عمومی اقتصاد، بخش قابل‌توجهی از کسب‌وکارها یکی از پررونق‌ترین دوره‌های فروش سال را تجربه کردند. در این فصل با استفاده از داده‌های یکتانت روندهایی را بررسی می‌کنیم که مستقیما از این نوسان‌های سال تاثیر پذیرفته‌اند:</p>
+<ul class="q"><li>روند بازدید از صفحات وب فارسی</li><li>روند ماهانه تعداد کلیک روی تبلیغات وب‌فارسی و تغییرات CPC</li><li>روند میزان بازدید روزانه تبلیغات در اپلیکیشن‌ها و بازی‌های نمایش‌دهنده تبلیغات</li><li>روند هزینه‌کرد و میزان تغییرات بودجه‌های تبلیغاتی در بسترهای دیجیتال</li><li>میزان تغییرات ظرفیت‌های نمایش تبلیغات</li><li>پراکندگی وضعیت رسانه‌های مختلف نمایش‌دهنده تبلیغات در جنگ ۳۹روزه</li><li>وضعیت صنایع مختلف بر اساس میزان تغییر بودجه‌های تبلیغاتی در جنگ ۳۹روزه</li><li>اندازه بازار تبلیغات دیجیتال در ایران</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c3-p03">
+<div class="cards n4"><figure class="card"><img class="fig" src="img/c3-p03-1.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c3-p03-2.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c3-p03-3.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c3-p03-4.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure></div>
+
+</article>
+<article class="sheet reveal" id="c3-p04">
+<div class="txt wide"><h3>روند بازدید از صفحات وب فارسی در سالی که گذشت</h3>
+<p>بازدید از صفحات وب‌سایت‌های فارسی در ۱۵ماه گذشته با فراز و فرودهای قابل‌توجهی همراه بود. بررسی روند روزانه تغییر بازدید از وب‌سایت‌ها نشان‌دهنده افت شدید در بازه‌های جنگ ۱۲روزه، دی ۱۴۰۴ و جنگ ۳۹روزه است.</p>
+<p>شدیدترین افت این بازه یک‌ساله در دی‌رخ داد، جایی که بازدید تا حدود یک‌پنجم میزان پیش از قطع اینترنت کاهش یافت. با این حال، بازگشت به سطح پیش از بحران نسبتا سریع بود و پس از وصل‌شدن اینترنت، طی حدود سه هفته اتفاق افتاد.</p>
+<p>جنگ ۳۹روزه با وجود طول مدت بیش‌تر، الگوی مشابهی را طی کرد، بازدید در حدود نیمی از سطح پایه افت کرد و طی چند هفته پس از فروکش‌کردن بحران، به‌تدریج به محدوده پیش از بحران بازگشت.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p04-1.webp" width="1458" height="908" loading="lazy" decoding="async" alt="روند بازدید از صفحات وب فارسی در سالی که گذشت"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p05">
+<div class="txt wide"><h3>روند ماهانه تعداد کلیک روی تبلیغات وب‌فارسی</h3>
+<p>بررسی روند دوساله تعداد کلیک‌های ماهانه تبلیغات نمایشی در وب‌سایت‌های فارسی نشان می‌دهد این شاخص در بیش‌تر بازه مورد بررسی در یک دامنه نسبتا پایدار نوسان داشته و با افت‌وخیزهای فصلی معمول همراه بوده است.</p>
+<p>این شاخص که در آذر ۱۴۰۴ به بالاترین میزان خود در دو سال اخیر رسیده بود، در اسفند ۱۴۰۴ هم‌زمان با آغاز جنگ ۳۹روزه و قطع سراسری اینترنت، به شکل محسوسی افت کرد. این افت در فروردین ۱۴۰۵ ادامه یافت و تعداد کلیک‌ها به کم‌ترین میزان در کل بازه بررسی‌شده رسید که می‌تواند نشانه‌ای از تاثیر مستقیم محدودیت‌های ناشی از قطع اینترنت و جنگ بر رفتار کاربران و عملکرد پلتفرم‌های تبلیغاتی باشد.</p>
+<p>اما به رغم این مشکلات، روند صعودی این شاخص پس از آتش‌بس و اتصال مجدد اینترنت مشهود است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p05-1.webp" width="1458" height="859" loading="lazy" decoding="async" alt="روند ماهانه تعداد کلیک روی تبلیغات وب‌فارسی"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p06">
+<div class="txt wide"><h3>روند CPC* تبلیغات وب فارسی در ٢سال گذشته</h3>
+<p>روند CPC تبلیغات وب در یکتانت از ابتدای سال ۱۴۰۳ تا خرداد ۱۴۰۵ نشان می‌دهد هزینه تبلیغات در وب‌سایت‌های فارسی در مجموع روندی افزایشی داشته است. با این حال، با وقوع جنگ ۱۲روزه، این شاخص کاهش قابل‌توجهی داشت و به‌طور میانگین تا ۴۶درصد افت کرد.</p>
+<p>این شاخص طی پنج ماه بعد، تا آذر ۱۴۰۴ و هم‌زمان با کمپین‌های بلک‌فرایدی، حدود ۸۴درصد افزایش یافت و به بالاترین سطح کل دوره رسید؛ این رشد ناشی از افزایش تقاضای کسب‌وکارها برای جایگاه‌های تبلیغاتی در این بازه است. با پایان بازه کمپین‌ها و به دنبال آن دو بحران اعتراضات دی‌و جنگ ۳۹روزه، این شاخص دوباره روند کاهشی به خود گرفت و در مجموع حدود ۳۵درصد نسبت به میانگین سالانه افت کرد. پس از آتش‌بس و تا خرداد ۱۴۰۵، CPC حدود ۶۶درصد افزایش یافت. الگوی بازگشت پس از این دو دوره افت، نشان می‌دهد شوک‌های وارد بر CPC در هر دو مورد مقطعی بوده‌اند؛ با بازگشت تقاضای کسب‌وکارها برای تبلیغ، شاخص پس از هر افت به سطح نزدیک به اوج پیش از بحران بازگشته و روند کاهش، پایدار نبوده است.</p>
+<div class="notes"><p>*منظور از CPC (Cost Per Click) هزینه به‌ازای هر کلیک است.</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p06-1.webp" width="1453" height="799" loading="lazy" decoding="async" alt="روند CPC* تبلیغات وب فارسی در ٢سال گذشته"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p07">
+<div class="txt wide"><h3>میزان بازدید روزانه تبلیغات در اپلیکیشن‌های نمایش‌دهنده تبلیغات</h3>
+<p>با قطع اینترنت در دی و اسفند ۱۴۰۴، ترافیک کاربران ایرانی از شبکه‌های اجتماعی خارجی و نیز وب‌سایت‌ها به اپلیکیشن‌های داخلی سرازیر شد و در هر دو بازه‌این قطعی‌ها (دی‌و جنگ ٣٩روزه) ترافیک اپلیکیشن‌های نمایش‌دهنده تبلیغ تا ۵۰درصد افزایش یافت.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p07-1.webp" width="1453" height="888" loading="lazy" decoding="async" alt="میزان بازدید روزانه تبلیغات در اپلیکیشن‌های نمایش‌دهنده تبلیغات"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p08">
+<div class="txt wide"><h3>میزان بازدید روزانه تبلیغات در بازی‌های تلفن همراه</h3>
+<p>با بررسی روند بازدید روزانه از تبلیغات نمایش‌داده‌شده در بازی‌های تلفن همراه، به‌نظر می‌رسد که با قطع اینترنت و در نبود شبکه‌های اجتماعی جهانی، کاربران به ناچار خود را با بازی‌های تلفن همراه سرگرم می‌کنند و این موضوع سبب شده تا در هر سه مقطع بحرانی سال گذشته، استفاده از بازی‌های تلفن همراه تا بیش از ۲برابر نیز افزایش یابد.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p08-1.webp" width="1453" height="888" loading="lazy" decoding="async" alt="میزان بازدید روزانه تبلیغات در بازی‌های تلفن همراه"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p09">
+<div class="txt wide"><h3>روند هزینه‌کرد بودجه‌های تبلیغاتی در بسترهای دیجیتال</h3>
+<p>سال ۱۴۰۴، سال پرفرازوفرودی برای بازار تبلیغات دیجیتال در ایران بود. بحران‌های متعدد این سال و قطع مکرر اینترنت باعث شد تا برندها و تبلیغ‌کنندگان نتوانند کمپین‌های تبلیغاتی خود را به خوبی اجرا کنند. روند هزینه‌کرد بودجه‌های تبلیغاتی در کانال‌های دیجیتال با جنگ ١٢روزه افت کرد، در آذر (بلک‌فرایدی) رکورد زد و پس از قطع اینترنت در دی، شاهد کم‌ترین مقدار کل سال بود. کاهش بودجه تبلیغاتی در اسفند و پس از آغاز دوباره جنگ نیز اتفاق افتاد و درنهایت پس از آتش‌بس در ١٨فروردین، دوره بازیابی بودجه‌ها شروع شد.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p09-1.webp" width="1453" height="888" loading="lazy" decoding="async" alt="روند هزینه‌کرد بودجه‌های تبلیغاتی در بسترهای دیجیتال"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p10">
+<div class="txt wide"><h3>تاب‌آوری در سایه‌بحران؛ تعداد تبلیغ‌کنندگان فعال</h3>
+<p>علی‌رغم بحران‌هایی که در سال ۱۴۰۴ بر اقتصاد دیجیتال ایران سایه انداخت، نیاز کسب‌وکارها به تبلیغات پابرجا ماند. تعداد تبلیغ‌کنندگان فعال* در ۹ ماه از ۱۲ماه سال، نسبت به مدت مشابه سال قبل، رشدی بین ۷ تا ۴۷درصد را تجربه کرد و میانگین ماهانه آن در کل سال حدود ۱۵درصد بالاتر از سال ۱۴۰۳ بود. کم‌ترین رشد این بازه به تیر و روزهای پس از جنگ ۱۲روزه تعلق دارد، اما حتی در همین ماه تعداد تبلیغ‌کنندگان فعال از تیر سال قبل بیش‌تر بود و در مرداد از سطح پیش از جنگ نیز فراتر رفت.</p>
+<p>در دی و بهمن، تعداد تبلیغ‌کنندگان فعال تقریبا در سطح سال قبل باقی ماند. افت محسوس تنها در اسفند دیده می‌شود، با این‌حال حتی در این ماه نیز شمار تبلیغ‌کنندگان فعال از ماه‌های فروردین و تیر همین سال بیش‌تر بود. این الگو می‌تواند نشانه آن باشد که کسب‌وکارهای ایرانی در دوره‌های بحران، فعالیت تبلیغاتی خود را با احتیاط بیش‌تر ادامه می‌دهند و پس از فروکش کردن بحران، به‌سرعت به مسیر تبلیغات بازمی‌گردند.</p>
+<div class="notes"><p>*تبلیغ‌کننده‌ای که در هر ماه بیش‌از ۵۰میلیون تومان برای تبلیغات در یکتانت هزینه کرده باشد.</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p10-1.webp" width="1453" height="776" loading="lazy" decoding="async" alt="تاب‌آوری در سایه‌بحران؛ تعداد تبلیغ‌کنندگان فعال"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p11">
+<div class="txt wide"><h3>میزان رشد نقطه‌به‌نقطه بودجه‌های تبلیغات دیجیتال</h3>
+<p>بررسی بودجه‌های تبلیغاتی خرج‌شده در ما‌ه‌های متناظر دو سال ۱۴۰۴ و ۱۴۰۳ نشان می‌دهد که رشد نقطه‌به‌نقطه این بودجه‌های تبلیغاتی در همه ماه‌های سال ۱۴۰۴ به جز چهار ماه بحرانی (تیر و سه ماه زمستان) سه‌رقمی‌بوده است. رشد بودجه‌ها در ماه‌های تیر، دی و بهمن بسیار کم‌تر از سایر ماه‌ها بوده و در اسفند، شاهد افت نقطه‌به‌نقطه بودجه‌های تبلیغاتی به مقدار ٣٢درصد بوده‌ایم.</p>
+<p>از حیث عدد مطلق بودجه‌های تبلیغاتی، آذر ۱۴۰۴ به‌دلیل کمپین‌های متعدد از جمله کمپین بلک‌فرایدی، شاهد بیش‌ترین میزان ریالی بودجه‌های خرج‌شده بوده است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p11-1.webp" width="1453" height="878" loading="lazy" decoding="async" alt="میزان رشد نقطه‌به‌نقطه بودجه‌های تبلیغات دیجیتال"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p12">
+<div class="txt wide"><h3>میزان تغییر بودجه‌های تبلیغاتی</h3>
+<p>بررسی روند خرج‌کرد بودجه‌های تبلیغاتی در کانال‌های دیجیتال در سال ۱۴۰۴، نشان‌دهنده افت شدید در سه بازه مهم بحرانی (جنگ ١٢روزه، اعتراضات دی و جنگ ٣٩روزه) است. جدول زیر خلاصه‌ای از مقدار افت بودجه‌های تبلیغاتی در هر بازه بحرانی و نیز مدت‌زمان سپری‌شده تا بازگشت به وضع عادی در خرج‌کرد بودجه‌ها را نشان می‌دهد. منظور از بازگشت به وضع عادی رسیدن به ۸۰درصد از میانگین یک‌هفته منتهی به شروع بحران است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p12-1.webp" width="1453" height="815" loading="lazy" decoding="async" alt="میزان تغییر بودجه‌های تبلیغاتی"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p13">
+<div class="txt wide"><h3>میزان تغییر ظرفیت‌های نمایش تبلیغات</h3>
+<p>میزان تغییرات ظرفیت‌بسترهای نمایش تبلیغات در وب‌سایت‌ها و اپلیکیشن‌ها نشان می‌دهد که اعمال محدودیت‌های شدید و قطع اینترنت بیش‌ترین تاثیر را بر وب‌سایت‌ها و اپلیکیشن‌های خارجی داشته است، به‌گونه‌ای که می‌توان گفت اپلیکیشن‌های خارجی تقریبا خاموش بوده‌اند. آمارها نشان می‌دهد بیش‌ترین بازه‌این تاثیر مربوط به دی است.</p>
+<p>در نقطه‌مقابل، اپلیکیشن‌ها و پیام‌رسان‌های داخلی با رشد قابل‌توجهی مواجه بودند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p13-1.webp" width="1453" height="886" loading="lazy" decoding="async" alt="میزان تغییر ظرفیت‌های نمایش تبلیغات"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p14">
+<div class="txt wide"><h3>پراکندگی وضعیت رسانه‌های مختلف نمایش‌دهنده تبلیغات در جنگ ٣٩روزه</h3>
+<p>داده‌ها نشان می‌دهند در مقایسه‌دو بازه‌زمانی پیش و پس از جنگ، ظرفیت نمایش تبلیغات در اپلیکیشن‌ها افزایش یافت؛ درحالی‌که این ظرفیت در وب‌سایت‌ها افت قابل‌توجهی داشت. حدود ۸۱درصد وب‌سایت‌ها علاوه‌بر‌اینکه با افت ظرفیت نمایش رو به‌رو شدند، نتوانستند حجم نمایش از دست‌رفته‌را بازیابی کنند. در مقابل ۶۸درصد اپلیکیشن‌ها افزایش ظرفیت را تجربه کردند که از میان آن‌ها ۴۷درصد کل اپلیکیشن‌ها پس از دوره بازیابی نیز همچنان در سطح بالاتر از دوره پیش جنگ باقی ماندند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p14-1.webp" width="1453" height="982" loading="lazy" decoding="async" alt="پراکندگی وضعیت رسانه‌های مختلف نمایش‌دهنده تبلیغات در جنگ ٣٩روزه"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p15">
+<div class="txt wide"><h3>وضعیت صنایع مختلف بر اساس میزان تغییر بودجه‌های تبلیغاتی در جنگ ٣٩روزه</h3>
+<p>صنایعی که حین جنگ نسبت به پیش از جنگ بودجه‌های تبلیغاتی‌شان را بیش از سایرین کاهش دادند شامل «لوازم خانگی»، «سلامت و پزشکی»، «فروشگاه‌های لوازم آرایشی و بهداشتی» و «محصولات سوپرمارکتی» بودند. درحالی‌که «بیمه آنلاین» بیش‌ترین رشد هزینه‌کرد بودجه تبلیغات را تجربه کرد.</p>
+<p>در کنار «بیمه آنلاین» ، «محصولات سوپرمارکتی» و «خدمات مخابراتی و اینترنتی» سریع‌ترین بازیابی نسبت به پیش از جنگ را داشتند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p15-1.webp" width="1453" height="900" loading="lazy" decoding="async" alt="وضعیت صنایع مختلف بر اساس میزان تغییر بودجه‌های تبلیغاتی در جنگ ٣٩روزه"></figure>
+
+</article>
+<article class="sheet reveal" id="c3-p16">
+<div class="split">
+<div class="txt"><h3>حجم بازار تبلیغات دیجیتال در ایران</h3>
+<p>اندازه بازار تبلیغات دیجیتال ایران در سال ۱۴۰۴ حدود ۳۲٫۲ هزار میلیارد تومان برآورد می‌شود. شبکه‌های اجتماعی با ۱۰ هزار میلیارد تومان و سهم ۳۱درصدی، بزرگ‌ترین بخش این بازار هستند. پس از آن‌ها رسانه‌های خرده‌فروشی* با ۱۶درصد، پلتفرم‌های ویدیویی (VOD و UGC) با ۱۵٫۵درصد و وب‌سایت‌ها و اپلیکیشن‌ها با ۱۲٫۴درصد قرار می‌گیرند. این چهار بخش در مجموع نزدیک به سه‌چهارم بازار را تشکیل می‌دهند. تبلیغات گوگل با ۱۱٫۸ درصد در رتبه پنجم است و سهمی تقریبا هم‌تراز با وب‌سایت‌ها و اپلیکیشن‌ها دارد. پیامک، اپ‌استورها و رپورتاژ آگهی نیز به ترتیب ۷٫۴، ۴٫۴ و ۱٫۵درصد از بازار را به خود اختصاص داده‌اند.</p>
+<div class="notes"><p>*Retail Media</p></div></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c3-p16-1.webp" width="714" height="446" loading="lazy" decoding="async" alt="حجم بازار تبلیغات دیجیتال در ایران"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c3-p16-2.webp" width="1453" height="830" loading="lazy" decoding="async" alt="حجم بازار تبلیغات دیجیتال در ایران"></figure>
+
+</article>
+</div></section><section class="chapter" id="ch4" data-ch="4">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۴</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۴</p>
+      <h2>کسب‌وکارها و تبلیغات در وب‌سایت‌های ایرانی</h2>
+      <div class="intro"><p>تعداد و تنوع حوزه فعالیت وب‌سایت‌های ایرانی در سال‌های اخیر گستردگی فراوانی پیدا کرده است. درعین‌حال، تنوع روش‌های تبلیغاتی در این وب‌سایت‌ها و الگوریتم‌های هوشمندی که نمایش این تبلیغات را مدیریت می‌کنند، باعث شده است تا این جایگاه‌ها به بستر مناسبی برای حضور کسب‌وکارها تبدیل شوند. در این بخش، با استفاده از داده‌های‌یکتانت، به سوالات زیر پاسخ داده می‌شود:</p>
+<ul class="q"><li>میزان بازدید کاربران ایرانی از وب‌سایت‌ها در سال‌های اخیر چه تغییری کرده‌است؟</li><li>پرتکرارترین حوزه فعالیت وب‌سایت‌های نمایش‌دهنده تبلیغات چیست؟</li><li>توزیع بودجه تبلیغات در وب فارسی و موضوعات تبلیغات چگونه بوده است؟</li><li>هر صنعت چه میزان بودجه به تبلیغات اختصاص می‌دهد؟</li><li>نسبت استفاده کاربران وب فارسی از تلفن‌همراه و رایانه‌های شخصی چگونه است؟</li><li>کاربران در چه زمان‌هایی بیش‌تر تبلیغات وب‌سایت‌ها را مشاهده می‌کنند؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c4-p03">
+<div class="cards n2"><figure class="card"><img class="fig" src="img/c4-p03-1.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c4-p03-2.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure></div>
+
+</article>
+<article class="sheet reveal" id="c4-p04">
+<div class="txt wide"><h3>میزان بازدید کاربران ایرانی از وب‌سایت‌ها در سال‌های اخیر</h3>
+<p>بررسی بازدید کاربران ایرانی از وب‌سایت‌ها در سال‌های اخیر نشان می‌دهد که بازدید صفحات در وب فارسی در سال ۱۴۰۴ نسبت به سال ۱۴۰۳ بیش از ۲۵درصد کاهش داشته است. علت این کاهش را می‌توان در استفاده بیش‌تر از اپلیکیشن‌های تلفن همراه به‌جای وب‌سایت‌ها و نیز قطعی‌های مکرر اینترنت در سال ۱۴۰۴ جست‌وجو کرد. مجموع بازدیدها از وب‌سایت‌های فارسی‌زبان در سال ۱۴۰۴ نسبت به سال ۱۴۰۲ با کاهش بیش از ۴۰درصدی روبه‌رو بوده است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p04-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="میزان بازدید کاربران ایرانی از وب‌سایت‌ها در سال‌های اخیر"></figure>
+
+</article>
+<article class="sheet reveal" id="c4-p05">
+<div class="split">
+<div class="txt"><h3>حوزه فعالیت وب‌سایت‌های نمایش‌دهنده تبلیغات</h3>
+<p>حوزه «موسیقی» با ۱۴٫۸درصد بیش‌ترین سهم را از میان ناشران تبلیغات در سال ۱۴۰۴ داشته و پس از آن دسته‌های «مالی و سرمایه‌گذاری» و «تکنولوژی و فناوری» به ترتیب با ۱۰٫۹ و ۹٫۹درصد در رتبه‌های بعدی قرار گرفته‌اند.</p>
+<p>در مجموع، محتوای سرگرمی‌محور شامل آهنگ و موسیقی، سینما و سریال، سرگرمی و تفریحی، بازی و نرم‌افزار و فرهنگ و هنر نزدیک به یک‌سوم حوزه فعالیت کل ناشران را تشکیل می‌دهد.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p05-1.webp" width="858" height="1381" loading="lazy" decoding="async" alt="حوزه فعالیت وب‌سایت‌های نمایش‌دهنده تبلیغات"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c4-p06">
+<div class="txt wide"><h3>سهم ناشران برتر* از بازدید روزانه‌تبلیغات در وب‌سایت‌ها</h3>
+<p>بیش‌ترین بازدید روزانه از بین ناشران برتر وب فارسی مربوط به وب‌سایت‌های «سرگرمی»، «سبک‌زندگی» و «سیاسی و اجتماعی» است. این سه دسته‌بندی، بیش از نیمی از ترافیک وب‌سایت‌های برتر ایرانی را شامل می‌شوند.</p>
+<div class="notes"><p>*منظور از ناشران برتر، آن دسته از ناشرانی است که در حداقل نیمی از روزهای سال بیش از ۵۰۰هزار بازدید دارند.</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p06-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="سهم ناشران برتر* از بازدید روزانه‌تبلیغات در وب‌سایت‌ها"></figure>
+
+</article>
+<article class="sheet reveal" id="c4-p07">
+<div class="txt wide"><h3>موضوعات تبلیغات نمایش‌داده‌شده در وب‌سایت‌ها</h3>
+<p>تبلیغات مربوط به حوزه «مالی‌و سرمایه‌گذاری» با افزایش ٩واحد درصد بازدید نسبت به سال گذشته، بیش‌ترین حجم نمایش را در وب فارسی داشته است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p07-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="موضوعات تبلیغات نمایش‌داده‌شده در وب‌سایت‌ها"></figure>
+
+</article>
+<article class="sheet reveal" id="c4-p08">
+<div class="split">
+<div class="txt"><h3>توزیع بودجه تبلیغات در وب‌سایت‌ها به تفکیک حوزه فعالیت کسب‌وکارها</h3>
+<p>در سال ۱۴۰۴، حوزه‌«مالی، فناوری‌های مالی و بیمه» بیش‌ترین سهم را از بودجه‌های تبلیغاتی در وب‌سایت‌ها داشته‌است.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p08-1.webp" width="894" height="1381" loading="lazy" decoding="async" alt="توزیع بودجه تبلیغات در وب‌سایت‌ها به تفکیک حوزه فعالیت کسب‌وکارها"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c4-p09">
+<div class="split">
+<div class="txt"><h3>میزان تغییر بودجه‌های تبلیغاتی به تفکیک حوزه فعالیت کسب‌وکارها</h3>
+<p>در سالی که گذشت، بیش‌ترین افزایش بودجه مربوط به حوزه «طلا، نقره و زیورآلات» می‌شد که با رشد ۳برابری همراه بود. هم‌چنین «لوازم خانگی و اداری» و نیز پیام‌رسان‌ها، به‌ترتیب با ۲٫۵ و ۲٫۲برابر افزایش بودجه تبلیغاتی نسبت به سال پیش، با بیش‌ترین رشد بودجه همراه بودند.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p09-1.webp" width="894" height="1381" loading="lazy" decoding="async" alt="میزان تغییر بودجه‌های تبلیغاتی به تفکیک حوزه فعالیت کسب‌وکارها"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c4-p10">
+<div class="split">
+<div class="txt"><h3>نسبت استفاده کاربران وب فارسی از تلفن همراه، رایانه‌های شخصی و مرورگرهای اینترنت</h3>
+<p>با رشد روزافزون کاربران تلفن‌های همراه نسبت به کاربران رایانه‌های شخصی، در سال گذشته شاهد بودیم که حدود ۹۵درصد ترافیک ایجاد شده‌کاربران در بازدید از وب‌سایت‌ها از این طریق ثبت شده است.</p>
+<p>طبق داده‌های یکتانت، گوگل کروم پراستفاده‌ترین مرورگر تلفن همراه میان کاربران ایرانی است.</p>
+<p>پراستفاده‌ترین مرورگر لپ‌تاپ‌ها و رایانه‌های شخصی نیز گوگل کروم است و پس از آن فایرفاکس بیش‌ترین استفاده را در میان کاربران دارد.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p10-1.webp" width="894" height="1381" loading="lazy" decoding="async" alt="نسبت استفاده کاربران وب فارسی از تلفن همراه، رایانه‌های شخصی و مرورگرهای اینترنت"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c4-p11">
+<div class="txt wide"><h3>روند بازدید کاربران ایرانی از وب‌سایت‌ها در طول شبانه‌روز</h3>
+<p>بررسی روندهای بازدید کاربران ایرانی از وب‌سایت‌ها، نشان‌دهنده دو نکته اساسی است؛ اول آن که نسبت استفاده کاربران از تلفن همراه به رایانه‌های شخصی و لپ‌تاپ تقریبا ۲۰برابر است و از طرف دیگر، پرترافیک‌ترین زمان‌ها در استفاده از دستگاه‌های تلفن همراه، ساعت‌های ۱۴، ۲۳ و نیمه‌شب هستند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p11-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="روند بازدید کاربران ایرانی از وب‌سایت‌ها در طول شبانه‌روز"></figure>
+
+</article>
+<article class="sheet reveal" id="c4-p12">
+<div class="txt wide"><h3>پرترافیک‌ترین زمان بازدید کاربران ایرانی از وب‌سایت‌ها در رایانه‌های شخصی</h3>
+<p>مشاهده روند بازدید کاربران رایانه‌های شخصی از وب‌سایت‌ها در طول شبانه‌روز، نشان می‌دهد که استفاده از رایانه‌های شخصی و لپ‌تاپ‌ها در ساعت‌های اداری و به‌ویژه پیش از ظهر گسترده‌تر است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c4-p12-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="پرترافیک‌ترین زمان بازدید کاربران ایرانی از وب‌سایت‌ها در رایانه‌های شخصی"></figure>
+
+</article>
+</div></section><section class="chapter" id="ch5" data-ch="5">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۵</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۵</p>
+      <h2>کاربران ایرانی و اپلیکیشن‌ها</h2>
+      <div class="intro"><p>با گسترش نقش اپلیکیشن‌ها در زندگی دیجیتال کاربران، کسب‌وکارها نیز به‌سرعت در حال بهره‌برداری از این فرصت برای تبلیغات درون‌اپلیکیشنی هستند. در این بخش، با تحلیل آمار و داده‌های کلیدی مربوط به اپلیکیشن‌های ایرانی در مایکت و سیب‌اپ و هم‌چنین پلتفرم ادتریس، به این سوالات پرداخته می‌شود:</p>
+<ul class="q"><li>روند نصب و به‌روزرسانی اپلیکیشن‌ها در فروشگاه‌های مختلف چگونه بوده است؟</li><li>جست‌وجوی کاربران و استفاده آن‌ها از اپلیکیشن‌ها چه الگوهایی را نشان می‌دهد؟</li><li>پرمخاطب‌ترین برنامه‌ها و بازی در فروشگاه‌های مختلف کدام اپلیکیشن‌ها بوده‌اند؟</li><li>کسب‌وکارها چگونه از ظرفیت تبلیغات درون‌اپلیکیشنی بهره می‌برند؟</li><li>کاربران چه مدت زمانی را به استفاده از اپلیکیشن‌ها اختصاص می‌دهند؟</li><li>نرخ چسبندگی، نرخ بازگشت کاربران به اپلیکیشن و نرخ رشد اپلیکیشن‌ها به چه شکل بوده‌است؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c5-p03">
+<div class="cards n4"><figure class="card"><img class="fig" src="img/c5-p03-1.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c5-p03-2.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c5-p03-3.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c5-p03-4.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure></div>
+<div class="src"><span>منبع:</span><img class="src-logo" src="img/c5-p03-5.webp" width="304" height="44" loading="lazy" decoding="async" alt="منبع"></div>
+</article>
+<article class="sheet reveal" id="c5-p04">
+<div class="txt wide"><h3>روند سالانه نصب و به‌روزرسانی اپلیکیشن‌ها در مایکت</h3>
+<p>در سال ۱۴۰۴، مایکت در مجموع بیش از ۲٫۱۳میلیارد نصب و به‌روزرسانی ثبت کرده است. از این میزان، بالغ‌بر ۱٫۲۹میلیارد نصب جدید بوده که بازی‌ها با ۵۹درصد، سهم بیش‌تری از نصب‌ها داشته‌اند؛ هم‌چنین بیش از ۸۴۳میلیون به‌روزرسانی در این سال انجام شده است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p04-1.webp" width="1453" height="931" loading="lazy" decoding="async" alt="روند سالانه نصب و به‌روزرسانی اپلیکیشن‌ها در مایکت"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p05">
+<div class="txt wide"><h3>اپلیکیشن‌های جدید ایرانی منتشرشده در مایکت</h3>
+<p>تعداد اپلیکیشن‌های جدید ایرانی منتشرشده در مایکت طی ۲سال اخیر ۶۸درصد کاهش یافته و از ۲۸,۰۲۸ در سال ۱۴۰۲ به ۹,۰۳۳ در سال ۱۴۰۴ رسیده است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p05-1.webp" width="1453" height="931" loading="lazy" decoding="async" alt="اپلیکیشن‌های جدید ایرانی منتشرشده در مایکت"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p06">
+<div class="txt wide"><h3>روند ماهانه نصب اپلیکیشن‌ها در مایکت</h3>
+<p>در خرداد ۱۴۰۴، تعداد نصب برنامه‌ها و بازی‌ها نسبت به ماه پیش از آن به‌ترتیب بیش از ۵۰ و ۷۷درصد افزایش داشته و در دی‌نیز رشد نصب به حدود ۸۸درصد برای برنامه‌ها و ۱۴۳درصد برای بازی‌ها نسبت به آذر رسیده است. این افزایش‌ها هم‌زمان با دوره‌های محدودیت و اختلال اینترنت رخ داده و می‌تواند نشان‌دهنده افزایش استفاده کاربران از برنامه‌ها و بازی‌های دردسترس بر بستر اینترنت داخلی باشد. در اسفند نیز تعداد نصب هر دو گروه به بالاترین سطح سال رسیده است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p06-1.webp" width="1453" height="931" loading="lazy" decoding="async" alt="روند ماهانه نصب اپلیکیشن‌ها در مایکت"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p07">
+<div class="split">
+<div class="txt"><h3>روند ماهانه دانلود اپلیکیشن‌ها در سیب‌اپ</h3>
+<p>دانلود برنامه و بازی در سیب‌اپ در ماه‌های مختلف نوسان قابل‌توجهی داشته است. در دوره‌های اختلال اینترنت، به‌ویژه خرداد و دی، دانلود بازی‌ها رشد چشمگیری داشت؛ در خرداد ۲۶۸درصد و در دی بیش از ۵۰۰درصد نسبت به ماه قبل. در اسفند نیز دانلود بازی‌ها تقریبا ۲برابر شد، در حالی که دانلود برنامه‌ها کاهش یافت. البته افت دانلودها در نیمه دوم سال، به‌ویژه آبان و آذر، در کنار اثرات فصلی تحت تاثیر محدودیت‌های اعمال‌شده بر اکوسیستم iOS برای کاربران ایران نیز هم‌زمان بوده است.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c5-p07-1.webp" width="473" height="214" loading="lazy" decoding="async" alt="روند ماهانه دانلود اپلیکیشن‌ها در سیب‌اپ"></figure><figure class="card" tabindex="-1"><img class="fig" src="img/c5-p07-2.webp" width="472" height="214" loading="lazy" decoding="async" alt="روند ماهانه دانلود اپلیکیشن‌ها در سیب‌اپ"></figure><figure class="card" tabindex="-1"><img class="fig" src="img/c5-p07-3.webp" width="473" height="214" loading="lazy" decoding="async" alt="روند ماهانه دانلود اپلیکیشن‌ها در سیب‌اپ"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p07-4.webp" width="1453" height="715" loading="lazy" decoding="async" alt="روند ماهانه دانلود اپلیکیشن‌ها در سیب‌اپ"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p08">
+<div class="txt wide"><h3>مقایسه میزان نصب اپلیکیشن‌ها در مایکت</h3>
+<p>بیش‌تر برنامه‌ها و بازی‌های مایکت در بازه کم‌تر از ۱۰هزار نصب قرار دارند؛ این سهم برای برنامه‌ها حدود ۹۴درصد و برای بازی‌ها حدود ۸۵درصد است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p08-1.webp" width="1453" height="931" loading="lazy" decoding="async" alt="مقایسه میزان نصب اپلیکیشن‌ها در مایکت"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p09">
+<div class="split">
+<div class="txt"><h3>وضعیت جست‌وجوی اپلیکیشن‌ها در مایکت</h3>
+<p>پس از روند کاهشی در اردیبهشت، جست‌وجوها در خرداد و تیر افزایش یافته و دوباره در ماه‌های تابستان و اوایل پاییز به روند کاهشی بازگشته‌اند. از آذر روند صعودی جست‌وجوها شروع شده و در دی‌، هم‌زمان با قطع اینترنت، تعداد جست‌وجو تقریبا ۲برابر ماه قبل شده است. این روند در بهمن و اسفند نیز ادامه یافته و اسفند با بیش از ۲۷۰میلیون جست‌وجو، بالاترین میزان را ثبت کرده است.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c5-p09-1.webp" width="714" height="484" loading="lazy" decoding="async" alt="وضعیت جست‌وجوی اپلیکیشن‌ها در مایکت"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p09-2.webp" width="1453" height="852" loading="lazy" decoding="async" alt="وضعیت جست‌وجوی اپلیکیشن‌ها در مایکت"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p10">
+<div class="txt wide"><h3>وضعیت جست‌وجوی اپلیکیشن‌ها در سیب‌اپ</h3>
+<p>سهم جست‌وجوی اپلیکیشن‌ها در سیب‌اپ طی سال نوسان قابل‌توجهی داشته است؛ تیر با ۱۱٫۵درصد بالاترین سهم جست‌وجو را ثبت کرده و پس از آن دی‌با ۱۰٫۵درصد قرار دارد. در مقابل، جست‌وجو در آبان و آذر به پایین‌ترین سطوح سال رسیده است. با توجه به اختلال و محدودیت اینترنت در خرداد، دی و اسفند، بخشی از نوسانات این ماه‌ها را باید در چارچوب شرایط غیرعادی دسترسی به اینترنت تفسیر کرد و نمی‌توان آن‌ها را صرفا ناشی از تغییرات عادی رفتار کاربران دانست.</p>
+<p>حدود ۹۸٫۲درصد از جست‌وجوها برندمحور* و تنها ۱٫۸درصد غیربرندمحور** بوده‌اند؛ این اختلاف نشان می‌دهد بخش عمده جست‌وجوی کاربران در سیب‌اپ با هدف یافتن یک اپلیکیشن مشخص انجام می‌شود و سهم جست‌وجوهای عمومی و اکتشافی بسیار محدود است.</p>
+<div class="notes"><p>*Branded Search **Non-Branded Search</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p10-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="وضعیت جست‌وجوی اپلیکیشن‌ها در سیب‌اپ"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p11">
+<div class="txt wide"><h3>پرمخاطب‌ترین دسته‌بندی برنامه‌ها و بازی‌ها در سیب‌اپ</h3>
+<p>در سال ۱۴۰۴، دسته «مالی» با ۳میلیون و ۳۷۰هزار دانلود، پرمخاطب‌ترین دسته برنامه‌های سیب‌اپ بوده و با فاصله قابل‌توجهی در صدر قرار گرفته است. پس از آن، «ابزارهای کاربردی» با ۱میلیون و ۸۴۰هزار دانلود و «پیام‌رسان» با ۱میلیون و ۸۸هزار دانلود قرار دارند و دسته‌های «سرگرمی» و «عکس و فیلم» نیز در رتبه‌های بعدی قرار گرفته‌اند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p11-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="پرمخاطب‌ترین دسته‌بندی برنامه‌ها و بازی‌ها در سیب‌اپ"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p12">
+<div class="txt wide"><h3>پرمخاطب‌ترین برنامه‌های ایرانی مایکت در سال ۱۴۰۴</h3></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p12-1.webp" width="1182" height="1077" loading="lazy" decoding="async" alt="پرمخاطب‌ترین برنامه‌های ایرانی مایکت در سال ۱۴۰۴"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p13">
+<div class="txt wide"><h3>پرمخاطب‌ترین بازی‌های ایرانی مایکت در سال ۱۴۰۴</h3></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p13-1.webp" width="1174" height="1064" loading="lazy" decoding="async" alt="پرمخاطب‌ترین بازی‌های ایرانی مایکت در سال ۱۴۰۴"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p14">
+<div class="txt wide"><h3>پرمخاطب‌ترین برنامه‌های ایرانی سیب‌اپ در سال ۱۴۰۴</h3></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p14-1.webp" width="1180" height="1076" loading="lazy" decoding="async" alt="پرمخاطب‌ترین برنامه‌های ایرانی سیب‌اپ در سال ۱۴۰۴"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p15">
+<div class="txt wide"><h3>سهم دستگاه‌ها و وضعیت اتصال کاربران</h3>
+<p>بررسی دستگاه‌های تلفن همراه کاربران ایرانی، نشان می‌دهد بیش‌تر آنان از گوشی‌های سامسونگ یا شیائومی و از طریق اینترنت همراه به اپلیکیشن‌ها دسترسی دارند.</p>
+<p>این ترکیب نشان می‌دهد که بهینه‌سازی برای اینترنت همراه، از نظر سرعت بارگذاری و مصرف داده، برای اپلیکیشن‌های ایرانی یک الزام است، نه یک انتخاب.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p15-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="سهم دستگاه‌ها و وضعیت اتصال کاربران"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p16">
+<div class="txt wide"><h3>نصب‌های ارگانیک* اپلیکیشن‌های ایرانی</h3>
+<p>در سال ۱۴۰۴، مجموع نصب‌های ارگانیک اپلیکیشن‌های ایرانی (که توسط ادتریس پایش شده‌اند) به ۱۴۷٫۳میلیون رسید. در بیش‌تر ماه‌های سال، این رقم در بازه ۷٫۵ تا ۱۰٫۵میلیون در نوسان بود، اما سه رویداد بحرانی که دسترسی به اینترنت و وب‌سایت‌ها را ناممکن یا دشوار کرد، این روند را به‌طور قابل‌توجهی تغییر داد.</p>
+<p>خرداد با ۱۲٫۱میلیون نصب اولین جهش را ثبت کرد. دی و اسفند با ۲۳٫۴ و ۲۴٫۴میلیون نصب، دو تا سه برابر میانگین ماه‌های عادی بودند.</p>
+<div class="notes"><p>*نصب ارگانیک، نصبی است که بدون واسطه‌تبلیغاتی از سمت کاربر انجام می‌شود.</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p16-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="نصب‌های ارگانیک* اپلیکیشن‌های ایرانی"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p17">
+<div class="txt wide"><h3>وضعیت تبلیغات در نصب‌اپلیکیشن‌ها</h3>
+<p>بررسی نسبت نصب‌های ارگانیک به غیرارگانیک در دسته‌بندی‌های مختلف اپلیکیشن نشان می‌دهد که رفتار کاربران در مسیر کشف و نصب برنامه‌ها، به‌شدت به نوع نیاز آن‌ها وابسته است. در دسته‌هایی مانند «آموزش» و «ابزار» که کاربر معمولا با یک نیاز مشخص و از پیش‌تعریف‌شده به جست‌وجو می‌پردازد، بیش از ۹۷درصد نصب‌ها به شکل ارگانیک اتفاق می‌افتد و نیاز کم‌تری به تبلیغات برای هدایت کاربر احساس می‌شود. در مقابل، د‌سته‌بندی «پخش فیلم» با نزدیک به ۵۰درصد نصب‌غیرارگانیک، فاصله معناداری با سایر دسته‌ها دارد که می‌تواند نشانه رقابت فشرده میان پلتفرم‌های VOD و اتکای بالای این کسب‌وکارها به کمپین‌های تبلیغاتی برای جذب کاربر جدید باشد. دسته «مالی» نیز با وجود ماهیت حساس و مبتنی بر اعتماد، سهم غیرارگانیک قابل‌توجهی (۱۳٫۵درصد) دارد که فراتر از دسته‌بندی «خرید» است و می‌تواند بازتاب رقابت روزافزون بازیگران حوزه فناوری‌های مالی برای جذب مشتری باشد.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p17-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="وضعیت تبلیغات در نصب‌اپلیکیشن‌ها"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p18">
+<div class="txt wide"><h3>روند تغییرات میانگین مدت زمان سشن* کاربران در طول سال</h3>
+<p>در سال ۱۴۰۴، کاربران در میان دسته‌بندی‌های مختلف اپلیکیشن‌ها، بیشترین زمان تعامل را در دسته‌بندی «بازی» داشته‌اند؛ به‌طوری‌که میانگین زمان سپری‌شده در هر سشن در این دسته‌بندی، بیش از ۲,۷۰۰ثانیه (حدود ۴۵دقیقه) بوده است. پس از آن، «خرید» و «مالی» در محدوده ۱,۱۰۰ تا ۲,۳۰۰ثانیه قرار داشتند و در انتهای طیف، «پخش فیلم» و «آموزش» با کم‌تر از ۵۵۰ثانیه کوتاه‌ترین سشن‌ها را ثبت کردند.</p>
+<p>اما مهم‌تر از رتبه‌بندی، جهت حرکت هر دسته‌بندی در طول سال است. دسته‌بندی «مالی» یک افت تدریجی داشت و از ۲,۱۲۹ثانیه در اردیبهشت به ۱,۱۱۵ثانیه در آبان رسید. برعکس، دسته‌بندی «بازی» در شهریور به اوج ۲,۸۷۹ثانیه رسید اما از مهر به بعد روندی نزولی پیوسته‌ای داشت که احتمالا با اختلال در سرویس‌های آنلاین مرتبط است.</p>
+<p>دسته‌بندی «ابزار» تا اواخر سال کم‌نوسان‌ترین دسته‌بندی بود، اما در بازه دی تا بهمن جهش قابل‌توجهی تجربه کرد و از ۸۶۳ به ۱,۳۵۵ثانیه رسید.</p>
+<div class="notes"><p>*مدت زمان در هر بار استفاده از اپلیکیشن توسط کاربر (Session Duration).</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p18-1.webp" width="1453" height="746" loading="lazy" decoding="async" alt="روند تغییرات میانگین مدت زمان سشن* کاربران در طول سال"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p19">
+<div class="txt wide"><h3>نرخ چسبندگی اپلیکیشن‌های ایرانی</h3>
+<p>نرخ چسبندگی میزان بازگشت کاربران به اپلیکیشن را به شکل روزانه و هفتگی نشان می‌دهد و با دو روش متفاوت محاسبه می‌شود.</p>
+<p>نسبت تعداد کاربران فعال روزانه به تعداد کاربران فعال ماهانه (DAU/MAU) برابر ۲۷درصد است، یعنی به‌طور میانگین کاربران حدود ۸روز از هر ماه به اپلیکیشن‌ها بازمی‌گردند.</p>
+<p>نسبت تعداد کاربران فعال روزانه به تعداد کاربران فعال هفتگی (DAU/WAU) برابر ۴۷درصد است و نشان می‌دهد که حدود نیمی از کاربران فعال هفتگی، به شکل روزانه فعالیت دارند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p19-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="نرخ چسبندگی اپلیکیشن‌های ایرانی"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p20">
+<div class="txt wide"><h3>نرخ بازگشت کاربران به اپلیکیشن در هفت روز بعد از نصب</h3>
+<p>در میان دسته‌ها، «بازی» با ۲۳درصد بالاترین نرخ بازگشت روز اول را دارد اما تا روز هفتم به ۷٫۴درصد می‌رسد. «مالی» شدیدترین منحنی افت را دارد و از ۲۰٫۳درصد به ۶٫۱درصد در روز هفتم می‌رسد. در مقابل، «خرید» با ۸٫۱درصد بهترین نرخ بازگشت روز هفتم را ثبت کرده که نشان‌دهنده رفتار تکراری و عادت‌محور کاربران این دسته است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p20-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="نرخ بازگشت کاربران به اپلیکیشن در هفت روز بعد از نصب"></figure>
+
+</article>
+<article class="sheet reveal" id="c5-p21">
+<div class="txt wide"><h3>نرخ رشد نصب اپلیکیشن</h3>
+<p>شاخص نرخ رشد، نسبت نصب‌های جدید به کاربران فعال ماهانه را نشان می‌دهد؛ به بیان دیگر، نشان‌دهنده تمایل هر دسته به رشد و جذب کاربران جدید است.</p>
+<p>عدد پایین‌تر لزوما به معنای رشد کم‌تر نیست و می‌تواند نشانه موفقیت در بازگرداندن کاربران فعلی باشد. در سال ۱۴۰۴، دسته‌بندی «بازی» با ۳۷٫۷درصد با اختلاف قابل‌توجهی بالاترین تمایل به جذب کاربر جدید را داشته است. «سبک زندگی» (۱۱٫۵درصد) و «آموزش» (۱۱٫۷درصد) در انتهای طیف قرار دارند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c5-p21-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="نرخ رشد نصب اپلیکیشن"></figure>
+
+</article>
+</div></section><section class="chapter" id="ch6" data-ch="6">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۶</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۶</p>
+      <h2>کاربران ایرانی و تبلیغات در شبکه‌های اجتماعی</h2>
+      <div class="intro"><p>شبکه‌های اجتماعی به بخش جدایی‌ناپذیری از زندگی ایرانیان تبدیل شده‌اند و پلتفرم‌هایی هم‌چون اینستاگرام، تلگرام، یوتیوب و شبکه‌های اجتماعی داخلی نقش مهمی در این میان ایفا می‌کنند.</p>
+<p>این پلتفرم‌های داخلی و خارجی فرصت‌های ارزشمندی برای کسب‌وکارها به وجود آورده‌اند تا با راه‌اندازی فروشگاه‌های آنلاین و بهره‌گیری از روش‌های خلاقانه، محصولات خود را به مخاطبانی گسترده عرضه کنند. این فصل به بررسی سه موضوع کلیدی می‌پردازد:</p>
+<ul class="q"><li>رفتار کاربران ایرانی در شبکه‌های اجتماعی چگونه است؟</li><li>تجارت اجتماعی و کسب‌وکارهای فعال در این پلتفرم‌ها چه وضعیتی دارند؟</li><li>نقش تبلیغات در شبکه‌های اجتماعی و تاثیر آن بر بازارهای دیجیتال چیست؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c6-p03">
+<div class="cards n4"><figure class="card"><img class="fig" src="img/c6-p03-1.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c6-p03-2.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c6-p03-3.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c6-p03-4.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure></div>
+<div class="src"><span>منبع:</span><img class="src-logo" src="img/c6-p03-5.webp" width="187" height="42" loading="lazy" decoding="async" alt="منبع"></div>
+</article>
+<article class="sheet reveal" id="c6-p04">
+<div class="split">
+<div class="txt"><h3>وضعیت فعالیت کاربران اینستاگرام فارسی</h3>
+<p>در سالی که گذشت، قطع اینترنت و تحولات اجتماعی تاثیر بسیاری بر تعداد لایک‌ها و تعداد پست‌های منتشرشده از سوی کاربران فارسی‌زبان اینستاگرام داشته است که نوسانات آن در نمودار دیده می‌شود.</p>
+<p>مجموع تعداد محتواهای تولیدشده در اینستاگرام فارسی در ۱۴۰۴، حدود ۶۳۰میلیون محتوا بوده است.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p04-1.webp" width="714" height="484" loading="lazy" decoding="async" alt="وضعیت فعالیت کاربران اینستاگرام فارسی"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p04-2.webp" width="1453" height="852" loading="lazy" decoding="async" alt="وضعیت فعالیت کاربران اینستاگرام فارسی"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p05">
+<div class="split">
+<div class="txt"><h3>وضعیت تعامل کاربران با اینستاگرام فارسی</h3>
+<p>روند وضعیت تعامل کاربران با سنجش میزان «لایک» محتواهای عمومی اینستاگرام فارسی در نمودار آمده است. مجموع تعامل یک سال کاربران محتواهای عمومی فارسی در اینستاگرام، بیش از ۹۱۰ میلیارد لایک بوده است.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p05-1.webp" width="714" height="484" loading="lazy" decoding="async" alt="وضعیت تعامل کاربران با اینستاگرام فارسی"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p05-2.webp" width="1453" height="852" loading="lazy" decoding="async" alt="وضعیت تعامل کاربران با اینستاگرام فارسی"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p06">
+<div class="split">
+<div class="txt"><h3>وضعیت فعالیت کاربران تلگرام فارسی</h3>
+<p>وضعیت تعداد پست‌های منتشرشده در کانال‌های عمومی فارسی تلگرام نشان می‌دهد که قطع اینترنت در پایان سال روندی به‌شدت کاهشی را برای این پلتفرم رقم زده و تعداد پست‌های منتشرشده را تقریبا به یک‌ششم میانگین ماهانه رسانده است. مجموع محتواهای منتشرشده سال ۱۴۰۴ در این پلتفرم بیش از یک میلیارد محتوا بوده است.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p06-1.webp" width="714" height="484" loading="lazy" decoding="async" alt="وضعیت فعالیت کاربران تلگرام فارسی"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p06-2.webp" width="1453" height="852" loading="lazy" decoding="async" alt="وضعیت فعالیت کاربران تلگرام فارسی"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p07">
+<div class="split">
+<div class="txt"><h3>وضعیت تعامل کاربران با تلگرام فارسی</h3>
+<p>بازدیدهای ایجادشده روی محتواهای کانال‌های فارسی تلگرام با روندی نزولی متاثر از قطع دسترسی‌ها به پلتفرم‌های خارجی و اینترنت همراه بوده است.</p>
+<p>در سال ۱۴۰۴، بیش از ۹۹۰میلیارد بازدید از محتواهای فارسی تلگرام رقم خورده است.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p07-1.webp" width="714" height="484" loading="lazy" decoding="async" alt="وضعیت تعامل کاربران با تلگرام فارسی"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p07-2.webp" width="1453" height="852" loading="lazy" decoding="async" alt="وضعیت تعامل کاربران با تلگرام فارسی"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p08">
+<div class="split">
+<div class="txt"><h3>تعداد ویدیوی فارسی تولیدشده در یوتیوب</h3>
+<p>تولید ویدیوهای فارسی یوتیوب در سال ۱۴۰۴، یک بار در خرداد روند صعودی داشته است و بار دیگر در زمستان و علی‌رغم قطع اینترنت در داخل ایران، به بیش‌ترین مقدار خود رسیده؛ به شکلی که تعداد محتواهای فارسی تولیدشده در اسفند ۱۴۰۴، بیش از ۴۶۵هزار ویدیو بوده است.</p>
+<p>در مجموع سال گذشته بیش از ۴میلیون محتوای فارسی در یوتیوب تولید شده است.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p08-1.webp" width="714" height="484" loading="lazy" decoding="async" alt="تعداد ویدیوی فارسی تولیدشده در یوتیوب"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p08-2.webp" width="1453" height="852" loading="lazy" decoding="async" alt="تعداد ویدیوی فارسی تولیدشده در یوتیوب"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p09">
+<div class="split">
+<div class="txt"><h3>روند بازدید از ویدیوهای فارسی یوتیوب</h3>
+<p>برخلاف تعداد محتواهای فارسی تولیدشده در یوتیوب در سال گذشته، بازدید از ویدیوهای فارسی در طول سال روندی کاهشی داشته است. این کاهش با قطع اینترنت در زمستان بیش‌تر شده تا جایی که در اسفند ۱۴۰۴، بازدید از ویدیوهای فارسی یوتیوب با بیش از ۷۵درصد کاهش نسبت به تیر، به ۵۸میلیون بازدید رسید.</p>
+<p>مجموع محتواهای فارسی یوتیوب در طول سال گذشته بیش از ۲میلیارد و ۴۴۰میلیون بازدید داشته است.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p09-1.webp" width="714" height="484" loading="lazy" decoding="async" alt="روند بازدید از ویدیوهای فارسی یوتیوب"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p09-2.webp" width="1453" height="852" loading="lazy" decoding="async" alt="روند بازدید از ویدیوهای فارسی یوتیوب"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p10">
+<div class="txt wide"><h3>روند رشد کاربران در شبکه‌های اجتماعی و پیام‌رسان‌های داخلی</h3>
+<p>در پایان ۱۴۰۴، هر سه پیام‌رسان نسبت به سال قبل رشد کاربران فعال روزانه و ماهانه را تجربه کرده‌اند، اما شدت این رشد متفاوت بوده است.</p>
+<p>روبیکا هم‌چنان از نظر تعداد کاربر در سطح بالاتری قرار دارد و DAU آن از ۲۸ به ۵۰میلیون و MAU آن از ۴۴ به ۶۰میلیون رسیده است.</p>
+<p>در مقابل، بله بیش‌ترین رشد نسبی را ثبت کرده؛ DAU آن ۴برابر و MAU آن نزدیک به ۳برابر شده است. سروش‌پلاس نیز با بیش از ۳برابر شدن DAU و MAU، روند صعودی داشته است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p10-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="روند رشد کاربران در شبکه‌های اجتماعی و پیام‌رسان‌های داخلی"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p11">
+<div class="split">
+<div class="txt"><h3>توزیع حوزه فعالیت فروشگاه‌های روبیکا</h3>
+<p>فعالیت فروشگاه‌ها بر بستر روبیکا نشان می‌دهد دسته‌بندی‌های «مد و پوشاک» و «لوازم خانه و آشپزخانه» بیش‌ترین سهم از این بازار را از آن خود کرده‌اند.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p11-1.webp" width="788" height="1381" loading="lazy" decoding="async" alt="توزیع حوزه فعالیت فروشگاه‌های روبیکا"></figure><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p11-2.webp" width="633" height="483" loading="lazy" decoding="async" alt="توزیع حوزه فعالیت فروشگاه‌های روبیکا"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c6-p12">
+<div class="split">
+<div class="txt"><h3>توزیع حوزه فعالیت فروشگاه‌های بله</h3>
+<p>فعالیت فروشگاه‌ها بر بستر پیام‌رسان بله نشان می‌دهد دسته‌بندی‌های «مد و پوشاک» و « آرایشی و بهداشتی» بیش‌ترین سهم از این بازار را از آن خود کرده‌اند.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p12-1.webp" width="788" height="1381" loading="lazy" decoding="async" alt="توزیع حوزه فعالیت فروشگاه‌های بله"></figure><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p12-2.webp" width="633" height="483" loading="lazy" decoding="async" alt="توزیع حوزه فعالیت فروشگاه‌های بله"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c6-p13">
+<div class="split">
+<div class="txt"><h3>توزیع موضوعی کانال‌های عمومی سروش‌پلاس</h3>
+<p>کانال‌هایی با موضوعات «محتوای مربوط به نسل Z»، «خبری» و «سرگرمی» به ترتیب بیش‌ترین تعداد را در میان کانال‌های عمومی موجود در پیام‌رسان سروش‌پلاس دارند.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p13-1.webp" width="788" height="1381" loading="lazy" decoding="async" alt="توزیع موضوعی کانال‌های عمومی سروش‌پلاس"></figure><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p13-2.webp" width="633" height="483" loading="lazy" decoding="async" alt="توزیع موضوعی کانال‌های عمومی سروش‌پلاس"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c6-p14">
+<div class="txt wide"><h3>کاهش ۴۰درصدی فروشگاه‌های فعال اینستاگرامی ایران</h3>
+<p>مقایسه داده‌های تعداد فروشگاه‌های فعال اینستاگرامی در نقاط مختلف جهان بین سال‌های ۱۴۰۲ تا ۱۴۰۴ نشان می‌دهد برخلاف روند افزایش جهانی، فعالیت فروشگاه‌های اینستاگرامی ایرانی در سال ۱۴۰۴ به نسبت قبل، با کاهشی ۴۰درصدی همراه بوده است.</p>
+<p>محدودیت دسترسی به اینستاگرام و قطعی‌های مکرر سبب شده‌اند تا بسیاری از کسب‌وکارهایی که در بستر اینستاگرام فعالیت می‌کردند حالا فعالیت خود را متوقف کرده یا در پلتفرم‌های دیگری به کار خود ادامه دهند. این در حالی است که تعداد فروشگا‌ه‌های اینستاگرامی عراق، اندونزی، ترکیه، امارات و قطر به ترتیب ۵۹، ۳۹، ۲۹، ۲۵ و ۲۵درصد نسبت به دو سال قبل افزایش پیدا کرده‌اند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p14-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="کاهش ۴۰درصدی فروشگاه‌های فعال اینستاگرامی ایران"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p15">
+<div class="txt wide"><h3>روند انتشار تبلیغات کسب‌وکارها در اینستاگرام</h3>
+<p>روند تعداد تبلیغات در اینستاگرام در طول سال، نوسان قابل‌توجهی را نشان می‌دهد و تغییرات آن با دوره‌های اختلال و بحران هم‌زمان است. تعداد تبلیغات در اردیبهشت و خرداد نسبت به فروردین بالاتر بود؛ اما در تیر به ۳۸هزار پست و ۶۳هزار استوری کاهش یافت و پس از آن تا آذر روند افزایشی داشت، به‌طوری‌که آذر با ۱۴۲هزار پست و ۱۷۴هزار استوری بالاترین سطح ثبت‌شده را داشت. از دی و هم‌زمان با اعتراضات، حجم تبلیغات کاهش محسوسی پیدا کرد؛ با‌توجه به این که از ۱۹ دی تا اواسط بهمن تعداد تبلیغات در عمل صفر بوده، ارقام ثبت‌شده برای دی و بهمن صرفا مربوط به روزهای دارای اتصال اینترنت است. در اسفند نیز با شروع جنگ ۳۹روزه در ۹ اسفند، تبلیغات از این تاریخ تا پایان سال متوقف بوده و ارقام این ماه نیز تنها عملکرد ۸روز ابتدایی را نشان می‌دهد.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p15-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="روند انتشار تبلیغات کسب‌وکارها در اینستاگرام"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p16">
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p16-1.webp" width="1453" height="1381" loading="lazy" decoding="async" alt="نمودار"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p17">
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p17-1.webp" width="1453" height="1381" loading="lazy" decoding="async" alt="نمودار"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p18">
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p18-1.webp" width="1453" height="1381" loading="lazy" decoding="async" alt="نمودار"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p19">
+<div class="split">
+<div class="txt"><h3>حجم فعالیت صفحات ایرانی در اینستاگرام</h3>
+<p>در بررسی بیش از ۳۱۰۰صفحه اینستاگرام برند و کسب‌وکار ایرانی در سال ۱۴۰۴، میانه تعداد پست‌ها ۴۹عدد بود؛ یعنی نیمی از کسب‌وکارها کم‌تر از این تعداد و نیمی دیگر بیش‌تر از آن پست منتشر کرده‌اند. عددی که تقریبا معادل انتشار یک پست در هفته است.</p>
+<p>در میان این صفحات، فوتبال۳۶۰، پایگاه خبری نگاه آذربایجان، رسانه شرق، باشگاه تراکتور و روزنامه دنیای اقتصاد، فعال‌ترین‌ها بودند؛ الگویی که عمدتا متأثر از ماهیت رسانه‌ای یا خبری این صفحات است و بازتاب رفتار معمول کسب‌وکارهای تجاری نیست.</p></div>
+<div class="side"><figure class="card" tabindex="-1"><img class="fig" src="img/c6-p19-1.webp" width="714" height="484" loading="lazy" decoding="async" alt="حجم فعالیت صفحات ایرانی در اینستاگرام"></figure></div>
+</div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p19-2.webp" width="1453" height="852" loading="lazy" decoding="async" alt="حجم فعالیت صفحات ایرانی در اینستاگرام"></figure>
+
+</article>
+<article class="sheet reveal" id="c6-p20">
+<div class="split">
+<div class="txt"><h3>حوزه فعالیت پردرآمدترین صفحات و اینفلوئنسرهای ایرانی در اینستاگرام</h3>
+<p>حوزه‌های «سبک زندگی»، «طنز» و «مادر و کودک» با سهم ۵۱درصدی، بیش‌ترین صفحات فعال از بین ۵۰۰صفحه‌پردرآمد اینستاگرام فارسی را تشکیل می‌دهند.</p>
+<p>اما باید توجه داشت که حوزه «طنز» با بیش از ۱۶۱میلیون دنبال‌کننده، سهم مخاطب بیش‌تری را در مقایسه با سایر حوزه‌ها، از آن خود کرده است.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c6-p20-1.webp" width="889" height="1381" loading="lazy" decoding="async" alt="حوزه فعالیت پردرآمدترین صفحات و اینفلوئنسرهای ایرانی در اینستاگرام"></figure></div>
+</div>
+
+</article>
+</div></section><section class="chapter" id="ch7" data-ch="7">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۷</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۷</p>
+      <h2>دیگر روش‌های بازاریابی دیجیتال</h2>
+      <div class="intro"><p>کسب‌وکارها علاوه‌بر استفاده از ظرفیت کانال‌های انتشار تبلیغات مانند وب‌سایت‌ها، شبکه‌های اجتماعی و اپلیکیشن‌ها، از روش‌های دیگری نظیر انتشار رپورتاژ آگهی، تبلیغات در سرویس‌های گوگل و ارسال ایمیل، پیامک و... نیز برای بیش‌تر دیده‌شدن استفاده می‌کنند. هدف این روش‌ها، جذب مشتریان جدید و افزایش نرخ بازگشت مشتریان فعلی است.</p>
+<p>در این بخش، با مرور تجربه کسب‌وکارها در استفاده از این روش‌های تبلیغاتی در سال ۱۴۰۴، به پرسش‌های زیر پاسخ می‌دهیم:</p>
+<ul class="q"><li>کسب‌وکارهای ایرانی در چه موضوعاتی رپورتاژ آگهی منتشر می‌کنند؟</li><li>کمپین‌های تبلیغاتی در گوگل ادز در سال ۱۴۰۴ چه روندی داشته است؟</li><li>وضعیت کانال‌های بازاریابی بازگشتی در سال ۱۴۰۴ چگونه بوده است؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c7-p03">
+<div class="stack"><figure class="card"><img class="fig" src="img/c7-p03-1.webp" width="1452" height="391" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c7-p03-2.webp" width="1452" height="391" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c7-p03-3.webp" width="1452" height="390" loading="lazy" decoding="async" alt="کارت آماری"></figure></div>
+<div class="src"><span>منبع:</span><img class="src-logo" src="img/c7-p03-4.webp" width="113" height="44" loading="lazy" decoding="async" alt="منبع"></div>
+</article>
+<article class="sheet reveal" id="c7-p04">
+<div class="split">
+<div class="txt"><h3>کسب‌وکارهای ایرانی در چه موضوعاتی رپورتاژ آگهی منتشر می‌کنند؟</h3>
+<p>در سال ۱۴۰۴، موضوعات رپورتاژ آگهی‌در حوزه‌های «پزشکی، سلامت و زیبایی» با ۱۸٫۶درصد بیش‌ترین سهم را داشته و پس از آن «صنعت و تجهیزات» با ۱۲درصد قرار گرفته است. حوزه‌های «خانه، سبک زندگی و دکوراسیون» و «فناوری» و «ورزش و سرگرمی» نیز سهم قابل‌توجهی از رپورتاژهای منتشرشده داشته‌اند.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c7-p04-1.webp" width="856" height="1369" loading="lazy" decoding="async" alt="کسب‌وکارهای ایرانی در چه موضوعاتی رپورتاژ آگهی منتشر می‌کنند؟"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c7-p05">
+<div class="txt wide"><h3>وضعیت کمپین‌های تبلیغاتی در گوگل</h3>
+<p>داده‌های مربوط به فرآیند راه‌اندازی و پرداخت هزینه کمپین‌های تبلیغاتی در گوگل در سال ۱۴۰۴ چند فرازوفرود قابل توجه را نشان می‌دهند. این کانال ابتدا با جنگ ۱۲روزه خرداد و ادامه اثر آن تا تیر با افت محسوسی مواجه شد، اما در ماه‌های بعد مسیر رشدی پیوسته را طی کرد و در آذر به اوج فعالیت خود در طول سال رسید. این روند روبه‌رشد اما در دی‌با قطع سراسری اینترنت متوقف شد و برای چند هفته کاملا از حرکت ایستاد. با آغاز جنگ در اسفند و قطع مجدد اینترنت که به‌دنبال آن رخ داد، این کانال بار دیگر و این‌بار برای مدتی طولانی‌تر از فعالیت بازماند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c7-p05-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="وضعیت کمپین‌های تبلیغاتی در گوگل"></figure>
+
+</article>
+<article class="sheet reveal" id="c7-p06">
+<div class="split">
+<div class="txt"><h3>میزان استفاده کسب‌وکارهای ایرانی از تبلیغ در جست‌وجوی گوگل</h3>
+<p>در میان کسب‌وکارهای ایرانی که از خدمات فرست‌ادز استفاده کرده‌اند، تبلیغ در جست‌وجوی گوگل بیش از همه در حوزه‌های «خرده‌فروشی» با ۲۳٫۹درصد، «ابزار و تجهیزات صنعتی» با ۱۵٫۵درصد و «پزشکی و سلامت» با ۱۰٫۳درصد دیده می‌شود.</p></div>
+<div class="side"><figure class="panel zoom" tabindex="0"><img class="fig" src="img/c7-p06-1.webp" width="881" height="1369" loading="lazy" decoding="async" alt="میزان استفاده کسب‌وکارهای ایرانی از تبلیغ در جست‌وجوی گوگل"></figure></div>
+</div>
+
+</article>
+<article class="sheet reveal" id="c7-p07">
+<div class="txt wide"><h3>وضعیت کانال‌های بازاریابی بازگشتی</h3>
+<p>وضعیت کانال‌های بازاریابی‌بازگشتی در سال ۱۴۰۴ با تغییرات زیادی همراه بود. پوش‌نوتیفیکیشن و ایمیل، وابسته به اینترنت بودند و با هر قطع دسترسی با اختلال جدی مواجه می‌شدند. پیامک به‌دلیل اتکا به زیرساخت داخلی، از قطع اینترنت تأثیر مستقیم نپذیرفت. با این حال، این کانال نیز در اعتراضات دی و جنگ ۳۹روزه با افت شدیدی همراه شد و حجم ارسال آن در این دو بازه به‌ترتیب حدود ۸۸ و ۹۶درصد کم‌تر از میانگین روزهای عادی بود.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c7-p07-1.webp" width="1453" height="910" loading="lazy" decoding="async" alt="وضعیت کانال‌های بازاریابی بازگشتی"></figure>
+
+</article>
+<article class="sheet reveal" id="c7-p08">
+<div class="txt wide"><h3>وضعیت ارسال پوش‌نوتیفیکیشن و ایمیل</h3>
+<p>پوش‌نوتیفیکیشن سال را با قدرت آغاز کرد، اما به‌دلیل وابستگی کامل به اینترنت، در هر سه بازه‌بحرانی سال دچار اختلال شد. این کانال هم‌زمان با جنگ ۱۲روزه در خرداد به‌طور کامل متوقف شد، در دی افت شدیدی را تجربه کرد و با آغاز جنگ ۳۹روزه در اسفند بار دیگر از کار افتاد؛ توقفی که تا پایان بازه‌گزارش در بهار ۱۴۰۵ ادامه داشت.</p>
+<p>ارسال ایمیل از الگوی متفاوتی پیروی کرد. این کانال در جنگ ۱۲روزه و دی با افت همراه شد اما به توقف کامل نرسید؛ با این حال، با آغاز جنگ ۳۹روزه و قطع اینترنت در اسفند، ارسال ایمیل نیز متوقف شد.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c7-p08-1.webp" width="1453" height="977" loading="lazy" decoding="async" alt="وضعیت ارسال پوش‌نوتیفیکیشن و ایمیل"></figure>
+
+</article>
+</div></section><section class="chapter" id="ch8" data-ch="8">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۸</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۸</p>
+      <h2>تبلیغات محیطی و تلویزیونی</h2>
+      <div class="intro"><p>تبلیغات محیطی و تلویزیونی، ریشه‌ای دیرینه در صنعت تبلیغات دارند و هم‌چنان جایگاه خود را در کنار ابزارهای جدید حفظ کرده‌اند. بیلبوردها، استرابوردها و سازه‌های تبلیغاتی شهری با ایجاد ارتباط مستقیم و ملموس با مخاطب، فرصتی متفاوت از تبلیغات دیجیتال برای برندها فراهم می‌کنند. تبلیغات تلویزیونی نیز هم‌چنان سهم قابل‌توجهی از بودجه‌های بازاریابی را در اختیار دارد و از این نظر، لازم است به آن توجه داشته باشیم. در این فصل از گزارش به این پرسش‌ها پاسخ داده شده است:</p>
+<ul class="q"><li>کدام سازه‌های تبلیغاتی برای نمایش تبلیغات محیطی تهران پرتعدادتر بوده‌اند؟</li><li>چه اهدافی کسب‌وکارها را به سمت تبلیغات محیطی سوق می‌دهد؟</li><li>حضور کسب‌وکارها در تبلیغات محیطی و تلویزیونی در سال ۱۴۰۴ چگونه بوده است؟</li><li>رسانه‌های تبلیغات دیجیتال محیطی در تهران از نظر موقعیت شهری چه توزیعی دارند؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c8-p03">
+<div class="cards n4"><figure class="card"><img class="fig" src="img/c8-p03-1.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c8-p03-2.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c8-p03-3.webp" width="718" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure><figure class="card"><img class="fig" src="img/c8-p03-4.webp" width="717" height="624" loading="lazy" decoding="async" alt="کارت آماری"></figure></div>
+<div class="src"><span>منبع:</span><img class="src-logo" src="img/c8-p03-5.webp" width="236" height="42" loading="lazy" decoding="async" alt="منبع"></div>
+</article>
+<article class="sheet reveal" id="c8-p04">
+<div class="txt wide"><h3>تبلیغات کسب‌وکارها در سطح شهر</h3>
+<p>در سال ۱۴۰۴، بیلبورد با ۳۱درصد بیش‌ترین سهم از سازه‌های تبلیغات محیطی تهران را به خود اختصاص داده و پس از آن استرابورد با ۱۹درصد و عرشه پل عابر با ۱۵درصد قرار دارند. این سه نوع سازه در مجموع ۶۵درصد از رسانه‌های محیطی را تشکیل می‌دهند که نشان‌دهنده تمرکز بازار بر سازه‌های بزرگ و پرتکرار شهری بوده است.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c8-p04-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="تبلیغات کسب‌وکارها در سطح شهر"></figure>
+
+</article>
+<article class="sheet reveal" id="c8-p05">
+<div class="txt wide"><h3>چرا کسب‌وکارها از تبلیغات محیطی استفاده می‌کنند؟</h3>
+<p>تبلیغات محیطی در سال ۱۴۰۴ عمدتا با هدف معرفی محصول و اطلاع‌رسانی مورد استفاده قرار گرفته است؛ به‌طوری‌که ۵۱درصد کمپین‌ها به معرفی محصول اختصاص داشته و ۲۹درصد نیز در قالب کمپین‌های غیرتجاری اجرا شده‌اند. در مقابل، اهداف مستقیم‌تر فروش مانند فروش اقساطی، جشنواره و فروش ویژه در مجموع ۱۶درصد سهم داشته‌اند.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c8-p05-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="چرا کسب‌وکارها از تبلیغات محیطی استفاده می‌کنند؟"></figure>
+
+</article>
+<article class="sheet reveal" id="c8-p06">
+<div class="txt wide"><h3>حضور کسب‌وکارها در تبلیغات محیطی تهران</h3>
+<p>تبلیغات محیطی تهران در ۱۴۰۴ دو نقطه افت مهم داشته است. نخست، پس از جنگ ۱۲روزه که تعداد برندهای حاضر از ۱۴۱برند در خرداد به ۶۴برند در تیر رسید که معادل افتی حدود ۵۵درصد بود؛ هم‌چنین تعداد برندها در تیر ۱۴۰۴ نسبت به ماه مشابه سال قبل ۴۳درصد کم‌تر بود. پس از آن، بازار در مرداد و شهریور تا حدی بازیابی شد، اما در بیش‌تر ماه‌ها هم‌چنان پایین‌تر از سطح سال قبل باقی ماند.</p>
+<p>افت دوم در بهمن رخ داد؛ تعداد برندها با کاهش حدود ۳۱درصدی نسبت به دی، به ۹۷برند رسید.</p></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c8-p06-1.webp" width="1453" height="885" loading="lazy" decoding="async" alt="حضور کسب‌وکارها در تبلیغات محیطی تهران"></figure>
+
+</article>
+<article class="sheet reveal" id="c8-p07">
+<div class="txt wide"><h3>تبلیغات دیجیتال محیطی تهران</h3>
+<p>رسانه دیجیتال محیطی* به نمایشگرهای دیجیتالی گفته می‌شود که در فضاهای عمومی خارج از خانه، مانند فرودگاه‌ها، مراکز خرید، لابی و آسانسور ساختمان‌ها، محتوای تبلیغاتی پخش می‌کنند و امکان نمایش چرخشی آگهی‌ها و تغییر محتوا بر اساس زمان و مکان را فراهم می‌آورند. در سال ۱۴۰۴، حدود ۹۶درصد نمایشگرهای این رسانه در تهران در فضاهای سرپوشیده قرار داشته‌اند و سهم نمایشگرهای شهری و جایگاه‌های سوخت در مجموع حدود ۴درصد بوده است. فرودگاه‌ها با بیش از یک‌چهارم نمایشگرها بیش‌ترین سهم را داشته‌اند و مراکز تجاری، داروخانه‌ها و سوپرمارکت‌ها در مجموع نزدیک به نیمی از نمایشگرها را به خود اختصاص داده‌اند. مجتمع‌های مسکونی و اماکن اداری و ورزشی هر یک حدود ۱۰درصد از این سهم را در اختیار داشته‌اند.</p>
+<div class="notes"><p>* Digital Out-of-Home (DOOH)</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c8-p07-1.webp" width="1453" height="829" loading="lazy" decoding="async" alt="تبلیغات دیجیتال محیطی تهران"></figure>
+
+</article>
+<article class="sheet reveal" id="c8-p08">
+<div class="txt wide"><h3>حضور کسب‌وکارها در تبلیغات تلویزیونی</h3>
+<p>حضور برندها در تبلیغات تلویزیونی سال ۱۴۰۴ در چند مقطع با افت قابل‌توجه همراه بوده است.* این افت در خرداد و تیر هم نسبت به سال قبل و هم نسبت به ماه‌های قبل مشاهده می‌شود و در تیر به پایین‌ترین سطح نیمه اول سال می‌رسد.</p>
+<p>پس از بازگشت نسبی این حضور، در نیمه دوم سال، در دی این روند دوباره سیر نزولی پیدا کرده است؛ تعداد حضور برندها در بهمن نسبت به دی، ۵۰درصد کاهش یافته و در اسفند نیز ۱۶درصد پایین آمده است. در مقایسه سالانه، اسفند ۱۴۰۴ نسبت به اسفند گذشته، ۵۷درصد کاهش را تجربه کرده است.</p>
+<div class="notes"><p>* در این تحلیل، منظور از تبلیغات تلویزیونی، آگهی‌های پخش‌شده در شبکه‌های ۱ تا ۶، شبکه نسیم، نمایش، آی‌فیلم، ورزش، مستند، تماشا، سلامت، امید، آموزش و سهند است.</p></div></div>
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c8-p08-1.webp" width="1453" height="852" loading="lazy" decoding="async" alt="حضور کسب‌وکارها در تبلیغات تلویزیونی"></figure>
+
+</article>
+</div></section><section class="chapter" id="ch9" data-ch="9">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۹</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۹</p>
+      <h2>پیوست</h2>
+      <div class="intro"><h4 class="sub">اطلاعات جمعیت‌شناختی شرکت‌کنندگان در مطالعه پیمایشی «رفتار مردم ایران در فضای آنلاین»</h4>
+<p>برای دستیابی به تصویری که تا حد امکان نماینده جامعه ایران باشد، نمونه‌گیری به‌شکل تصادفی و با پوشش جغرافیایی شهرهای مختلف کشور انجام شده است. ترکیب نمونه پس از جمع‌آوری داده‌ها، بر اساس ویژگی‌های جمعیت‌شناختی جامعه ایران وزن‌دهی شده تا توزیع پاسخ‌دهندگان از نظر متغیرهایی مانند جنسیت، سن و پراکندگی جغرافیایی با ساختار جمعیتی کشور هم‌راستا شود. هم‌چنین سهم پاسخ‌دهندگان زن و مرد به‌شکل برابر در طراحی نمونه لحاظ شده و توزیع سنی نمونه متناسب با ساختار جمعیتی ایران تنظیم شده است.</p>
+<p>به‌منظور دسترسی به طیف متنوعی از پاسخ‌دهندگان، گردآوری داده‌ها به شکل تلفنی انجام شده است. به‌علاوه، حجم نمونه ۹۵۹نفر، در سطح اطمینان ۹۵درصد، امکان برآورد نتایج کلی با حاشیه خطایی حدود ۳٫۲درصد را فراهم می‌کند. بر این اساس، یافته‌های این پیمایش می‌تواند تصویری معتبر از الگوهای کلی رفتار، نگرش و عادات دیجیتال جامعه ایران را ارائه دهد.</p></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c8-p10">
+<figure class="panel zoom" tabindex="0"><img class="fig" src="img/c8-p10-1.webp" width="1454" height="1369" loading="lazy" decoding="async" alt="نمودار"></figure>
+
+</article>
+<div class="team reveal" id="c8-p11"><h3>همکاران ما در تهیه این گزارش</h3><p>این گزارش حاصل یک تلاش جمعی است و بدون همراهی کسب‌وکارها و متخصصانی که داده‌ها، تجربه‌ها و دیدگاه‌هایشان را سخاوتمندانه با ما به اشتراک گذاشتند، شکل نمی‌گرفت. یکتانت از تک‌تک این همکاران صمیمانه سپاس‌گزار است. اعتماد آن‌ها به ما کمک کرد تصویری دقیق‌تر و واقعی‌تر از بازاریابی دیجیتال ایران ارائه دهیم.</p>
+<p>فهرست کسب‌وکارها به ترتیب حضور در گزارش است.</p></div>
+<div class="partners" id="c8-p12">
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p12-1.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>شرکت پژوهش بازار رسانه امروز (emrc) به عنوان بزرگ‌ترین شرکت تحقیقات بازار کشور، از سال ۱۳۸۰ به عنوان عضوی از خانواده dnaunion شروع به فعالیت کرده است و با مطالعه حوزه‌های مختلف شامل مصرف‌کننده، خرده‌فروشی و رسانه از طریق تجزیه و تحلیل داده‌های تحقیقات طولی و تحقیقات کمی و کیفی به صاحبان صنایع مختلف یاری می‌رسانند.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p12-2.webp" width="656" height="287" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>ادیوری، پلتفرم نمایش تبلیغات در اپلیکیشن‌های تلفن‌همراه است که با بهره‌گیری از داده‌ها و الگوریتم‌های هوشمند، بازدهی مناسبی از نمایش تبلیغات برای کسب‌وکارها فراهم می‌آورد و از طرف دیگر برای توسعه‌دهندگان اپلیکیشن درآمد پایداری به همراه دارد.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p12-3.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>مایکت، پلتفرم سرگرمی دیجیتال، کار خود را به‌عنوان فروشگاه اندرویدی بازی و برنامه شروع کرد و آن را به پخش فیلم و سریال (به‌عنوان VOD) گسترش داد. مایکت اکنون ۶۰ میلیون نصب فعال و ۳۲ میلیون کاربر فعال ماهانه دارد.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p12-4.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>سیب‌اپ بزرگ‌ترین اپ‌استور ایرانی و مرجع اصلی دریافت اپلیکیشن‌های ایرانی iOS است. کاربران آیفون از طریق سیب‌اپ به نسخه‌های رسمی و به‌روز اپلیکیشن‌های بانکی و خدماتی، در کنار مجموعه‌ای متنوع از برنامه‌ها و بازی‌ها دسترسی دارند. سیب‌اپ با همکاری توسعه‌دهندگان و کسب‌وکارهای ایرانی، عرضه اپلیکیشن‌ها را ساده‌تر می‌کند و دسترسی کاربران iOS به خدمات دیجیتال را افزایش می‌دهد.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p12-5.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>ادتریس پلتفرم اندازه‌گیری و اتریبیوشن موبایل (MMP) است که با ردیابی نصب، رویدادهای درون‌برنامه‌ای و منابع جذب کاربر، امکان تحلیل عملکرد کمپین‌های تبلیغاتی را فراهم می‌کند. این پلتفرم با قابلیت‌هایی مانند تشخیص تقلب، دیپ‌لینک و تحلیل رفتار کاربران، به کسب‌وکارها در بهینه‌سازی تبلیغات و تصمیم‌گیری داده‌محور کمک می‌کند.</p></div></div>
+</div>
+<div class="partners" id="c8-p13">
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p13-1.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>زلکا، دستیار گفت‌وگومحور هوش مصنوعی (AI Agent) بازاریابی و روابط‌عمومی است. این پلتفرم با ارزیابی بازدهی کمپین‌ها، تحلیل احساسات مخاطبان، مقایسه رقبا و ارائه گزارش‌ها و اینفوگرافیک‌های هوشمند، داده‌های پیچیده رسانه‌ای را به بینش‌های تصمیم‌ساز تبدیل می‌کند.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p13-2.webp" width="656" height="239" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>روبیکا سوپراپلیکیشن ایرانی است که از فروردین ۱۳۹۷ فعالیت خود را آغاز کرده است. این پلتفرم خدمات متنوعی مانند پیام‌رسان، شبکه اجتماعی، فیلم و سریال، سرگرمی و انواع خدمات تجارت الکترونیک (شامل شارژ و بسته اینترنت، قبض، بیمه و خرید کالای دیجیتال و سوپرمارکتی و ...) را بر اساس نیازهای کاربران به‌صورت یک‌جا ارائه می‌دهد.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p13-3.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>بله یک زیست‌بوم دیجیتال ایرانی است که خدمات ارتباطی، مالی، سرمایه‌گذاری و کاربردی را در یک بستر یکپارچه ارائه می‌دهد. این پلتفرم با تکیه بر زیرساخت‌های فناورانه، مجموعه‌ای از خدمات دولتی و ابزارهای دیجیتال از جمله هوش مصنوعی را در اختیار کاربران، کسب‌وکارها و سازمان‌ها قرار می‌دهد. بله با تمرکز بر سادگی، امنیت و کاربردپذیری، تجربه‌ای منسجم از خدمات دیجیتال فراهم می‌کند.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p13-4.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>پیام‌رسان سروش‌پلاس، محصول شرکت ستاک هوشمند شریف، پلتفرم ارتباطی ایرانی است که از سال ۱۳۹۷ فعالیت خود را آغاز کرده است. این پلتفرم با ارائه مجموعه‌ای متنوع از خدمات ارتباطی و دیجیتال، بستری یکپارچه برای ارتباط، تعامل و پاسخ‌گویی به نیازهای روزمره کاربران فراهم می‌کند. سروش‌پلاس با تکیه بر فناوری و راهکارهای کاربرپسند، تجربه‌ای ساده و کاربردی برای کاربرانش رقم می‌زند.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p13-5.webp" width="656" height="298" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>جریان پلتفرمی برای اجرای کمپین‌های تبلیغاتی با همکاری اینفلوئنسرها، صفحات شبکه‌های اجتماعی و تولیدکنندگان محتواست که به برندهای ایرانی خدمات می‌دهد. این پلتفرم با بیش از ۲۶ هزار صفحه فعال و ۲۷۰۰ اینفلوئنسر، ارتباط میان کسب‌وکارها و تولیدکنندگان محتوا را تسهیل کرده و بستری حرفه‌ای برای اجرای کمپین و درآمدزایی فراهم می‌کند.</p></div></div>
+</div>
+<div class="partners" id="c8-p14">
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p14-1.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>تریبون، به‌عنوان پلتفرم سئو و روابط عمومی، با ارائه خدماتی جامع در این حوزه و همکاری با بیش از ۱۳هزار رسانه‌داخلی و بین‌المللی در مدیوم‌های گوناگون، به دیده‌شدن بیشتر کسب‌وکارها و درآمدزایی بیش‌تر رسانه‌ها کمک می‌کند. رپورتاژ آگهی، بک‌لینک، لینک‌پرومکس، وایرال‌مارکت و لینک‌مارکت بخشی از خدمات تریبون‌اند که متناسب با اهداف متنوع کسب‌وکارها طراحی شده‌اند.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p14-2.webp" width="656" height="231" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>فرست‌ادز پلتفرم اجرای کمپین‌های تبلیغاتی بین‌المللی در گوگل ، متا، تلگرام، بینگ و موتورهای هوش مصنوعی است. این شرکت با تحلیل داده و مدیریت بودجه، هزینه تبلیغات کسب‌وکارهای ایرانی را به رشد فروش، افزایش ورودی سایت و بازگشت سرمایه‌ی بیشتر تبدیل می‌کند. تمرکز فرست‌ادز بر نتیجه‌ی قابل اندازه‌گیری برای مشتری است.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p14-3.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>نجوا پلتفرم بازاریابی چندکاناله‌حفظ مشتری است که ارسال پوش‌نوتیفیکیشن، پیامک، ایمیل و پیام‌رسان بله را در اختیار کسب‌وکارها قرار می‌دهد. نجوا به کسب‌وکارها کمک می‌کند با پیام مناسب، در زمان مناسب و از کانالی که در دسترس است، ارتباط خود را با کاربرانشان حفظ کنند و آن‌ها را به مشتریانی وفادار تبدیل کنند.</p></div></div>
+<div class="partner reveal"><figure class="logo"><img class="fig" src="img/c8-p14-4.webp" width="656" height="230" loading="lazy" decoding="async" alt="لوگو"></figure><div class="ptxt"><p>آی‌رسانه پلتفرم تبلیغات دیجیتال محیطی (DOOH) است که رسانه‌های محیطی را در بستری تعاملی به کسب‌وکارهای تبلیغ‌دهنده متصل می‌کند. در این بستر، تبلیغ‌دهندگان می‌توانند رسانه‌ها را از نظر موقعیت، تعرفه و میزان بازدید با هم مقایسه کنند و کمپین خود را اجرا کنند؛ در طرف مقابل، صاحبان فضاهای تبلیغاتی نیز رسانه خود را در معرض دید متقاضیان قرار می‌دهند.</p></div></div>
+</div>
+</div><section class="thanks" id="c8-p15"><div class="wrap">
+<h2 class="thx-h">با تشکر صمیمانه از:</h2>
+<ul class="people">
+<li><b>کامیار امامی</b><span>مدیرعامل | emrc</span></li>
+<li><b>نرگس صادقی</b><span>مدیر توسعه فروش و بازاریابی | emrc</span></li>
+<li><b>نجمه عطائی‌نژاد</b><span>مدیر تحقیقات کمی | emrc</span></li>
+<li><b>میرحسین موسوی</b><span>مدیر پروژه پایش تبلیغات | emrc</span></li>
+<li><b>نازیلا دادگر</b><span>سرپرست اجرایی پروژه پایش تبلیغات | emrc</span></li>
+<li><b>شبنم کلانتری</b><span>کارشناس تحلیل | emrc</span></li>
+<li><b>نیما طهماسبی</b><span>سرپرست اجرایی | emrc</span></li>
+<li><b>احسان الطافی‌پور</b><span>سرپرست کنترل کیفیت | emrc</span></li>
+<li><b>وحید رحیمیان</b><span>مدیرعامل | مایکت</span></li>
+<li><b>خدیجه مشایخ</b><span>راهبر فنی | مایکت</span></li>
+<li><b>محمد حق‌وردی</b><span>مدیر محصول تبلیغات | مایکت</span></li>
+<li><b>انیس ناصری</b><span>مدیر روابط‌عمومی | مایکت</span></li>
+<li><b>سیاوش گودرزی</b><span>مدیر روابط‌عمومی | گروه حصین</span></li>
+<li><b>احمد هاشمی</b><span>مدیرعامل | سیب‌اپ</span></li>
+<li><b>حمید کوچک‌زاده</b><span>مدیر ارشد تجاری | سیب‌اپ</span></li>
+<li><b>احسان سلیمانیان</b><span>مدیر ارشد بازاریابی | سیب‌اپ</span></li>
+<li><b>صادق محسن‌نیا</b><span>مدیرعامل | اسمارتک</span></li>
+<li><b>علی علوی</b><span>قائم‌مقام مدیرعامل | اسمارتک</span></li>
+<li><b>مسعود رجایی</b><span>مدیر کامرشیال | اسمارتک</span></li>
+<li><b>نیما پورمحمدی</b><span>مدیر محصول | ادتریس</span></li>
+<li><b>مرتضی زندیه</b><span>مدیرعامل و بنیان‌گذار | زلکا</span></li>
+<li><b>پریسا نوابی</b><span>مدیر ارشد بازاریابی و تحلیلگر داده | زلکا</span></li>
+<li><b>حامد رستگار</b><span>مدیرعامل | روبیکا</span></li>
+<li><b>مصطفی قنبری</b><span>مدیر توسعه‌کسب‌وکار | روبیکا</span></li>
+<li><b>کاظم کیال</b><span>مدیرعامل | بله</span></li>
+<li><b>مهدی پارسایی</b><span>مدیر تحلیل داده | بله</span></li>
+<li><b>امین شریفی</b><span>مدیرعامل | سروش‌پلاس</span></li>
+<li><b>فریده مسعودی</b><span>مدیر روابط عمومی | سروش‌پلاس</span></li>
+<li><b>سجاد نراقی</b><span>مدیر تحلیل داده | سروش‌پلاس</span></li>
+<li><b>مجتبی ابوطالبی</b><span>مدیرعامل | جریان</span></li>
+<li><b>مهیار امینی</b><span>مدیر بازاریابی | جریان</span></li>
+<li><b>آرمان صفایی</b><span>مدیرعامل | گروه تجارت الکترونیک ایماژ</span></li>
+<li><b>مینا ملکی</b><span>مدیرعامل | تریبون</span></li>
+<li><b>امیرمحمد بیکیان</b><span>مدیر اجرایی | فرست‌ادز</span></li>
+<li><b>اشکان قدیمی</b><span>مدیرعامل | نجوا</span></li>
+<li><b>دکتر فریبرز مسعودی</b><span>رئیس پارک علم و فناوری دانشگاه شهید بهشتی</span></li>
+<li><b>دکتر یاسر نیک‌پیمان</b><span>معاون پارک علم و فناوری دانشگاه شهید بهشتی</span></li>
+<li><b>هادی مرادی</b><span>بنیان‌گذار و سردبیر | دی‌ام‌برد</span></li>
+</ul>
+<div class="thx-tail"><p>و همه عزیزانی که در شرکت‌های یکتانت، تریبون، نجوا، جریان، ادیوری، فرست‌ادز، آی‌رسانه، شرکت پژوهش بازار رسانه امروز، مایکت، سیب‌اپ، ادتریس، زلکا، روبیکا، بله و سروش پلاس به ما در تهیه این گزارش یاری رساندند.</p></div>
+</div></section><div class="wrap sheets">
+<div class="contact reveal" id="c8-p16"><p>نظرات و پیشنهادات خود را در رابطه با گزارش «بازاریابی دیجیتال ایران در سال ۱۴۰۴ و بهار ۱۴۰۵» با تیم ارتباطات یکتانت در میان بگذارید:</p><p class="mail"><span dir="ltr" class="addr">comms@yektanet.ir</span><button type="button" class="copy" data-copy="comms@yektanet.ir">کپی نشانی</button></p></div>
+</div></section>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="logo"></span>
+    <a href="https://www.yektanet.com" dir="ltr">www.yektanet.com</a>
+  </div>
+</footer>
+</main>
+<dialog class="lightbox" aria-label="نمایش بزرگ نمودار"><button type="button" class="lb-close" aria-label="بستن">×</button><div class="lb-scroll"><img alt=""></div></dialog>
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  // reading progress + active chapter in the nav
+  var bar = document.querySelector('.progress b');
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.chapnav a'));
+  var lastOn = null;
+  function onScroll() {
+    var h = root.scrollHeight - window.innerHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')';
+    var cur = 0;
+    var mid = window.innerHeight * 0.35;
+    chapters.forEach(function (c) { if (c.getBoundingClientRect().top < mid) cur = +c.dataset.ch; });
+    links.forEach(function (a) {
+      var n = +a.dataset.ch;
+      a.classList.toggle('on', n === cur || (cur === 9 && n === 8 && false));
+      a.classList.toggle('done', n < cur);
+    });
+    var on = document.querySelector('.chapnav a.on');
+    if (on && on !== lastOn) {
+      lastOn = on;
+      try { on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' }); } catch (e) {}
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // entrance for blocks that start below the fold; everything is visible at rest
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); en.target.classList.remove('pre'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight * 1.05) { el.classList.add('pre'); io.observe(el); }
+    });
+  }
+
+  // lightbox for charts
+  var dlg = document.querySelector('.lightbox');
+  var dimg = dlg && dlg.querySelector('img');
+  function openFig(fig) {
+    var im = fig.querySelector('img');
+    if (!dlg || !im) return;
+    dimg.src = im.currentSrc || im.src; dimg.alt = im.alt;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  document.querySelectorAll('.zoom').forEach(function (f) {
+    f.addEventListener('click', function () { openFig(f); });
+    f.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openFig(f); } });
+  });
+  if (dlg) {
+    dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+    dlg.addEventListener('click', function (ev) { if (ev.target === dlg || ev.target.classList.contains('lb-scroll')) dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+  }
+
+  // copy email
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-copy');
+      var done = function () { b.textContent = 'کپی شد'; setTimeout(function () { b.textContent = 'کپی نشانی'; }, 1800); };
+      var fallback = function () {
+        var s = b.parentNode.querySelector('.addr');
+        var r = document.createRange(); r.selectNodeContents(s);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      };
+      try { navigator.clipboard.writeText(t).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+
+  function css(name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
+
+  // hero: the cover's node grid, its links drawn in over time, yellow squares on a few nodes
+  var net = document.querySelector('.net');
+  if (net) {
+    var ctx = net.getContext('2d');
+    var COLS = 13, ROWS = 11, seed = 7;
+    function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    var edges = [], squares = [];
+    for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) {
+      var opts = [];
+      if (c < COLS - 1) opts.push([r, c + 1]);
+      if (r < ROWS - 1) opts.push([r + 1, c]);
+      if (r < ROWS - 1 && c < COLS - 1) opts.push([r + 1, c + 1]);
+      if (r < ROWS - 1 && c > 0) opts.push([r + 1, c - 1]);
+      opts.forEach(function (o) { if (rnd() < 0.34) edges.push({ a: [r, c], b: o, t: rnd() }); });
+      if (rnd() < 0.085) squares.push({ r: r, c: c, t: rnd() });
+    }
+    var start = performance.now();
+    function draw(now) {
+      var dpr = Math.min(2, window.devicePixelRatio || 1);
+      var W = net.clientWidth, H = net.clientHeight;
+      if (net.width !== Math.round(W * dpr)) { net.width = Math.round(W * dpr); net.height = Math.round(H * dpr); }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      var sx = W / COLS, sy = H / ROWS, rad = Math.min(sx, sy) * 0.3;
+      var k = reduce ? 1 : Math.min(1, (now - start) / 2600);
+      var dot = css('--dot') || '#ccc', ink = css('--ink') || '#111', y = css('--yellow') || '#ffde00';
+      function P(rc) { return [sx * (rc[1] + 0.5), sy * (rc[0] + 0.5)]; }
+      ctx.lineWidth = 1; ctx.strokeStyle = dot;
+      edges.forEach(function (e) {
+        var p = Math.max(0, Math.min(1, (k - e.t * 0.6) / 0.4));
+        if (p <= 0) return;
+        var A = P(e.a), B = P(e.b);
+        ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(A[0] + (B[0] - A[0]) * p, A[1] + (B[1] - A[1]) * p); ctx.stroke();
+      });
+      for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) {
+        var p = P([r, c]);
+        ctx.beginPath(); ctx.arc(p[0], p[1], rad, 0, Math.PI * 2);
+        ctx.fillStyle = dot; ctx.globalAlpha = 0.55; ctx.fill(); ctx.globalAlpha = 1;
+      }
+      var tt = reduce ? 0 : (now - start) / 1000;
+      squares.forEach(function (s, i) {
+        var p = P([s.r, s.c]);
+        var a = Math.max(0, Math.min(1, (k - s.t * 0.5) / 0.5));
+        var pulse = 1 + 0.08 * Math.sin(tt * 1.6 + i);
+        var z = rad * 1.6 * a * pulse;
+        ctx.fillStyle = y; ctx.fillRect(p[0] - z / 2, p[1] - z / 2, z, z);
+      });
+      if (!reduce) requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  }
+
+  // chapter openers: the yellow dot field with drifting white squares, like the printed covers
+  var openers = Array.prototype.slice.call(document.querySelectorAll('.opener .dots'));
+  var visible = new Set();
+  if ('IntersectionObserver' in window) {
+    var vo = new IntersectionObserver(function (ents) { ents.forEach(function (en) { if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target); }); });
+    openers.forEach(function (c) { vo.observe(c); });
+  } else openers.forEach(function (c) { visible.add(c); });
+  var sq = openers.map(function (_, i) {
+    var s = 31 + i * 17, list = [];
+    for (var j = 0; j < 16; j++) { s = (s * 9301 + 49297) % 233280; var a = s / 233280; s = (s * 9301 + 49297) % 233280; var b = s / 233280; list.push([a, b, j]); }
+    return list;
+  });
+  function drawOpeners(now) {
+    openers.forEach(function (cv, i) {
+      if (!visible.has(cv) && !reduce) return;
+      var dpr = Math.min(2, window.devicePixelRatio || 1);
+      var W = cv.clientWidth, H = cv.clientHeight;
+      if (cv.width !== Math.round(W * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+      var x = cv.getContext('2d');
+      x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, W, H);
+      var g = 14, t = reduce ? 0 : now / 1000;
+      x.fillStyle = 'rgba(13,13,11,.16)';
+      for (var yy = g; yy < H; yy += g) for (var xx = g; xx < W * 0.42; xx += g) { x.beginPath(); x.arc(xx, yy, 1.1, 0, 6.283); x.fill(); }
+      x.fillStyle = '#ffffff';
+      if (W >= 900) sq[i].forEach(function (s) {
+        var px = s[0] * W * 0.4, py = (s[1] * H + t * (6 + s[2] % 5 * 2)) % H;
+        x.fillRect(px, py, 9, 9);
+      });
+    });
+    if (!reduce) requestAnimationFrame(drawOpeners);
+  }
+  requestAnimationFrame(drawOpeners);
+})();
+
+</script>
+</body>
+</html>
