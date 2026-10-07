@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>روایت یکتانت ۱۴۰۴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;700;800;900&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+/* Layout: a scrolling print report — yellow chapter openers, then "sheets" (text column + chart panel) in report order */
+:root {
+  --yellow: #ffde00;
+  --on-yellow: #0d0d0b;
+  --ink: #111110;
+  --bg: #ffffff;
+  --panel: #f6f6f2;
+  --fig: #f7f7f7;
+  --muted: #66655d;
+  --line: #e6e5dd;
+  --bar: #0d0d0b;
+  --on-bar: #ffffff;
+  --dot: #c9c8c0;
+  --font: "Vazirmatn", "Vazir", "IRANSans", Tahoma, "Segoe UI", sans-serif;
+  --fs-body: 1.0625rem;
+  --fs-small: .875rem;
+  --fs-h3: clamp(1.45rem, 1.1rem + 1.4vw, 2rem);
+  --fs-h2: clamp(2rem, 1.3rem + 3vw, 3.4rem);
+  --measure: 62ch;
+  --gut: clamp(16px, 4vw, 48px);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #f1f0ea; --bg: #10100e; --panel: #191916; --muted: #a8a69c; --line: #2b2a25;
+    --bar: #000000; --on-bar: #f1f0ea; --dot: #3a3933; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #f1f0ea; --bg: #10100e; --panel: #191916; --muted: #a8a69c; --line: #2b2a25;
+  --bar: #000000; --on-bar: #f1f0ea; --dot: #3a3933; color-scheme: dark;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-size: var(--fs-body); line-height: 1.95;
+  direction: rtl; text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01";
+}
+main { display: block; }
+.wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: var(--gut); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+h1, h2, h3, h4 { text-wrap: balance; margin: 0; line-height: 1.35; }
+p { margin: 0; }
+
+/* progress + topbar */
+.progress { position: fixed; inset-inline: 0; top: 0; height: 3px; z-index: 60; pointer-events: none; }
+.progress b { display: block; height: 100%; width: 100%; background: var(--yellow); transform-origin: right; transform: scaleX(0); }
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-in { display: flex; align-items: center; gap: 20px; max-width: 1180px; margin-inline: auto; padding: 10px var(--gut); }
+.logo {
+  display: inline-block; width: 104px; aspect-ratio: 754 / 262; max-width: 100%;
+  background: currentColor;
+  -webkit-mask: url(img/logo.png) center / contain no-repeat; mask: url(img/logo.png) center / contain no-repeat;
+}
+.brand { flex: none; display: flex; color: var(--ink); }
+.chapnav {
+  flex: 1; min-width: 0; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+  position: relative; padding-block: 2px 4px;
+}
+.chapnav::-webkit-scrollbar { display: none; }
+.chapnav a {
+  flex: 1 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  text-decoration: none; font-size: .75rem; color: var(--muted); padding-inline-end: 14px;
+  position: relative; white-space: nowrap;
+}
+.chapnav a::before { content: ""; position: absolute; inset-inline: 0; bottom: 4px; height: 1px; background: var(--line); }
+.chapnav a i { order: 2; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--muted); background: var(--bg); position: relative; z-index: 1; transition: background .3s, border-color .3s, transform .3s; }
+.chapnav a.on { color: var(--ink); font-weight: 800; }
+.chapnav a.on i, .chapnav a.done i { background: var(--ink); border-color: var(--ink); }
+.chapnav a.on i { background: var(--yellow); border-color: var(--ink); transform: scale(1.35); }
+
+/* hero = the cover */
+.hero { padding-block: clamp(28px, 6vw, 72px) 24px; }
+.hero-in { display: grid; gap: 28px; }
+.net { width: 100%; aspect-ratio: 13 / 7.4; max-height: 62vh; display: block; }
+.cover-bar { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; }
+.cover-bar h1 {
+  flex: 1 1 340px; background: var(--bar); color: var(--on-bar);
+  font-weight: 300; font-size: clamp(1.25rem, .8rem + 2vw, 2.1rem); padding: 14px 22px;
+}
+.cover-bar h1 b { font-weight: 900; }
+.year { background: var(--yellow); color: var(--on-yellow); font-weight: 900; font-size: clamp(1rem, .8rem + 1vw, 1.5rem); padding: 14px 22px; display: flex; align-items: center; }
+.cover-bar .logo.big { width: 150px; align-self: center; margin-inline-start: auto; padding: 0; margin-block: 14px; color: var(--ink); }
+
+/* toc + preface */
+.toc-wrap { padding-block: 40px 72px; }
+.toc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.toc { background: var(--bar); color: var(--on-bar); padding: 28px 28px 22px; }
+.toc h2 { font-size: 1.6rem; font-weight: 900; color: var(--yellow); margin-bottom: 12px; }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; }
+.toc a { display: grid; grid-template-columns: 2.6em 1fr; gap: 8px; padding-block: 9px; text-decoration: none; border-top: 1px solid color-mix(in srgb, var(--on-bar) 16%, transparent); font-size: .98rem; line-height: 1.6; }
+.toc a:hover .tn, .toc a:focus-visible .tn { color: var(--yellow); }
+.tn { font-weight: 300; color: color-mix(in srgb, var(--on-bar) 55%, transparent); font-variant-numeric: tabular-nums; }
+.preface h2 { font-size: var(--fs-h3); font-weight: 900; margin-bottom: 14px; display: flex; flex-direction: column; gap: 10px; }
+.preface h2::after, .txt h3::after, .opener h2::after { content: ""; width: 12px; height: 12px; background: var(--yellow); }
+.preface p + p { margin-top: 1em; }
+.preface { max-width: var(--measure); }
+
+/* chapter opener */
+.opener { position: relative; background: var(--yellow); color: var(--on-yellow); overflow: hidden; padding-block: clamp(48px, 8vw, 110px); }
+.opener .dots { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.opener-in { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.num {
+  font-size: clamp(7rem, 4rem + 14vw, 16rem); line-height: .8; font-weight: 200;
+  color: transparent; -webkit-text-stroke: 2px var(--on-yellow); letter-spacing: -.02em;
+  order: 2; justify-self: start; font-variant-numeric: tabular-nums;
+}
+.opener-txt { max-width: var(--measure); }
+.eyebrow { font-size: var(--fs-small); font-weight: 700; letter-spacing: .02em; margin-bottom: 6px; opacity: .75; }
+.opener h2 { font-size: var(--fs-h2); font-weight: 900; display: flex; flex-direction: column; gap: 16px; margin-bottom: 18px; }
+.opener h2::after { background: #fff; }
+.intro p { margin-top: .8em; font-weight: 400; }
+.intro h4.sub { font-size: 1.15rem; font-weight: 800; margin-top: 1em; }
+.intro .notes p { font-size: .95rem; }
+ul.q { list-style: none; margin: 1em 0 0; padding: 0; display: grid; gap: 4px; }
+ul.q li { position: relative; padding-inline-start: 22px; }
+ul.q li::before { content: ""; position: absolute; inset-inline-start: 2px; top: .8em; width: 8px; height: 8px; background: currentColor; }
+.opener ul.q li::before { background: #fff; outline: 1px solid var(--on-yellow); }
+
+/* sheets */
+.sheets { display: grid; gap: 0; padding-block: 24px 40px; }
+.sheet { display: grid; gap: 28px; padding-block: clamp(40px, 6vw, 72px); border-bottom: 1px solid var(--line); }
+.sheet:last-child { border-bottom: 0; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+.side { display: grid; gap: 18px; position: sticky; top: 92px; }
+.txt { max-width: var(--measure); }
+.txt.wide { max-width: none; columns: 2 26rem; column-gap: clamp(28px, 4vw, 56px); }
+.txt.wide h3 { column-span: all; }
+.txt h3 { font-size: var(--fs-h3); font-weight: 900; margin-bottom: 18px; display: flex; flex-direction: column; gap: 12px; }
+.txt h4 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
+.txt p { margin-bottom: .9em; break-inside: avoid-column; }
+.notes { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--fs-small); line-height: 1.8; break-inside: avoid; }
+.notes p { margin-bottom: .35em; }
+.txt.wide .notes { column-span: all; }
+
+figure { margin: 0; }
+.panel, .card { background: var(--fig); border-radius: 14px; overflow: hidden; }
+.card { background: #fff; border: 1px solid var(--line); }
+.fig { display: block; width: 100%; height: auto; }
+.zoom { cursor: zoom-in; position: relative; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+.zoom::after {
+  content: "بزرگ‌نمایی"; position: absolute; inset-inline-start: 12px; top: 12px;
+  background: var(--on-yellow); color: var(--yellow); font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 99px;
+  opacity: 0; transform: translateY(-4px); transition: opacity .25s, transform .25s;
+}
+.zoom:hover::after, .zoom:focus-visible::after { opacity: 1; transform: none; }
+.zoom:hover { box-shadow: 0 10px 40px -18px rgba(0,0,0,.35); }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; max-width: 900px; }
+.cards.n1 { grid-template-columns: minmax(0, 420px); }
+.src { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .8rem; }
+.src-logo { height: 22px; width: auto; border-radius: 4px; background: #fff; padding: 2px 6px; }
+
+/* team / partners / thanks / contact */
+.team { background: var(--bar); color: var(--on-bar); padding: clamp(28px, 5vw, 56px); margin-block: 40px 8px; display: grid; gap: 12px; }
+.team h3 { font-size: var(--fs-h3); font-weight: 900; display: flex; flex-direction: column; gap: 12px; }
+.team h3::after { content: ""; width: 12px; height: 12px; background: var(--yellow); }
+.team p { max-width: var(--measure); }
+.partners { display: grid; gap: 18px; padding-block: 18px; }
+.partner { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: clamp(18px, 3vw, 40px); align-items: center; padding-block: 8px; }
+.partner .logo { width: auto; aspect-ratio: auto; background: none; -webkit-mask: none; mask: none; }
+.partner figure.logo { border-radius: 14px; overflow: hidden; background: #fff; }
+.ptxt { font-size: .98rem; max-width: var(--measure); }
+.thanks { background: var(--panel); padding-block: clamp(48px, 7vw, 96px); }
+.thx-h { font-size: var(--fs-h3); font-weight: 900; margin-bottom: 28px; display: flex; flex-direction: column; gap: 12px; }
+.thx-h::after { content: ""; width: 12px; height: 12px; background: var(--yellow); }
+.people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 14px 28px; }
+.people li { display: grid; padding-inline-start: 14px; border-inline-start: 3px solid var(--yellow); line-height: 1.6; }
+.people b { font-weight: 800; }
+.people span { color: var(--muted); font-size: var(--fs-small); }
+.thx-tail { margin-top: 28px; color: var(--muted); max-width: var(--measure); }
+.contact { background: var(--bar); color: var(--on-bar); padding: clamp(28px, 5vw, 56px); margin-block: 40px; display: grid; gap: 12px; }
+.contact .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.addr { font-weight: 800; color: var(--yellow); user-select: all; font-size: 1.2rem; }
+.copy { font: inherit; font-size: .8rem; background: transparent; color: var(--on-bar); border: 1px solid color-mix(in srgb, var(--on-bar) 40%, transparent); border-radius: 99px; padding: 2px 14px; cursor: pointer; }
+.copy:hover { border-color: var(--yellow); color: var(--yellow); }
+
+.foot { background: var(--bar); color: var(--on-bar); padding-block: 40px; }
+.foot-in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
+.foot .logo { width: 130px; }
+.foot a { text-decoration: none; opacity: .8; }
+
+/* lightbox */
+.lightbox { border: 0; padding: 0; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; background: color-mix(in srgb, #000 88%, transparent); }
+.lightbox::backdrop { background: rgba(0,0,0,.6); }
+.lb-scroll { width: 100%; height: 100%; overflow: auto; display: grid; place-items: center; padding: 56px 16px 24px; }
+.lb-scroll img { width: min(1400px, 100%); height: auto; border-radius: 12px; background: #fff; }
+.lb-close { position: fixed; top: 12px; left: 12px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--yellow); color: #000; font-size: 1.6rem; line-height: 1; cursor: pointer; z-index: 2; }
+
+/* reveal: visible at rest; only below-the-fold items get the entrance */
+.reveal.pre { opacity: 0; transform: translateY(26px); }
+.reveal.in { opacity: 1; transform: none; transition: opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+@media (prefers-reduced-motion: reduce) { .reveal.pre { opacity: 1; transform: none; } .zoom, .reveal.in { transition: none; } }
+
+@media (max-width: 900px) {
+  .toc-grid, .split, .opener-in, .partner { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; }
+  .num { order: 0; font-size: clamp(5.5rem, 22vw, 9rem); }
+  .chapnav a span { font-size: .7rem; }
+  .txt.wide { columns: 1; }
+}
+@media (max-width: 560px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .topbar-in { gap: 12px; }
+  .brand .logo { width: 78px; }
+  .cover-bar .logo.big { margin-inline: 22px auto; }
+}
+
+.stack { display: grid; gap: 16px; max-width: 820px; }
+.panel.short { max-width: 820px; }
+
+/* ---- live charts ---- */
+:root { --dotmap: #d9d8d0; --teal: #00a59b; --orange: #ffa900; --card: #ffffff; --grid: #efeee8; --chip: #f2f1ec; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --card: #171715; --grid: #262521; --chip: #22211e; --dotmap: #3a3933; } }
+:root[data-theme="dark"] { --card: #171715; --grid: #262521; --chip: #22211e; --dotmap: #3a3933; }
+
+.split.live { grid-template-columns: minmax(0, .85fr) minmax(0, 1.25fr); }
+.chart-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+  padding: clamp(14px, 2.2vw, 26px); display: grid; gap: 14px; min-width: 0;
+  box-shadow: 0 1px 0 var(--line), 0 24px 48px -36px rgba(0,0,0,.25);
+}
+.cc-head { display: grid; gap: 6px; }
+.cc-cap { font-size: 1.02rem; font-weight: 800; line-height: 1.6; display: flex; gap: 10px; align-items: baseline; }
+.cc-cap::before { content: ""; flex: none; width: 10px; height: 10px; background: var(--yellow); transform: translateY(-1px); }
+.cc-q { color: var(--muted); font-size: .92rem; display: flex; gap: 8px; align-items: baseline; line-height: 1.7; }
+.qm { flex: none; display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--yellow); color: #111; font-weight: 900; font-size: .8rem; }
+.cc-tools { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; }
+.cc-tools:empty { display: none; }
+.chip-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip-label { font-size: .75rem; color: var(--muted); margin-inline-end: 2px; }
+.chip {
+  font: inherit; font-size: .78rem; line-height: 1.4; padding: 5px 12px; border-radius: 99px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--chip); color: var(--muted); display: inline-flex; gap: 7px; align-items: center;
+  transition: background .2s, color .2s, border-color .2s, opacity .2s;
+}
+.chip:hover { color: var(--ink); border-color: var(--ink); }
+.chip.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.legend-chip { background: transparent; color: var(--ink); }
+.legend-chip.on { background: transparent; color: var(--ink); border-color: var(--line); }
+.legend-chip:not(.on) { opacity: .45; text-decoration: line-through; }
+.legend-chip i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+.cc-body { width: 100%; min-height: 200px; position: relative; direction: ltr; }
+.cc-body.is-html { direction: rtl; }
+.cc-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px dashed var(--line); padding-top: 12px; }
+.cc-src { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: .78rem; }
+.cc-src img { height: 20px; width: auto; border-radius: 4px; background: #fff; padding: 2px 4px; }
+.cc-note { color: var(--muted); font-size: .72rem; }
+.cc-table { font: inherit; font-size: .78rem; background: none; border: 0; color: var(--ink); text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 5px; cursor: pointer; padding: 4px 0; }
+.cc-tablewrap { overflow-x: auto; }
+.cc-tablewrap table { width: 100%; border-collapse: collapse; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.cc-tablewrap th, .cc-tablewrap td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.cc-tablewrap thead th { color: var(--muted); font-weight: 700; font-size: .78rem; }
+.cc-tablewrap tbody th { font-weight: 500; white-space: normal; min-width: 160px; }
+.cc-tablewrap small { color: var(--muted); }
+
+/* stat tiles */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; }
+.stats.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stats.n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px 24px 22px; display: grid; gap: 6px; align-content: start; position: relative; overflow: hidden; }
+.stat::after { content: ""; position: absolute; inset-inline-start: 0; bottom: 0; height: 4px; width: 100%; background: var(--yellow); transform: scaleX(0); transform-origin: right; transition: transform 1.2s cubic-bezier(.2,.7,.2,1) .2s; }
+.stat[data-mounted]::after { transform: scaleX(1); }
+.stat-val { font-size: clamp(3rem, 2rem + 3.4vw, 4.6rem); font-weight: 900; line-height: 1.05; color: var(--yellow); -webkit-text-stroke: 1px color-mix(in srgb, var(--ink) 18%, transparent); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.stat-pre { font-weight: 300; }
+.stat-unit { font-weight: 800; font-size: 1rem; }
+.stat-desc { color: var(--muted); font-size: .95rem; line-height: 1.8; padding-top: 10px; position: relative; }
+.stat-desc::before { content: ""; position: absolute; top: 0; inset-inline-start: 0; width: 8px; height: 8px; background: var(--yellow); }
+
+/* bubble map */
+.cc-body.is-svg { min-height: 0; }
+.bmap { width: 100%; height: auto; display: block; overflow: visible; }
+.bm-dots circle { fill: var(--dotmap); }
+.bm-b { cursor: default; outline: none; }
+.bm-b circle { fill: var(--yellow); fill-opacity: .92; stroke: var(--card); stroke-width: 2; transform-box: fill-box; transform-origin: center; transform: scale(0); transition: transform .9s cubic-bezier(.3,1.5,.5,1) var(--d), fill-opacity .2s; }
+.play .bm-b circle { transform: scale(1); }
+.bm-b:hover circle, .bm-b:focus circle { fill-opacity: 1; stroke: var(--ink); }
+.bm-v { font: 900 19px Vazirmatn, Tahoma, sans-serif; fill: #111; text-anchor: middle; opacity: 0; transition: opacity .4s calc(var(--d) + .6s); }
+.bm-n { font: 500 15px Vazirmatn, Tahoma, sans-serif; fill: var(--ink); text-anchor: middle; opacity: 0; transition: opacity .4s calc(var(--d) + .7s); }
+.play .bm-v, .play .bm-n { opacity: 1; }
+
+/* funnel */
+.cc-body.is-html { min-height: 0; }
+.fn { display: grid; gap: 10px; }
+.fn-row { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.fn-row:last-child { border-bottom: 0; }
+.fn-name { display: grid; line-height: 1.5; font-size: .9rem; }
+.fn-name small { color: var(--muted); font-size: .7rem; }
+.fn-bars { display: grid; gap: 3px; }
+.fn-bar { display: flex; align-items: center; height: 16px; position: relative; }
+.fn-bar::before { content: ""; height: 100%; width: var(--w); border-radius: 0 0 0 0; border-start-end-radius: 4px; border-end-end-radius: 4px; transform: scaleX(0); transform-origin: right; transition: transform 1s cubic-bezier(.2,.7,.2,1) var(--d); }
+.play .fn-bar::before { transform: scaleX(1); }
+.fn-bar.seen::before { background: var(--ink); }
+.fn-bar.attn::before { background: var(--yellow); }
+.fn-bar.act::before { background: var(--orange); }
+.fn-bar em { font-style: normal; font-size: .72rem; font-weight: 800; padding-inline-start: 6px; opacity: 0; transition: opacity .4s calc(var(--d) + .7s); }
+.play .fn-bar em { opacity: 1; }
+.fn-rates { display: grid; gap: 3px; font-size: .78rem; font-weight: 800; text-align: center; }
+.fn-rates span { padding: 2px 8px; border-radius: 99px; background: var(--chip); border: 1px solid var(--line); cursor: help; }
+.fn-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .75rem; color: var(--muted); }
+.fn-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-inline-end: 6px; vertical-align: middle; }
+
+.toc li.off { opacity: .45; }
+.toc-off { display: grid; grid-template-columns: 2.6em 1fr; gap: 8px; padding-block: 9px; border-top: 1px solid color-mix(in srgb, var(--on-bar) 16%, transparent); font-size: .98rem; line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .split.live { grid-template-columns: minmax(0, 1fr); }
+  .stats.n3, .stats.n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .stats.n3, .stats.n4 { grid-template-columns: minmax(0, 1fr); }
+  .fn-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .fn-name { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bm-b circle, .fn-bar::before { transform: none !important; transition: none; }
+  .bm-v, .bm-n, .fn-bar em { opacity: 1; transition: none; }
+}
+
+.bm-v.out { fill: var(--ink); text-anchor: start; font-size: 16px; }
+
+.cc-body svg text { unicode-bidi: plaintext; }
+
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><b></b></div>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#top" aria-label="یکتانت"><span class="logo"></span></a>
+    <nav class="chapnav" aria-label="فصل‌ها"><a href="#ch1" data-ch="1"><i></i><span>بازاریابی دیجیتال در جهان</span></a><a href="#ch2" data-ch="2"><i></i><span>رفتار مردم در فضای آنلاین</span></a></nav>
+  </div>
+</header>
+<main id="top" dir="rtl" lang="fa">
+<section class="hero">
+  <div class="wrap hero-in">
+    <canvas class="net" aria-hidden="true"></canvas>
+    <div class="cover-bar reveal">
+      <h1><b>روایت یکتانت</b> از بازاریابی دیجیتال ایران</h1>
+      <span class="year">۱۴۰۴ و بهار ۱۴۰۵</span>
+      <span class="logo big" role="img" aria-label="YEKTANET"></span>
+    </div>
+  </div>
+</section>
+<section class="toc-wrap">
+  <div class="wrap toc-grid">
+    <div class="toc reveal">
+      <h2>فهرست</h2>
+      <ol><li><a href="#ch1"><span class="tn">۰۱</span><span>بازاریابی دیجیتال در جهان</span></a></li><li><a href="#ch2"><span class="tn">۰۲</span><span>رفتار مردم ایران در فضای آنلاین</span></a></li><li class="off"><span class="toc-off"><span class="tn">۰۳</span><span>نبض تبلیغات دیجیتال در فراز و فرودهای سال ۱۴۰۴ و بهار ۱۴۰۵</span></span></li><li class="off"><span class="toc-off"><span class="tn">۰۴</span><span>کسب‌وکارها و تبلیغات در وب‌سایت‌های ایرانی</span></span></li><li class="off"><span class="toc-off"><span class="tn">۰۵</span><span>کاربران ایرانی و اپلیکیشن‌ها</span></span></li><li class="off"><span class="toc-off"><span class="tn">۰۶</span><span>کاربران ایرانی و تبلیغات در شبکه‌های اجتماعی</span></span></li><li class="off"><span class="toc-off"><span class="tn">۰۷</span><span>دیگر روش‌های بازاریابی دیجیتال</span></span></li><li class="off"><span class="toc-off"><span class="tn">۰۸</span><span>تبلیغات محیطی و تلویزیونی</span></span></li><li class="off"><span class="toc-off"><span class="tn">۰۹</span><span>پیوست</span></span></li></ol>
+    </div>
+    <div class="preface reveal" id="preface">
+      <h2>پیش‌گفتار</h2>
+      <p>سال ۱۴۰۴ برای اقتصاد دیجیتال ایران سال آرامی نبود. جنگ ۱۲روزه، اعتراضات دی، جنگ ۳۹روزه و قطعی‌های مکرر اینترنت، هر کدام برای مدتی رفتار کاربران و برنامه‌های بازاریابی کسب‌وکارها را تغییر دادند. با این حال، بازار تبلیغات دیجیتال پس از هر بحران به مسیر خود برگشت و در مقاطعی مانند ۷ آذر (بلک‌فرایدی) رکورد تازه‌ای هم ثبت کرد.</p>
+<p>در «روایت یکتانت از بازاریابی دیجیتال ایران در سال ۱۴۰۴ و بهار ۱۴۰۵» تلاش کرده‌ایم در کنار تصویر کلی بازار نشان دهیم این صنعت در برابر شوک‌های پی‌درپی چه واکنشی داشت و تبلیغ‌کنندگان، رسانه‌ها و کاربران چه‌طور خود را با شرایط تازه تطبیق دادند. گزارش با وضعیت تبلیغات دیجیتال در جهان آغاز می‌شود و سپس بازار تبلیغات ایران را در وب‌سایت‌ها، اپلیکیشن‌ها، شبکه‌های اجتماعی، دیگر روش‌های بازاریابی دیجیتال و تبلیغات محیطی و تلویزیونی بررسی می‌کند. پیمایش اختصاصی امسال هم با مشارکت ۹۵۹ نفر از سراسر کشور انجام شده است که علاوه‌بر عادت‌های آنلاین مردم، اعتماد آنان به تبلیغات، رفتارشان در روزهای قطع اینترنت و استفاده‌آنان از ابزارهای هوش مصنوعی را سنجیده است.</p>
+<p>گزارشی که در ادامه می‌خوانید را یکتانت با همکاری شرکت پژوهش بازار رسانه امروز (emrc)، مایکت، سیب‌اپ، ادتریس، زلکا، روبیکا، بله، سروش‌پلاس، ادیوری، جریان، تریبون، فرست‌ادز، نجوا و آی‌رسانه تدوین کرده است.</p>
+    </div>
+  </div>
+</section>
+<section class="chapter" id="ch1" data-ch="1">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۱</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۱</p>
+      <h2>بازاریابی دیجیتال در جهان</h2>
+      <div class="intro"><p>تا پیش از این، بررسی‌ها معطوف به چگونگی روند سهم‌گیری بازاریابی دیجیتال از بازاریابی سنتی بود و این‌که چگونه استراتژی‌ها و بودجه‌های بازاریابی به تناسب توسعه‌زیست دیجیتال کاربران و ارایه‌خدمات آنلاین، بیش‌تر به سمت بازاریابی دیجیتال می‌آیند؛ حال در کنار این ارزیابی‌ها باید نگاهی داشت به نقش فراگیر ابزارهای هوش مصنوعی که خود به زمینه‌ای برای رشد و نتیجه‌گیری بهتر در این حوزه تبدیل شده‌اند.</p>
+<p>در این بخش، به این پرسش‌ها پاسخ می‌دهیم:</p>
+<ul class="q"><li>بودجه‌های بازاریابی و تبلیغات در سال‌های آینده به کدام سو می‌روند؟</li><li>رسانه‌های دیجیتال و غیردیجیتال چه سهمی در جهان تبلیغات دارند؟</li><li>تغییرات سالانه بودجه‌های تبلیغات دیجیتال و سنتی چگونه بوده است؟</li><li>روند سالانه تغییر بودجه تبلیغات در رسانه‌های مختلف چگونه است؟</li><li>در نقاط مختلف جهان چه‌قدر برای تبلیغات دیجیتال هزینه می‌کنند؟</li><li>تاثیر هوش مصنوعی مولد بر آینده تبلیغات از نظر مدیران آژانس‌های تبلیغاتی جهان چگونه‌بوده است؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c1-p06">
+<div class="stats n3"><div class="stat reveal" data-chart="c1-p06-1"><div class="stat-val"><span class="stat-pre">+</span><span class="stat-num">۱۰۰۰</span></div><span class="stat-unit">میلیارد دلار</span><p class="stat-desc">مجموع بودجه‌های تبلیغاتی جهان در سال ۲۰۲۵ (دیجیتال و غیردیجیتال)</p></div><div class="stat reveal" data-chart="c1-p06-2"><div class="stat-val"><span class="stat-pre">٪</span><span class="stat-num">۶۶٫۸</span></div><p class="stat-desc">نسبت سهم بودجه‌های تبلیغاتی در کانال‌های دیجیتال به مجموع بودجه‌های تبلیغاتی جهان در سال ۲۰۲۵</p></div><div class="stat reveal" data-chart="c1-p06-3"><div class="stat-val"><span class="stat-pre">٪</span><span class="stat-num">۲۸٫۸</span></div><p class="stat-desc">نسبت سهم تبلیغات دیجیتال کشورهای جنوب غرب آسیا از کل بودجه‌های تبلیغاتی آن‌ها در سال ۲۰۲۵</p></div></div>
+</article>
+<article class="sheet reveal" id="c1-p07">
+<div class="txt wide"><h3>بودجه‌های تبلیغاتی جهان در سال‌های پیش‌رو</h3>
+<p>نتایج پرسش‌نامه Global Entertainment &amp; Media Outlook ۲۰۲۵–۲۰۲۸ که از سوی PwC UK و Omdia اجرا شده است، نشان می‌دهد بودجه‌های تبلیغاتی* در جهان (دیجیتال و غیردیجیتال) در سال ۲۰۲۵ از ۱۰۰۰میلیارد دلار فراتر رفته‌اند؛ همچنین پیش‌بینی می‌کند، بودجه‌های تبلیغاتی سال‌های پیش رو با شیب ملایمی به‌شکل سالانه افزایش پیدا خواهند کرد.</p>
+<div class="notes"><p>* Advertising spending</p></div></div>
+<figure class="chart-card k-bar" data-chart="c1-p07-1"><figcaption class="cc-head"><h4 class="cc-cap">روند سالانه بودجه‌های تبلیغاتی در جهان</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p07-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c1-p08">
+<div class="txt wide"><h3>روند رشد سالانه بودجه‌های تبلیغاتی جهان</h3>
+<p>بودجه‌های تبلیغاتی خرج‌شده (دیجیتال و غیردیجیتال) در کشورهای گوناگون جهان در سال ۲۰۲۵ حدود ۸٫۴درصد نسبت به سال ۲۰۲۴ افزایش یافته‌اند. در سال ۲۰۲۴ میزان افزایش بودجه‌های تبلیغاتی نسبت به ۲۰۲۳، ۱۰٫۴درصد بوده است.</p></div>
+<figure class="chart-card k-line" data-chart="c1-p08-1"><figcaption class="cc-head"><h4 class="cc-cap">رشد بودجه‌های تبلیغاتی در جهان در سال‌های مختلف</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p08-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c1-p09">
+<div class="txt wide"><h3>بودجه‌های تبلیغاتی در کانال‌های دیجیتال در سال‌های پیش رو</h3>
+<p>شبکه تبلیغاتی Dentsu در گزارشی که در دسامبر ۲۰۲۵ ارائه داده، پیش‌بینی کرده است بودجه‌های سالانه خرج‌شده در کانال‌های دیجیتال* تا سال ۲۰۲۸ از ۸۰۰میلیارد دلار عبور خواهد کرد.</p>
+<div class="notes"><p>* Digital advertising expenditure</p></div></div>
+<figure class="chart-card k-bar" data-chart="c1-p09-1"><figcaption class="cc-head"><h4 class="cc-cap">روند سالانه بودجه‌های تبلیغاتی در کانال‌های دیجیتال در جهان</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p09-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c1-p10">
+<div class="split live">
+<div class="txt"><h3>پیش‌بینی سهم کانال‌های مختلف از بودجه‌های تبلیغاتی</h3>
+<p>مشاهده تجمیعی داده‌های Dentsu و Zenith در بررسی برنامه‌های تبلیغاتی در جهان نشان از افزایش تخصیص بودجه‌های تبلیغاتی به کانال‌های دیجیتال دارد. هم‌چنین بودجه‌های تبلیغاتی در کانال‌های دیجیتال در سال‌های آینده فاصله معناداری با کانال‌های غیردیجیتال خواهد داشت.</p></div>
+<div class="side"><figure class="chart-card k-line" data-chart="c1-p10-1"><figcaption class="cc-head"><h4 class="cc-cap">بودجه‌های تبلیغاتی در جهان در کانال‌های مختلف دیجیتال و غیردیجیتال</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p10-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure></div></div>
+</article>
+<article class="sheet reveal" id="c1-p11">
+<div class="txt wide"><h3>مقایسه بودجه‌های تبلیغات دیجیتال در نقاط مختلف دنیا</h3>
+<p>هم‌راستا با افزایش بودجه‌های تبلیغات دیجیتال در جهان، در سال ۲۰۲۵ آمریکای شمالی با ۳۲۸میلیارد دلار و آسیا و اقیانوسیه با ۲۶۱میلیارد دلار، بیش‌ترین سهم را از کل بودجه تبلیغات دیجیتال جهان داشته‌اند.</p></div>
+<figure class="chart-card k-bubblemap" data-chart="c1-p11-1"><figcaption class="cc-head"><h4 class="cc-cap">بودجه‌های تبلیغات دیجیتال در جهان در سال ۲۰۲۵ (میلیارد دلار)</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p11-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c1-p12">
+<div class="txt wide"><h3>بیش‌ترین رشد بودجه تبلیغات دیجیتال در جهان مربوط به چه کشورهایی است؟</h3>
+<p>با بررسی بودجه‌های تبلیغات دیجیتال کشورهای مختلف در سال ۲۰۲۵ و مقایسه آن‌ها با مقدار بودجه‌های این نوع تبلیغات در سال ۲۰۲۴، بیش‌ترین افزایش بودجه تبلیغات دیجیتال به ترتیب به هند، ترکیه و اسپانیا مربوط می‌شود.</p></div>
+<figure class="chart-card k-bar" data-chart="c1-p12-1"><figcaption class="cc-head"><h4 class="cc-cap">رشد بودجه‌های تبلیغات دیجیتال در کشورهای شاخص در سال ۲۰۲۵ نسبت به سال ۲۰۲۴</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p12-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c1-p13">
+<div class="txt wide"><h3>سهم بودجه‌های تبلیغات دیجیتال و سنتی در منطقه آسیا و اقیانوسیه</h3>
+<p>در میان نقاط مختلف منطقه آسیا و اقیانوسیه (Asia-Pacific) در سال ۲۰۲۵، کشورهای شرق آسیا ۵۲٫۵درصد از بودجه‌های تبلیغاتی خود را در کانال‌های دیجیتال خرج کرده‌اند؛ درحالی‌که سهم تبلیغات دیجیتال در منطقه جنوب‌غرب آسیا ۲۸٫۸درصد و در جنوب آسیا تنها ۱۹٫۶درصد است.</p></div>
+<figure class="chart-card k-stack100h" data-chart="c1-p13-1"><figcaption class="cc-head"><h4 class="cc-cap">سهم تبلیغات دیجیتال و سنتی در نقاط مختلف منطقه آسیا و اقیانوسیه</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p13-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c1-p14">
+<div class="txt wide"><h3>سیر صعودی درآمد گوگل از تبلیغات</h3>
+<p>داده‌ها نشان می‌دهند که تبلیغات هم‌چنان ستون اصلی مدل درآمدی گوگل است و بخش عمده این درآمد از «جست‌وجو» تامین می‌شود. درآمد تبلیغاتی از جست‌وجوی گوگل از ۶۹میلیارد دلار در ۲۰۱۷ به ۱۹۸٫۱ میلیارد دلار در ۲۰۲۴ رسیده است. در همین بازه، درآمد تبلیغات یوتیوب نیز از ۸٫۲میلیارد دلار به ۳۶٫۱میلیارد دلار رسیده است.</p>
+<p>این در حالی است که درآمد حاصل از نمایش تبلیغات گوگل در سایت‌ها، اپلیکیشن‌ها و سایر ناشران، پس از رسیدن به حدود ۳۲٫۸ میلیارد دلار در ۲۰۲۲، به ۳۰٫۴میلیارد دلار در ۲۰۲۴ کاهش یافته است.</p></div>
+<figure class="chart-card k-stackv" data-chart="c1-p14-1"><figcaption class="cc-head"><h4 class="cc-cap">روند سالانه درآمد گوگل از تبلیغات به تفکیک مدل‌های درآمدی</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p14-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c1-p15">
+<div class="txt wide"><h3>نگاه مدیران آژانس‌های تبلیغاتی به آینده هوش‌مصنوعی در تبلیغات</h3>
+<p>بر اساس نظرسنجی Basis Technologies که از سوی MarketingCharts در سال ۲۰۲۵ منتشر شد، تقریبا ۸۰درصد مدیران آژانس‌های تبلیغاتی آمریکای شمالی بر این باورند که هوش مصنوعی مولد (Generative AI) تاثیر «مثبت» یا «تا حدودی مثبت» بر آژانس‌های تبلیغاتی دارد.</p></div>
+<figure class="chart-card k-donut" data-chart="c1-p15-1"><figcaption class="cc-head"><h4 class="cc-cap">نظر مدیران آژانس‌های تبلیغاتی آمریکای شمالی درباره تاثیر هوش مصنوعی مولد بر عملکرد آژانس‌های تبلیغاتی</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c1-p15-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+</div></section><section class="chapter" id="ch2" data-ch="2">
+<header class="opener reveal">
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="wrap opener-in">
+    <div class="num" aria-hidden="true">۰۲</div>
+    <div class="opener-txt">
+      <p class="eyebrow">فصل ۰۲</p>
+      <h2>رفتار مردم ایران در فضای آنلاین</h2>
+      <div class="intro"><p>مطالعه ردپای دیجیتال ایرانیان و عادات رسانه‌ای‌شان می‌تواند بینش‌ارزشمندی درباره رفتار آنان در اختیار علاقه‌مندان بازاریابی دیجیتال قرار دهد. به این منظور با همکاری شرکت پژوهش بازار رسانه امروز (emrc) یک مطالعه پیمایشی اختصاصی برای این گزارش انجام شده است که در آن ۹۵۹نفر از ایرانیان سراسر کشور مشارکت داشته‌اند.</p>
+<p>برای دستیابی به تصویری که تا حد امکان نماینده جامعه ایران باشد، نمونه‌گیری به‌شکل تصادفی و با پوشش جغرافیایی شهرهای مختلف کشور انجام شده است. ترکیب نمونه پس از جمع‌آوری داده‌ها، بر اساس ویژگی‌های جمعیت‌شناختی جامعه ایران وزن‌دهی شده تا توزیع پاسخ‌دهندگان از نظر متغیرهایی مانند جنسیت، سن و پراکندگی جغرافیایی با ساختار جمعیتی کشور هم‌راستا شود. هم‌چنین سهم پاسخ‌دهندگان زن و مرد به شکل برابر در طراحی نمونه لحاظ شده و توزیع سنی نمونه متناسب با ساختار جمعیتی ایران تنظیم شده است.</p>
+<p>به‌منظور دسترسی به طیف متنوعی از پاسخ‌دهندگان، گردآوری داده‌ها به شکل تلفنی انجام شده است. به‌علاوه، حجم نمونه ۹۵۹نفر، در سطح اطمینان ۹۵درصد، امکان برآورد نتایج کلی با حاشیه خطایی حدود ۳٫۲درصد را فراهم می‌کند. بر این اساس، یافته‌های این پیمایش می‌تواند تصویری معتبر از الگوهای کلی رفتار، نگرش و عادات دیجیتال جامعه ایران را ارائه دهد.</p>
+<p>در این بخش به این سوال‌ها پاسخ داده شده است که مردم ایران:</p>
+<ul class="q"><li>چه میزان از وقت خود را در اینترنت سپری می‌کنند؟</li><li>با چه هدفی از اینترنت استفاده می‌کنند؟</li><li>از کدام پیام‌رسان‌ها استفاده می‌کنند؟</li><li>از اخبار ایران و جهان چه‌طور مطلع می‌شوند؟</li><li>تبلیغات کسب‌وکارها را چه‌طور ارزیابی می‌کنند؟</li><li>در زمان‌های قطع اینترنت چه می‌کنند؟</li><li>چه میزان و به چه علت از ابزارهای هوش‌مصنوعی استفاده می‌کنند؟</li></ul></div>
+    </div>
+  </div>
+</header>
+<div class="wrap sheets">
+<article class="sheet reveal" id="c2-p03">
+<div class="stats n4"><div class="stat reveal" data-chart="c2-p03-1"><div class="stat-val"><span class="stat-pre"></span><span class="stat-num">۴</span></div><span class="stat-unit">ساعت در روز</span><p class="stat-desc">میانگین استفاده از اینترنت در میان مردم ایران</p></div><div class="stat reveal" data-chart="c2-p03-2"><div class="stat-val"><span class="stat-pre">٪</span><span class="stat-num">۶۲</span></div><p class="stat-desc">سهم ایرانیانی که از اینترنت برای «ارتباط با خانواده و دوستان» استفاده می‌کنند</p></div><div class="stat reveal" data-chart="c2-p03-3"><div class="stat-val"><span class="stat-pre">٪</span><span class="stat-num">۵۷</span></div><p class="stat-desc">سهم ایرانیانی که از ابزارهای هوش مصنوعی استفاده می‌کنند</p></div><div class="stat reveal" data-chart="c2-p03-4"><div class="stat-val"><span class="stat-pre">٪</span><span class="stat-num">۹۲</span></div><p class="stat-desc">سهم کاربران ایرانی استفاده‌کننده از هوش مصنوعی که کاربر ChatGPT هستند</p></div></div>
+</article>
+<article class="sheet reveal" id="c2-p04">
+<div class="txt wide"><h3>مدت‌زمان استفاده از اینترنت در میان مردم ایران</h3>
+<p>مدت‌زمان استفاده روزانه از اینترنت با بالارفتن سن کاهش پیدا می‌کند. ۴۳درصد از نسل Z* روزانه بیش از ۴ساعت از اینترنت استفاده می‌کنند؛ درحالی‌که این سهم در نسل Y به ۳۴درصد و در نسل X به ۲۴درصد می‌رسد.</p>
+<p>در مقابل، نزدیک به نیمی از نسل X کم‌تر از ۲ساعت در روز آنلاین هستند. این یافته نشان می‌دهد تفاوت اصلی میان نسل‌ها دیگر در دسترسی به اینترنت نیست، بلکه در میزان حضور و شیوه استفاده از آن است.</p>
+<div class="notes"><p>* با توجه به اهمیت مطالعات نسلی در شناخت کاربران، پاسخ‌دهندگان بر اساس گروه‌های سنی زیر تقسیم‌بندی شده‌اند:</p><p>نسل Z: ترکیب‌گروه‌های سنی ۱۴ تا ۱۸ و ۱۹ تا ۲۷ سال نسل Y: ترکیب گروه‌های سنی ۲۸ تا ۳۶ و ٣۷ تا ۴۵ سال نسل X: ترکیب گروه‌های سنی ۴۶ تا ۵۴ و ۵۵ تا ۶۵ سال</p></div></div>
+<figure class="chart-card k-gbar" data-chart="c2-p04-1"><figcaption class="cc-head"><h4 class="cc-cap">مدت‌زمان استفاده مردم ایران از اینترنت در بازه‌های زمانی مختلف</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>به‌طور میانگین چند ساعت در روز از اینترنت استفاده می‌کنید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p04-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p05">
+<div class="txt wide"><h3>دلایل استفاده ایرانیان از اینترنت</h3>
+<p>الگوی استفاده از اینترنت در نسل‌های مختلف متفاوت است. نسل Z بیش از سایر نسل‌ها اینترنت را برای تماشای فیلم، سریال و ویدیو (۷۳درصد)، گوش دادن به موسیقی (۶۸درصد) و وقت‌گذرانی (۶۶درصد) استفاده می‌کند و در استفاده از ابزارهای هوش مصنوعی نیز با ۶۰درصد، فاصله محسوسی با نسل‌های Y و X دارد.</p>
+<p>در مقابل، نسل X سهم بالاتری در کاربردهایی مانند ارتباط با خانواده و دوستان (۶۵درصد)، دنبال کردن اخبار (۶۴درصد) و خدمات بانکی (۶۲درصد) دارد؛ درحالی‌که نسل Y در خرید اینترنتی (۶۲درصد) پیشتاز است.</p></div>
+<figure class="chart-card k-ghbar" data-chart="c2-p05-1"><figcaption class="cc-head"><h4 class="cc-cap">دلایل استفاده مردم ایران از اینترنت</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>با چه اهدافی از اینترنت استفاده می‌کنید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p05-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p06">
+<div class="txt wide"><h3>اولین فعالیت ایرانیان پس از بیدارشدن از خواب</h3>
+<p>چک کردن شبکه‌های اجتماعی و پیام‌رسان‌ها، اولین اقدام صبح‌گاهی بیش از ۴۰درصد از افراد هر سه نسل است؛ ۴۶درصد از نسل Z، ۴۵درصد از نسل Y و ۴۱درصد از نسل X روز خود را با این کار آغاز می‌کنند.</p>
+<p>پس از آن، صرف صبحانه جایگاه پررنگ‌تری نسبت به سایر فعالیت‌ها در بین همه نسل‌ها پیدا می‌کند؛ ۳۴درصد از نسل X در مقایسه با ۲۷درصد از نسل Y و ۲۳درصد از نسل Z، روز خود را با آماده کردن و خوردن صبحانه شروع می‌کنند. این تفاوت نشان می‌دهد که حضور دیجیتال در لحظات ابتدایی روز، رفتاری فراگیر و فراتر از مرزهای نسلی است.</p></div>
+<figure class="chart-card k-ghbar" data-chart="c2-p06-1"><figcaption class="cc-head"><h4 class="cc-cap">اولین فعالیت‌های مردم ایران پس از بیدار شدن، به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>اولین کاری که صبح بعد از بیدارشدن می‌کنید چیست؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p06-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p07">
+<div class="txt wide"><h3>جایگاه پیام‌رسان‌ها در میان ایرانیان</h3>
+<p>دایرکت اینستاگرام و روبیکا با ۸۱درصد استفاده در یک سال گذشته، بالاترین میزان استفاده را در میان پلتفرم‌های بررسی‌شده دارند. پس از آن، واتس‌اپ، تلگرام، ایتا و بله با فاصله‌کمی از یک‌دیگر در رتبه‌های بعدی قرار دارند.</p>
+<p>در سوی دیگر، شاد با ۲۵درصد، سروش‌پلاس با ۲۰درصد و دایرکت ایکس با تنها ۱۱درصد استفاده، فاصله قابل‌توجهی با سایر پلتفرم‌ها دارند. با این حال، در میان کاربران هر پلتفرم، شدت استفاده متفاوت است و دایرکت اینستاگرام با ۴۰درصد «استفاده زیاد»، بالاترین سهم کاربران پرمصرف را دارد.</p></div>
+<figure class="chart-card k-stack100h" data-chart="c2-p07-1"><figcaption class="cc-head"><h4 class="cc-cap">میزان استفاده مردم ایران از انواع پیام‌رسان‌ها</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در یک سال گذشته از هر پیام‌رسان‌چه میزان استفاده کردید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p07-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p08">
+<div class="txt wide"><h3>روش‌های مختلف ایرانیان برای اطلاع از اخبار</h3>
+<p>پیام‌رسان‌ها با ۵۵درصد استفاده متوسط یا زیاد، مهم‌ترین کانال برای دریافت اخبار هستند. پس از آن، سایت‌های خبری با ۴۴درصد، دوستان و آشنایان با ۴۲درصد و تلویزیون با ۳۹درصد قرار دارند؛ ترکیبی که نشان می‌دهد دریافت اخبار هم‌چنان میان رسانه‌های رسمی، پلتفرم‌های دیجیتال و شبکه ارتباطی افراد توزیع شده است. در میان سایر موارد، اینستاگرام (با ۲۶درصد میزان استفاده بالاتر از متوسط) و دنبال‌کردن چهره‌های فعال در فضای مجازی (۲۰درصد)، جایگاه بالاتری از شبکه‌های تلویزیونی غیرداخلی (۱۶درصد) و پیشنهادهای گوگل (۱۵درصد) دارند. در مقابل، کانال‌هایی مانند روزنامه (۳درصد) و ایکس (۲درصد) نقش بسیار محدودتری در مطالعه مستمر اخبار دارند.</p></div>
+<figure class="chart-card k-stack100h" data-chart="c2-p08-1"><figcaption class="cc-head"><h4 class="cc-cap">میزان استفاده مردم ایران از روش‌های مختلف برای پی‌گیری اخبار به تفکیک رسانه</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>برای اطلاع از اخبار تا چه اندازه از این روش‌ها استفاده کردید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p08-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p09">
+<div class="txt wide"><h3>مواجهه مردم با تبلیغات کسب‌وکارها در رسانه‌های مختلف</h3>
+<p>بیلبورد و تبلیغات محیطی با ۹۶درصد مواجهه، بیش‌ترین میزان دیده‌شدن را در میان مردم ایران دارد و پس از آن، تبلیغات داخل فروشگاه‌ها با ۹۲درصد مواجهه در رتبه دوم قرار می‌گیرد. در رتبه‌های بعدی، پیامک با ۹۱درصد، تبلیغات روی وسایل نقلیه با ۹۰درصد و وب‌سایت‌ها با ۸۶درصد مواجهه، کانال‌هایی هستند که بیش‌تر دیده شده‌اند. در نقطه مقابل این طیف، پادکست‌ها و رادیو با ۲۱ و ۱۹درصد مواجهه، کم‌ترین میزان دیده‌شدن را در میان پاسخ‌دهندگان و فاصله‌ای چشم‌گیر با سایر رسانه‌ها دارند.</p></div>
+<figure class="chart-card k-stack100h" data-chart="c2-p09-1"><figcaption class="cc-head"><h4 class="cc-cap">میزان مواجهه مردم ایران با تبلیغات به تفکیک رسانه‌های مختلف</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>تبلیغ برندها و کسب‌و‌کارهایی که در هر یک از رسانه‌ها دیدید، چه واکنشی در شما ایجاد کرد؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p09-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p10">
+<div class="txt wide"><h3>از دیده‌شدن تبلیغ تا اقدام کاربر</h3>
+<p>برای مقایسه اثرگذاری تبلیغات در رسانه‌های مختلف، واکنش مخاطبان به تبلیغات برندها در ۱۰رسانه از مرحله «مواجهه و دیده‌شدن» تا «توجه» و در نهایت «پی‌گیری و اقدام» بررسی شده است.</p></div>
+<figure class="chart-card k-funnel" data-chart="c2-p10-1"><figcaption class="cc-head"><h4 class="cc-cap">مقایسه عملکرد رسانه‌های مختلف در مسیر اثرگذاری تبلیغات</h4></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p10-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p11">
+<div class="txt wide"><h3>اعتماد مردم ایران به تبلیغات در رسانه‌های مختلف</h3>
+<p>داده‌ها نشان می‌دهند «بی‌تفاوتی»، غالب‌ترین واکنش مخاطبان به کانال‌های تبلیغاتی است. در تمام کانال‌های بررسی‌شده، سهم پاسخ‌دهندگانی که هنوز نظر منفی شک‌ل گرفته‌شده‌ای اعلام نکرده‌اند از سهم بی‌اعتمادان بیش‌تر است.</p>
+<p>حدود یک‌چهارم پاسخ‌دهندگان به تبلیغات در تلویزیون و تبلیغات داخل فروشگاه‌ها اعتماد دارند. حتی کانال‌هایی مانند رادیو و پادکست که کم‌ترین سهم نظر منفی را دارند، عمدتا با بی‌تفاوتی مواجه‌اند تا مخالفت. این الگو نشان می‌دهد بیش‌تر مخاطبان، حتی نسبت به کانال‌هایی با کم‌ترین امتیاز اعتماد هم ذهنیت منفی قطعی ندارند.</p></div>
+<figure class="chart-card k-stack100h" data-chart="c2-p11-1"><figcaption class="cc-head"><h4 class="cc-cap">میزان اعتماد مردم ایران به تبلیغات به تفکیک رسانه‌های مختلف</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>به تبلیغات در کدام‌یک از رسانه‌ها اعتماد دارید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p11-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p12">
+<div class="txt wide"><h3>ایرانیان و خرید آنلاین</h3>
+<p>حدود ۶۰درصد از ایرانیان حداقل یک‌بار در ماه خرید آنلاین انجام می‌دهند و با افزایش سن، فاصله در میزان استفاده از خرید آنلاین بیش‌تر می‌شود. نسل X نسبت به دو نسل دیگر، سهم بالاتری از نداشتن خرید ماهانه دارند.</p></div>
+<figure class="chart-card k-gbar" data-chart="c2-p12-1"><figcaption class="cc-head"><h4 class="cc-cap">تعداد دفعات خرید آنلاین مردم ایران به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>به‌طور میانگین چند بار در یک ماه خرید آنلاین انجام می‌دهید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p12-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p13">
+<div class="txt wide"><h3>ایرانیان در زمان‌های قطع اینترنت چه می‌کردند؟</h3>
+<p>در دوره‌های قطع اینترنت، «گفت‌وگو با خانواده و دوستان»، «ورزش و پیاده‌روی» و «گشت‌وگذار در شهر» از رایج‌ترین فعالیت‌های جایگزین در بین همه افراد بوده است.</p>
+<p>در بین نسل Z پس از این موارد «گوش دادن به موسیقی»، «تماشای فیلم» و «بازی کردن با موبایل»، در اولویت بوده، درحالی‌که در نسل X و Y «آشپزی» نیز جزو موارد صدرنشین قرار داشته است.</p></div>
+<figure class="chart-card k-ghbar" data-chart="c2-p13-1"><figcaption class="cc-head"><h4 class="cc-cap">فعالیت‌های جایگزین در میان ایرانیان در دوره‌های قطع اینترنت، به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در دوره‌های قطع اینترنت، چه فعالیت‌هایی را جایگزین استفاده از اینترنت کردید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p13-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p14">
+<div class="txt wide"><h3>شیوه‌های ارتباطی ایرانیان در زمان قطع اینترنت</h3>
+<p>در دوران قطع اینترنت، تفاوت نسلی در شیوه‌های حفظ ارتباط با خانواده و دوستان مشهود است. نسل X و Y بیش‌تر به تماس تلفنی متکی بوده‌اند؛ ۷۰درصد از نسل X و ۶۲درصد از نسل Y از این روش استفاده کرده‌اند. در نسل Z اما ارتباط حضوری بیش‌ترین میزان را داشته است.</p>
+<p>این در حالی است که ۲درصد افراد گفته‌اند که در این شرایط نتوانسته‌اند به هیچ طریقی با دوستان و خانواده‌خود ارتباط برقرار کنند.</p></div>
+<figure class="chart-card k-gbar" data-chart="c2-p14-1"><figcaption class="cc-head"><h4 class="cc-cap">روش‌های ارتباطی در میان ایرانیان در دوره‌های قطع اینترنت، به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در دوران قطع اینترنت، چه‌طور با خانواده و دوستان ارتباط برقرار کردید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p14-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p15">
+<div class="txt wide"><h3>تغییرات الگوی خرید آنلاین ایرانیان در زمان‌های قطع اینترنت</h3>
+<p>در دوره‌های قطع اینترنت، مهم‌ترین تغییر در الگوی خرید، تاخیر یا انصراف از خرید بوده است که این رفتار در نسل Z با ۵۲درصد بیش‌تر از نسل Y و X دیده می‌شود.</p></div>
+<figure class="chart-card k-gbar" data-chart="c2-p15-1"><figcaption class="cc-head"><h4 class="cc-cap">تغییر الگوی خرید در میان ایرانیان در دوره‌های قطع اینترنت، به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در دوره‌های قطع اینترنت در سال ۱۴۰۴، الگوی خرید آنلاین شما چه تغییری کرد؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p15-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p16">
+<div class="txt wide"><h3>واکنش ایرانیان به تبلیغات دیجیتال در دوران بحران</h3>
+<p>در شرایط بحرانی، تبلیغات دیجیتال برای بخش بزرگی از مخاطبان منجر به واکنش منفی نشده است. از میان افرادی که تبلیغی در این بازه‌ها مشاهده کرده‌اند، ۶۰درصد از نسل X، ۴۷درصد از نسل Y و ۶۵درصد از نسل Z گفته‌اند که مواجهه با تبلیغات برندها تفاوتی در واکنش آن‌ها ایجاد نکرده است.</p>
+<p>نگاه مثبت به حضور برند در شرایط سخت در هر سه نسل در رتبه دوم قرار گرفته است. با این حال، حدود یک‌چهارم مخاطبان واکنشی منفی یا انتقادی داشته‌اند؛ بنابراین در دوره‌های بحرانی، حضور تبلیغاتی برند ذاتا مسئله‌ساز نیست، اما تناسب پیام و شیوه حضور با شرایط جامعه اهمیت ویژه‌ای پیدا می‌کند.</p></div>
+<figure class="chart-card k-gbar" data-chart="c2-p16-1"><figcaption class="cc-head"><h4 class="cc-cap">واکنش مردم ایران به تبلیغات در دوران بحران به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>وقتی در بازه‌های بحرانی (جنگ و قطع اینترنت) تبلیغ یک برند در فضای دیجیتال را دیدید، اولین واکنش‌تان چه بود؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p16-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p17">
+<div class="txt wide"><h3>میزان استفاده مردم ایران از ابزارهای هوش مصنوعی</h3>
+<p>بررسی میزان استفاده از ابزارهای هوش مصنوعی نشان می‌دهد که شکاف نسلی در شیوه مواجهه با این فناوری معنادار است. در نسل Z تنها ۲۶درصد هرگز از ابزارهای هوش مصنوعی استفاده نکرده‌اند و ۳۸درصد به‌طور مداوم و روزانه از آن‌ها استفاده می‌کنند؛ در مقابل، در نسل X، ۴۹درصد هیچ‌گاه از این ابزارها استفاده نکرده‌اند و تنها ۱۲درصد استفاده روزانه دارند. نسل Y نیز با ۴۲درصد عدم استفاده و ۱۹درصد استفاده روزانه، در میانه این دو نسل قرار می‌گیرد. بنابراین تفاوت اصلی میان نسل‌ها نه در تجربه اولیه یا استفاده گاه‌به‌گاه، بلکه در تبدیل هوش مصنوعی به بخشی از عادت‌های روزمره است؛ الگویی که در نسل Z به‌مراتب پررنگ‌تر دیده می‌شود.</p></div>
+<figure class="chart-card k-gbar" data-chart="c2-p17-1"><figcaption class="cc-head"><h4 class="cc-cap">میزان استفاده ایرانیان از ابزارهای هوش مصنوعی، به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در یک سال گذشته میزان استفاده از ابزارهای هوش مصنوعی برای شما چه‌قدر بوده است؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p17-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p18">
+<div class="txt wide"><h3>ایرانیان در چه حوزه‌هایی از هوش مصنوعی کمک‌گرفته‌اند؟</h3>
+<p>در یک سال گذشته، «کسب اطلاعات و یادگیری»، مهم‌ترین کاربرد ابزارهای هوش مصنوعی در میان هر سه نسل بوده است؛ ۵۹درصد نسل Y، ۵۷درصد نسل Z و ۵۲درصد نسل X از هوش مصنوعی برای این منظور استفاده کرده‌اند. با این حال، تفاوت نسل‌ها در نوع استفاده از این ابزارها آشکار است: نسل X و نسل Y بیش‌تر به سمت استفاده‌های کاربردی و حرفه‌ای رفته‌اند؛ به‌طوری‌که استفاده از هوش مصنوعی برای امور کاری در نسل Y به ۴۳درصد و در نسل X به ۳۹درصد می‌رسد و استفاده برای پرسش‌های پزشکی و سلامت نیز در نسل X، ۴۸درصد است. در مقابل، نسل Z دامنه استفاده متنوع‌تر و شخصی‌تری دارد. در مجموع، به نظر می‌رسد هوش مصنوعی برای نسل‌های مختلف بیش‌از‌آن‌که یک ابزار با کاربرد واحد باشد، متناسب با نیازها و سبک زندگی هر نسل به شکل متفاوتی در حال تبدیل‌شدن به دستیار روزمره، حرفه‌ای و شخصی است.</p></div>
+<figure class="chart-card k-ghbar" data-chart="c2-p18-1"><figcaption class="cc-head"><h4 class="cc-cap">دلایل استفاده ایرانیان از ابزارهای هوش مصنوعی به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در یک سال گذشته در چه حوزه‌هایی از ابزارهای هوش مصنوعی استفاده کرده‌اید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p18-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p19">
+<div class="txt wide"><h3>ابزارهای هوش مصنوعی پراستفاده در میان ایرانیان</h3>
+<p>در استفاده از ابزارهای هوش مصنوعی، چت‌جی‌پی‌تی با فاصله زیادی، ابزار غالب کاربران است؛ ۹۲درصد کاربران حداقل گاهی از آن استفاده کرده‌اند و ۳۴درصد نیز استفاده زیادی داشته‌اند. پس از آن، جمنای با ۱۹درصد، دستیار بله با ۱۷درصد و گپ جی‌پی‌تی با ۱۶درصد قرار دارند، در حالی که سایر ابزارها میزان استفاده بسیار پایین‌تری دارند.</p>
+<p>این الگو نشان می‌دهد که با وجود امکان استفاده هم‌زمان از چند ابزار، چت‌جی‌پی‌تی جایگاه غالب و کم‌رقیبی در میان کاربران ایرانی دارد و استفاده از سایر ابزارها عمدتا در سطح محدود و مکمل است.</p></div>
+<figure class="chart-card k-stack100h" data-chart="c2-p19-1"><figcaption class="cc-head"><h4 class="cc-cap">میزان استفاده ایرانیان از هر کدام از ابزارهای هوش مصنوعی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در یک سال گذشته بیش‌تر از کدام ابزارهای هوش مصنوعی استفاده کرده‌اید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p19-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p20">
+<div class="txt wide"><h3>۸۶درصد ایرانیان هیچ‌هزینه‌ای برای خرید ابزارهای هوش مصنوعی نکرده‌اند</h3>
+<p>در یک سال گذشته، ۸۶درصد از پاسخ‌دهندگان هیچ هزینه‌ای برای تهیه اکانت‌های هوش مصنوعی نکرده‌اند و تنها ۱۴درصد تجربه پرداخت داشته‌اند. در میان سطوح مختلف هزینه نیز سهم کاربران به‌طور محسوسی کاهش می‌یابد و تنها ۲درصد بیش از ۲میلیون تومان در ماه هزینه کرده‌اند. در مقایسه نسل‌های مختلف، تفاوت قابل‌توجه و معناداری مشاهده نمی‌شود؛ بنابراین می‌توان گفت تمایل به استفاده رایگان از ابزارهای هوش مصنوعی، الگویی فراگیر و مستقل از نسل‌هاست.</p></div>
+<figure class="chart-card k-bar" data-chart="c2-p20-1"><figcaption class="cc-head"><h4 class="cc-cap">میزان هزینه‌کرد مردم ایران برای استفاده از ابزارهای هوش مصنوعی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در یک سال گذشته به صورت ماهانه چه میزان برای تهیه اکانت‌های هوش مصنوعی هزینه کرده‌اید؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p20-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p21">
+<div class="txt wide"><h3>استفاده تخصصی از هوش مصنوعی در میان مردم ایران</h3>
+<p>بیش‌ترین استفاده تخصصی نسل Z، در زمینه «یادگیری و آموزش» و سپس «جست‌وجوی اطلاعات» است؛ درحالی‌که «جست‌وجوی اطلاعات» در نسل Y و X بیش‌ترین کاربرد را در یک سال گذشته داشته‌است.</p></div>
+<figure class="chart-card k-ghbar" data-chart="c2-p21-1"><figcaption class="cc-head"><h4 class="cc-cap">حوزه‌های استفاده تخصصی ایرانیان از ابزارهای هوش مصنوعی، به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در یک سال گذشته هوش مصنوعی چه کارهای مشخصی برای شما انجام داده که قبلا خودتان یا یک نفر دیگر انجام می‌داد؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p21-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+<article class="sheet reveal" id="c2-p22">
+<div class="txt wide"><h3>برنامه مردم ایران برای استفاده بیش‌تر از ابزارهای هوش مصنوعی</h3>
+<p>در این داده، تفاوت نسلی بیش‌تر در میزان بلوغ استفاده از هوش مصنوعی دیده می‌شود: نسل Z با ۴۲درصد، بیش از سایر نسل‌ها سطح فعلی استفاده را کافی می‌داند، در حالی که در نسل X، ۲۸درصد هنوز استفاده نکرده‌اند و قصدی هم برای استفاده ندارند؛ بااین‌حال، ۲۶درصد از نسل X گفته‌اند می‌خواهند در سال آینده شروع کنند. در نسل Y نیز ۲۰درصد در آستانه ورود قرار دارند.</p></div>
+<figure class="chart-card k-ghbar" data-chart="c2-p22-1"><figcaption class="cc-head"><h4 class="cc-cap">برنامه آینده ایرانیان برای استفاده از ابزارهای هوش مصنوعی، به تفکیک گروه‌های سنی</h4><p class="cc-q"><span class="qm" aria-hidden="true">؟</span>در سال آینده برنامه‌تان برای استفاده از ابزارهای هوش مصنوعی چیست؟</p></figcaption><div class="cc-tools"></div><div class="cc-body"></div><footer class="cc-foot"><span class="cc-src">منبع: <img src="src/c2-p22-1.webp" alt="منبع" loading="lazy"></span><button type="button" class="cc-table" aria-expanded="false">جدول داده‌ها</button></footer><div class="cc-tablewrap" hidden></div></figure>
+</article>
+</div></section>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="logo"></span>
+    <a href="https://www.yektanet.com" dir="ltr">www.yektanet.com</a>
+  </div>
+</footer>
+</main>
+<dialog class="lightbox" aria-label="نمایش بزرگ نمودار"><button type="button" class="lb-close" aria-label="بستن">×</button><div class="lb-scroll"><img alt=""></div></dialog>
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  // reading progress + active chapter in the nav
+  var bar = document.querySelector('.progress b');
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.chapnav a'));
+  var lastOn = null;
+  function onScroll() {
+    var h = root.scrollHeight - window.innerHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')';
+    var cur = 0;
+    var mid = window.innerHeight * 0.35;
+    chapters.forEach(function (c) { if (c.getBoundingClientRect().top < mid) cur = +c.dataset.ch; });
+    links.forEach(function (a) {
+      var n = +a.dataset.ch;
+      a.classList.toggle('on', n === cur || (cur === 9 && n === 8 && false));
+      a.classList.toggle('done', n < cur);
+    });
+    var on = document.querySelector('.chapnav a.on');
+    if (on && on !== lastOn) {
+      lastOn = on;
+      try { on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' }); } catch (e) {}
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // entrance for blocks that start below the fold; everything is visible at rest
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); en.target.classList.remove('pre'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight * 1.05) { el.classList.add('pre'); io.observe(el); }
+    });
+  }
+
+  // lightbox for charts
+  var dlg = document.querySelector('.lightbox');
+  var dimg = dlg && dlg.querySelector('img');
+  function openFig(fig) {
+    var im = fig.querySelector('img');
+    if (!dlg || !im) return;
+    dimg.src = im.currentSrc || im.src; dimg.alt = im.alt;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  document.querySelectorAll('.zoom').forEach(function (f) {
+    f.addEventListener('click', function () { openFig(f); });
+    f.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openFig(f); } });
+  });
+  if (dlg) {
+    dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+    dlg.addEventListener('click', function (ev) { if (ev.target === dlg || ev.target.classList.contains('lb-scroll')) dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+  }
+
+  // copy email
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-copy');
+      var done = function () { b.textContent = 'کپی شد'; setTimeout(function () { b.textContent = 'کپی نشانی'; }, 1800); };
+      var fallback = function () {
+        var s = b.parentNode.querySelector('.addr');
+        var r = document.createRange(); r.selectNodeContents(s);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      };
+      try { navigator.clipboard.writeText(t).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+
+  function css(name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
+
+  // hero: the cover's node grid, its links drawn in over time, yellow squares on a few nodes
+  var net = document.querySelector('.net');
+  if (net) {
+    var ctx = net.getContext('2d');
+    var COLS = 13, ROWS = 11, seed = 7;
+    function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    var edges = [], squares = [];
+    for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) {
+      var opts = [];
+      if (c < COLS - 1) opts.push([r, c + 1]);
+      if (r < ROWS - 1) opts.push([r + 1, c]);
+      if (r < ROWS - 1 && c < COLS - 1) opts.push([r + 1, c + 1]);
+      if (r < ROWS - 1 && c > 0) opts.push([r + 1, c - 1]);
+      opts.forEach(function (o) { if (rnd() < 0.34) edges.push({ a: [r, c], b: o, t: rnd() }); });
+      if (rnd() < 0.085) squares.push({ r: r, c: c, t: rnd() });
+    }
+    var start = performance.now();
+    function draw(now) {
+      var dpr = Math.min(2, window.devicePixelRatio || 1);
+      var W = net.clientWidth, H = net.clientHeight;
+      if (net.width !== Math.round(W * dpr)) { net.width = Math.round(W * dpr); net.height = Math.round(H * dpr); }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      var sx = W / COLS, sy = H / ROWS, rad = Math.min(sx, sy) * 0.3;
+      var k = reduce ? 1 : Math.min(1, (now - start) / 2600);
+      var dot = css('--dot') || '#ccc', ink = css('--ink') || '#111', y = css('--yellow') || '#ffde00';
+      function P(rc) { return [sx * (rc[1] + 0.5), sy * (rc[0] + 0.5)]; }
+      ctx.lineWidth = 1; ctx.strokeStyle = dot;
+      edges.forEach(function (e) {
+        var p = Math.max(0, Math.min(1, (k - e.t * 0.6) / 0.4));
+        if (p <= 0) return;
+        var A = P(e.a), B = P(e.b);
+        ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(A[0] + (B[0] - A[0]) * p, A[1] + (B[1] - A[1]) * p); ctx.stroke();
+      });
+      for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) {
+        var p = P([r, c]);
+        ctx.beginPath(); ctx.arc(p[0], p[1], rad, 0, Math.PI * 2);
+        ctx.fillStyle = dot; ctx.globalAlpha = 0.55; ctx.fill(); ctx.globalAlpha = 1;
+      }
+      var tt = reduce ? 0 : (now - start) / 1000;
+      squares.forEach(function (s, i) {
+        var p = P([s.r, s.c]);
+        var a = Math.max(0, Math.min(1, (k - s.t * 0.5) / 0.5));
+        var pulse = 1 + 0.08 * Math.sin(tt * 1.6 + i);
+        var z = rad * 1.6 * a * pulse;
+        ctx.fillStyle = y; ctx.fillRect(p[0] - z / 2, p[1] - z / 2, z, z);
+      });
+      if (!reduce) requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  }
+
+  // chapter openers: the yellow dot field with drifting white squares, like the printed covers
+  var openers = Array.prototype.slice.call(document.querySelectorAll('.opener .dots'));
+  var visible = new Set();
+  if ('IntersectionObserver' in window) {
+    var vo = new IntersectionObserver(function (ents) { ents.forEach(function (en) { if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target); }); });
+    openers.forEach(function (c) { vo.observe(c); });
+  } else openers.forEach(function (c) { visible.add(c); });
+  var sq = openers.map(function (_, i) {
+    var s = 31 + i * 17, list = [];
+    for (var j = 0; j < 16; j++) { s = (s * 9301 + 49297) % 233280; var a = s / 233280; s = (s * 9301 + 49297) % 233280; var b = s / 233280; list.push([a, b, j]); }
+    return list;
+  });
+  function drawOpeners(now) {
+    openers.forEach(function (cv, i) {
+      if (!visible.has(cv) && !reduce) return;
+      var dpr = Math.min(2, window.devicePixelRatio || 1);
+      var W = cv.clientWidth, H = cv.clientHeight;
+      if (cv.width !== Math.round(W * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+      var x = cv.getContext('2d');
+      x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, W, H);
+      var g = 14, t = reduce ? 0 : now / 1000;
+      x.fillStyle = 'rgba(13,13,11,.16)';
+      for (var yy = g; yy < H; yy += g) for (var xx = g; xx < W * 0.42; xx += g) { x.beginPath(); x.arc(xx, yy, 1.1, 0, 6.283); x.fill(); }
+      x.fillStyle = '#ffffff';
+      if (W >= 900) sq[i].forEach(function (s) {
+        var px = s[0] * W * 0.4, py = (s[1] * H + t * (6 + s[2] % 5 * 2)) % H;
+        x.fillRect(px, py, 9, 9);
+      });
+    });
+    if (!reduce) requestAnimationFrame(drawOpeners);
+  }
+  requestAnimationFrame(drawOpeners);
+})();
+
+</script>
+<script id="chart-data" type="application/json">{"c1-p06-1": {"question": null, "caption": "", "source": null, "type": "stat", "value": 1000, "prefix": "+", "decimals": 0, "unit": "میلیارد دلار", "desc": "مجموع بودجه‌های تبلیغاتی جهان در سال ۲۰۲۵ (دیجیتال و غیردیجیتال)"}, "c1-p06-2": {"question": null, "caption": "", "source": null, "type": "stat", "value": 66.8, "prefix": "٪", "decimals": 1, "unit": "", "desc": "نسبت سهم بودجه‌های تبلیغاتی در کانال‌های دیجیتال به مجموع بودجه‌های تبلیغاتی جهان در سال ۲۰۲۵"}, "c1-p06-3": {"question": null, "caption": "", "source": null, "type": "stat", "value": 28.8, "prefix": "٪", "decimals": 1, "unit": "", "desc": "نسبت سهم تبلیغات دیجیتال کشورهای جنوب غرب آسیا از کل بودجه‌های تبلیغاتی آن‌ها در سال ۲۰۲۵"}, "c1-p07-1": {"question": null, "caption": "روند سالانه بودجه‌های تبلیغاتی در جهان", "source": "src/c1-p07-1.webp", "type": "bar", "unit": "هزار میلیارد دلار", "axisName": "بودجه (هزار میلیارد دلار)", "cats": [{"name": "۲۰۲۵"}, {"name": "۲۰۲۶", "sub": "(پیش‌بینی)"}, {"name": "۲۰۲۷", "sub": "(پیش‌بینی)"}, {"name": "۲۰۲۸", "sub": "(پیش‌بینی)"}], "series": [{"name": "بودجه", "color": "yellow", "data": [1, 1.1, 1.1, 1.2]}], "decimals": 1, "forecastFrom": 1, "labels": true}, "c1-p08-1": {"question": null, "caption": "رشد بودجه‌های تبلیغاتی در جهان در سال‌های مختلف", "source": "src/c1-p08-1.webp", "type": "line", "unit": "درصد", "axisName": "درصد تغییر نسبت به سال گذشته", "cats": [{"name": "۲۰۲۲"}, {"name": "۲۰۲۳"}, {"name": "۲۰۲۴"}, {"name": "۲۰۲۵"}], "series": [{"name": "رشد سالانه", "color": "yellow", "data": [7.5, 7.4, 10.4, 8.4]}], "decimals": 1, "labels": true, "area": true}, "c1-p09-1": {"question": null, "caption": "روند سالانه بودجه‌های تبلیغاتی در کانال‌های دیجیتال در جهان", "source": "src/c1-p09-1.webp", "type": "bar", "unit": "میلیارد دلار", "axisName": "بودجه (میلیارد دلار)", "cats": [{"name": "۲۰۲۵"}, {"name": "۲۰۲۶", "sub": "(پیش‌بینی)"}, {"name": "۲۰۲۷", "sub": "(پیش‌بینی)"}, {"name": "۲۰۲۸", "sub": "(پیش‌بینی)"}], "series": [{"name": "بودجه دیجیتال", "color": "yellow", "data": [668.4, 713.4, 764.4, 817.3]}], "decimals": 1, "forecastFrom": 1, "labels": true}, "c1-p10-1": {"question": null, "caption": "بودجه‌های تبلیغاتی در جهان در کانال‌های مختلف دیجیتال و غیردیجیتال", "source": "src/c1-p10-1.webp", "type": "line", "unit": "میلیارد دلار", "axisName": "بودجه (میلیارد دلار)", "cats": [{"name": "۲۰۲۳"}, {"name": "۲۰۲۴"}, {"name": "۲۰۲۵"}, {"name": "۲۰۲۶", "sub": "پیش‌بینی"}, {"name": "۲۰۲۷", "sub": "پیش‌بینی"}, {"name": "۲۰۲۸", "sub": "پیش‌بینی"}], "series": [{"name": "دیجیتال", "color": "#ffde00", "data": [643.6, 656.8, 683.0, 767.3, 807.0, 870.5]}, {"name": "تلویزیون", "color": "#808080", "data": [143.0, 187.8, 153.9, 166.7, 140.2, 167.0]}, {"name": "محیطی", "color": "#00a59b", "data": [17.9, 22.9, 25.9, 30.6, 23.8, 35.0]}, {"name": "چاپی", "color": "#ffa900", "data": [10.5, 18.9, 14.3, 14.3, 6.9, 12.1]}, {"name": "رادیو", "color": "#26a7df", "data": [5.3, 5.4, 7.9, 9.6, 4.7, 9.6]}, {"name": "سینما", "color": "#a32d2d", "data": [0, 0, 0, 0, 0, 0]}], "decimals": 0, "forecastFrom": 3, "approx": true, "logToggle": true}, "c1-p11-1": {"question": null, "caption": "بودجه‌های تبلیغات دیجیتال در جهان در سال ۲۰۲۵ (میلیارد دلار)", "source": "src/c1-p11-1.webp", "type": "bubblemap", "unit": "میلیارد دلار", "dots": [[0.7806, 0.6902], [0.776, 0.6765], [0.7721, 0.6672], [1.0, 0.9165], [0.9821, 1.0], [0.9243, 0.9483], [0.9125, 0.9456], [0.8933, 0.9186], [0.8009, 0.6967], [0.8065, 0.7014], [0.4781, 0.3063], [0.4736, 0.2932], [0.4733, 0.2878], [0.4725, 0.2791], [0.469, 0.2767], [0.4717, 0.2724], [0.5169, 0.2819], [0.5202, 0.278], [0.5216, 0.2971], [0.5256, 0.294], [0.5248, 0.3018], [0.5345, 0.2985], [0.5456, 0.2773], [0.5498, 0.2528], [0.5571, 0.2665], [0.5377, 0.1627], [0.535, 0.1649], [0.5372, 0.1682], [0.5389, 0.1656], [0.5342, 0.171], [0.5308, 0.1698], [0.5303, 0.1751], [0.5293, 0.1742], [0.5582, 0.1454], [0.5547, 0.1496], [0.5516, 0.1507], [0.5491, 0.1506], [0.5692, 0.0441], [0.5743, 0.0416], [0.6464, 0.0215], [0.6561, 0.0084], [0.6609, 0.0053], [0.6624, 0.0], [0.6593, 0.0158], [0.6562, 0.0226], [0.6616, 0.0224], [0.6645, 0.0267], [0.6686, 0.0115], [0.6751, 0.0035], [0.6652, 0.1506], [0.698, 0.1134], [0.7646, 0.034], [0.8209, 0.102], [0.9029, 0.1036], [0.8897, 0.1047], [0.8891, 0.086], [0.9716, 0.2649], [0.9442, 0.3451], [0.9469, 0.3376], [0.9302, 0.373], [0.9234, 0.3813], [0.9182, 0.3871], [0.9086, 0.3061], [0.8942, 0.2995], [0.8915, 0.299], [0.8742, 0.4714], [0.8129, 0.5616], [0.8454, 0.5323], [0.8445, 0.602], [0.8485, 0.599], [0.8525, 0.5974], [0.8535, 0.6056], [0.8496, 0.6059], [0.8499, 0.6122], [0.8512, 0.6205], [0.8536, 0.6186], [0.8556, 0.6212], [0.8561, 0.6139], [0.8572, 0.6088], [0.8509, 0.6338], [0.858, 0.6347], [0.8958, 0.7316], [0.8905, 0.6937], [0.8899, 0.689], [0.8852, 0.7192], [0.8839, 0.7244], [0.9362, 0.7068], [0.9459, 0.7229], [0.957, 0.7331], [0.9623, 0.7386], [0.9605, 0.7429], [0.9648, 0.7485], [0.8234, 0.7272], [0.8286, 0.7363], [0.8319, 0.7374], [0.8348, 0.7378], [0.8379, 0.7364], [0.8422, 0.7454], [0.8612, 0.704], [0.8743, 0.7554], [0.8654, 0.6926], [0.8661, 0.6861], [0.8665, 0.679], [0.8661, 0.6699], [0.7279, 0.632], [0.4949, 0.4249], [0.5002, 0.4215], [0.5033, 0.4195], [0.5176, 0.4174], [0.5177, 0.4022], [0.5882, 0.4549], [1.0, 0.9165], [0.9821, 1.0], [0.5692, 0.0441], [0.5743, 0.0416], [0.9302, 0.373], [0.9234, 0.3813], [0.9182, 0.387], [0.8742, 0.4714], [0.9243, 0.9483], [0.9125, 0.9456], [0.8933, 0.9186], [0.8743, 0.7554], [0.6265, 0.4222], [0.8129, 0.5616], [0.5959, 0.4631], [0.5931, 0.4796], [0.6306, 0.4947], [0.6221, 0.4185], [0.6023, 0.4722], [0.6408, 0.5221], [0.5983, 0.4852], [0.7279, 0.632], [0.5882, 0.4549], [0.9086, 0.3061], [0.6464, 0.0215], [0.6561, 0.0084], [0.6609, 0.0053], [0.6624, 0.0], [0.6593, 0.0158], [0.6562, 0.0226], [0.6616, 0.0223], [0.6645, 0.0267], [0.6686, 0.0115], [0.6751, 0.0035], [0.6652, 0.1506], [0.698, 0.1134], [0.7646, 0.034], [0.8209, 0.102], [0.9029, 0.1036], [0.8897, 0.1047], [0.8891, 0.086], [0.9716, 0.2649], [0.9442, 0.3451], [0.9469, 0.3376], [0.8942, 0.2995], [0.8915, 0.299], [0.5789, 0.7219], [0.5879, 0.6907], [0.5925, 0.7585], [0.5774, 0.699], [0.5796, 0.7005], [0.5604, 0.7966], [0.4941, 0.6304], [0.498, 0.6251], [0.4563, 0.6302], [0.5214, 0.6749], [0.5828, 0.8523], [0.4473, 0.6094], [0.5736, 0.8744], [0.5477, 0.3988], [0.5502, 0.4122], [0.5075, 0.3228], [0.554, 0.3018], [0.5533, 0.4011], [0.5559, 0.4065], [0.5717, 0.4099], [0.4781, 0.3063], [0.4736, 0.2932], [0.4733, 0.2878], [0.4725, 0.2791], [0.469, 0.2767], [0.4717, 0.2724], [0.4714, 0.3027], [0.5185, 0.2926], [0.5169, 0.2819], [0.5202, 0.278], [0.5216, 0.2971], [0.5257, 0.294], [0.5248, 0.3018], [0.5345, 0.2985], [0.5456, 0.2773], [0.5498, 0.2528], [0.5571, 0.2665], [0.5377, 0.1627], [0.535, 0.1649], [0.5372, 0.1682], [0.5389, 0.1656], [0.5342, 0.171], [0.5308, 0.1698], [0.5293, 0.1742], [0.5582, 0.1454], [0.5547, 0.1496], [0.5516, 0.1507], [0.5491, 0.1506], [0.4949, 0.4249], [0.5002, 0.4215], [0.5033, 0.4195], [0.5176, 0.4174], [0.5177, 0.4022], [0.4318, 0.5278], [0.4328, 0.5259], [0.4353, 0.5277], [0.4413, 0.5207], [0.8454, 0.5323], [0.8445, 0.602], [0.8486, 0.599], [0.8525, 0.5974], [0.8535, 0.6056], [0.8496, 0.6059], [0.8499, 0.6122], [0.8512, 0.6205], [0.8536, 0.6186], [0.8556, 0.6212], [0.856, 0.6139], [0.8572, 0.6088], [0.8509, 0.6338], [0.858, 0.6347], [0.8958, 0.7316], [0.8905, 0.6937], [0.8899, 0.689], [0.8852, 0.7192], [0.8839, 0.7244], [0.9362, 0.7068], [0.9459, 0.7229], [0.957, 0.7331], [0.9623, 0.7386], [0.9605, 0.7429], [0.9648, 0.7485], [0.8234, 0.7272], [0.8286, 0.7363], [0.8319, 0.7374], [0.8348, 0.7378], [0.8379, 0.7364], [0.8422, 0.7454], [0.8612, 0.704], [0.8654, 0.6926], [0.8661, 0.6861], [0.8665, 0.679], [0.8661, 0.6699], [0.801, 0.6967], [0.8065, 0.7014], [0.7721, 0.6672], [0.776, 0.6765], [0.7806, 0.6902], [0.2595, 0.5305], [0.257, 0.5128], [0.2667, 0.5354], [0.2706, 0.54], [0.272, 0.549], [0.2729, 0.5414], [0.264, 0.5232], [0.0166, 0.2983], [0.1803, 0.1694], [0.1882, 0.1675], [0.1925, 0.1465], [0.2067, 0.159], [0.2036, 0.1175], [0.259, 0.2163], [0.2877, 0.2509], [0.2973, 0.2318], [0.2581, 0.1572], [0.252, 0.1571], [0.2627, 0.0378], [0.2537, 0.0949], [0.306, 0.3625], [0.3308, 0.1863], [0.4344, 0.0571], [0.4345, 0.0402], [0.4301, 0.0433], [0.4325, 0.0455], [0.4317, 0.0772], [0.4341, 0.0923], [0.4183, 0.1233], [0.41, 0.1188], [0.4148, 0.1138], [0.3342, 0.1723], [0.3313, 0.19], [0.2667, 0.0389], [0.2542, 0.0818], [0.2218, 0.0612], [0.196, 0.0295], [0.1886, 0.0577], [0.179, 0.0622], [0.1828, 0.0774], [0.1818, 0.0912], [0.2638, 0.1777], [0.1772, 0.1134], [0.1987, 0.107], [0.1924, 0.1652], [0.14, 0.0841], [0.1524, 0.0715], [0.1523, 0.0569], [0.0916, 0.1602], [0.0376, 0.2779], [0.0403, 0.2704], [0.0128, 0.2955], [0.0064, 0.302], [0.2613, 0.1608], [0.2565, 0.1628], [0.2672, 0.1702], [0.2701, 0.1763], [0.2589, 0.2223], [0.261, 0.2212], [0.2533, 0.2366], [0.2441, 0.2312], [0.2414, 0.1985], [0.2383, 0.1977], [0.2965, 0.2387], [0.2487, 0.3175], [0.2547, 0.29], [0.3031, 0.3465], [0.3026, 0.3729], [0.3085, 0.3719], [0.3108, 0.3737], [0.3306, 0.3644], [0.2658, 0.4286], [0.2743, 0.4142], [0.2608, 0.5684], [0.2921, 0.5688], [0.2609, 0.517], [0.2581, 0.525], [0.2443, 0.5454], [0.3415, 0.6889], [0.3308, 0.1863], [0.4344, 0.0571], [0.4345, 0.0402], [0.4301, 0.0433], [0.4325, 0.0455], [0.4317, 0.0772], [0.4341, 0.0923], [0.4183, 0.1233], [0.41, 0.1188], [0.4148, 0.1138], [0.3342, 0.1723], [0.3313, 0.19], [0.2263, 0.5966], [0.3311, 0.6585], [0.2274, 0.5748], [0.2921, 0.5688], [0.2608, 0.5684], [0.2443, 0.5454], [0.3415, 0.6889], [0.2999, 0.9652], [0.1803, 0.1694], [0.1882, 0.1675], [0.1925, 0.1465], [0.2067, 0.159], [0.2036, 0.1175], [0.259, 0.2163], [0.2877, 0.2509], [0.2973, 0.2318], [0.2581, 0.1572], [0.252, 0.1571], [0.2627, 0.0378], [0.2537, 0.0949], [0.306, 0.3625], [0.2667, 0.0389], [0.2542, 0.0818], [0.2218, 0.0612], [0.196, 0.0295], [0.1886, 0.0577], [0.179, 0.0622], [0.1828, 0.0774], [0.1818, 0.0912], [0.2638, 0.1777], [0.1772, 0.1134], [0.1987, 0.107], [0.1924, 0.1652], [0.14, 0.0841], [0.1524, 0.0715], [0.1523, 0.0569], [0.0916, 0.1602], [0.2613, 0.1608], [0.2565, 0.1628], [0.2672, 0.1702], [0.2701, 0.1763], [0.2589, 0.2223], [0.261, 0.2212], [0.2533, 0.2366], [0.2441, 0.2312], [0.2414, 0.1985], [0.2383, 0.1977], [0.2965, 0.2387], [0.2487, 0.3175], [0.2547, 0.29], [0.3031, 0.3465], [0.3026, 0.3729], [0.3085, 0.3719], [0.3108, 0.3737], [0.3306, 0.3644], [0.2595, 0.5305], [0.257, 0.5128], [0.2667, 0.5354], [0.2706, 0.54], [0.272, 0.549], [0.2729, 0.5414], [0.264, 0.5232], [0.2609, 0.517], [0.2581, 0.525], [0.0166, 0.2983], [0.0192, 0.3003], [0.0376, 0.2779], [0.0403, 0.2704], [0.0128, 0.2955], [0.0064, 0.302], [0.0, 0.2551], [0.2658, 0.4286], [0.2743, 0.4142], [0.2436, 0.4021], [0.2451, 0.3955]], "aspect": 2.1366, "bubbles": [{"name": "آمریکای شمالی", "value": 328.6, "x": 0.1493, "y": 0.2249}, {"name": "آسیا و اقیانوسیه", "value": 261.3, "x": 0.7886, "y": 0.3336}, {"name": "اروپا", "value": 54.8, "x": 0.5408, "y": 0.3125}, {"name": "آمریکای جنوبی", "value": 15.1, "x": 0.2853, "y": 0.664}, {"name": "خاورمیانه و شمال آفریقا", "value": 8.6, "x": 0.6077, "y": 0.4675}], "decimals": 1}, "c1-p12-1": {"question": null, "caption": "رشد بودجه‌های تبلیغات دیجیتال در کشورهای شاخص در سال ۲۰۲۵ نسبت به سال ۲۰۲۴", "source": "src/c1-p12-1.webp", "type": "bar", "unit": "درصد", "axisName": "درصد افزایش بودجه", "cats": [{"name": "هند"}, {"name": "ترکیه"}, {"name": "اسپانیا"}, {"name": "فرانسه"}, {"name": "ایتالیا"}, {"name": "آرژانتین"}, {"name": "آلمان"}, {"name": "برزیل"}, {"name": "انگلستان"}, {"name": "مکزیک"}], "series": [{"name": "رشد بودجه تبلیغات دیجیتال", "color": "yellow", "data": [20.2, 18, 17.8, 17.3, 16.5, 16, 16, 13, 12.9, 12.5]}], "decimals": 1, "labels": true, "sortable": true}, "c1-p13-1": {"question": null, "caption": "سهم تبلیغات دیجیتال و سنتی در نقاط مختلف منطقه آسیا و اقیانوسیه", "source": "src/c1-p13-1.webp", "type": "stack100h", "unit": "درصد", "cats": [{"name": "استرالیا و اقیانوسیه"}, {"name": "شرق آسیا"}, {"name": "جنوب غرب آسیا"}, {"name": "جنوب آسیا"}], "series": [{"name": "تبلیغات دیجیتال", "color": "yellow", "data": [49.5, 52.5, 28.8, 19.6]}, {"name": "تبلیغات سنتی", "color": "ink", "data": [50.5, 47.5, 71.2, 80.4]}], "decimals": 1}, "c1-p14-1": {"question": null, "caption": "روند سالانه درآمد گوگل از تبلیغات به تفکیک مدل‌های درآمدی", "source": "src/c1-p14-1.webp", "type": "stackv", "unit": "میلیارد دلار", "axisName": "درآمد (میلیارد دلار)", "cats": [{"name": "۲۰۱۷"}, {"name": "۲۰۱۸"}, {"name": "۲۰۱۹"}, {"name": "۲۰۲۰"}, {"name": "۲۰۲۱"}, {"name": "۲۰۲۲"}, {"name": "۲۰۲۳"}, {"name": "۲۰۲۴"}], "series": [{"name": "درآمد از جست‌وجوی گوگل", "color": "yellow", "data": [69.8, 85.3, 98.1, 104.1, 149.0, 162.5, 175.0, 198.1]}, {"name": "درآمد از تبلیغات یوتیوب", "color": "ink", "data": [8.2, 11.2, 15.1, 19.8, 28.8, 29.2, 31.5, 36.1]}, {"name": "درآمد از نمایش تبلیغات گوگل در سایت‌ها و اپلیکیشن‌ها", "color": "teal", "data": [17.6, 20.0, 21.5, 23.1, 31.7, 32.8, 31.3, 30.4]}], "decimals": 1, "totals": true}, "c1-p15-1": {"question": null, "caption": "نظر مدیران آژانس‌های تبلیغاتی آمریکای شمالی درباره تاثیر هوش مصنوعی مولد بر عملکرد آژانس‌های تبلیغاتی", "source": "src/c1-p15-1.webp", "type": "donut", "unit": "درصد", "decimals": 1, "slices": [{"name": "مثبت", "value": 36.3, "color": "yellow"}, {"name": "تا حدودی مثبت", "value": 43.9, "color": "ink"}, {"name": "تا حدودی منفی", "value": 16.3, "color": "teal"}, {"name": "منفی", "value": 3.5, "color": "orange"}], "center": "٪۸۰٫۲", "centerLabel": "مثبت و تا حدودی مثبت"}, "c2-p03-1": {"question": null, "caption": "", "source": null, "type": "stat", "value": 4, "prefix": "", "decimals": 0, "unit": "ساعت در روز", "desc": "میانگین استفاده از اینترنت در میان مردم ایران"}, "c2-p03-2": {"question": null, "caption": "", "source": null, "type": "stat", "value": 62, "prefix": "٪", "decimals": 0, "unit": "", "desc": "سهم ایرانیانی که از اینترنت برای «ارتباط با خانواده و دوستان» استفاده می‌کنند"}, "c2-p03-3": {"question": null, "caption": "", "source": null, "type": "stat", "value": 57, "prefix": "٪", "decimals": 0, "unit": "", "desc": "سهم ایرانیانی که از ابزارهای هوش مصنوعی استفاده می‌کنند"}, "c2-p03-4": {"question": null, "caption": "", "source": null, "type": "stat", "value": 92, "prefix": "٪", "decimals": 0, "unit": "", "desc": "سهم کاربران ایرانی استفاده‌کننده از هوش مصنوعی که کاربر ChatGPT هستند"}, "c2-p04-1": {"question": "به‌طور میانگین چند ساعت در روز از اینترنت استفاده می‌کنید؟", "caption": "مدت‌زمان استفاده مردم ایران از اینترنت در بازه‌های زمانی مختلف", "source": "src/c2-p04-1.webp", "type": "gbar", "unit": "درصد", "cats": [{"name": "کم‌تر از ۳۰ دقیقه", "sub": ""}, {"name": "بین ۳۰ دقیقه تا ۱ ساعت", "sub": ""}, {"name": "۱ تا ۲ ساعت", "sub": ""}, {"name": "۲ تا ۳ ساعت", "sub": ""}, {"name": "۳ تا ۴ ساعت", "sub": ""}, {"name": "۴ تا ۶ ساعت", "sub": ""}, {"name": "۶ تا ۱۰ ساعت", "sub": ""}, {"name": "بیش از ۱۰ ساعت", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [1, 7, 9, 21, 19, 23, 13, 7]}, {"name": "نسل Y", "color": "yellow", "data": [2, 16, 15, 20, 13, 20, 10, 4]}, {"name": "نسل X", "color": "teal", "data": [3, 18, 26, 20, 8, 10, 11, 3]}], "decimals": 0, "genToggle": true}, "c2-p05-1": {"question": "با چه اهدافی از اینترنت استفاده می‌کنید؟", "caption": "دلایل استفاده مردم ایران از اینترنت", "source": "src/c2-p05-1.webp", "type": "ghbar", "unit": "درصد", "cats": [{"name": "ارتباط با خانواده و دوستان", "sub": ""}, {"name": "خرید اینترنتی", "sub": ""}, {"name": "گوش دادن به موسیقی", "sub": ""}, {"name": "دنبال کردن اخبار", "sub": ""}, {"name": "تماشای فیلم، سریال و ویدیو", "sub": ""}, {"name": "خدمات بانکی", "sub": ""}, {"name": "وقت‌گذرانی", "sub": ""}, {"name": "استفاده از ابزارهای هوش مصنوعی", "sub": ""}, {"name": "مطالعه و کتاب خواندن", "sub": ""}, {"name": "کسب اطلاعات", "sub": ""}, {"name": "کسب علم و مهارت", "sub": ""}, {"name": "تحقیق درباره مقاصد تفریحی و گردشگری", "sub": ""}, {"name": "شغل مبتنی بر اینترنت", "sub": ""}, {"name": "ترجمه‌متون", "sub": ""}, {"name": "کسب درآمد جانبی", "sub": ""}, {"name": "بازی کردن", "sub": ""}, {"name": "آشنایی با افراد جدید", "sub": ""}, {"name": "به اشتراک گذاشتن زندگی روزمره", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [60, 57, 68, 55, 73, 53, 67, 60, 47, 39, 42, 31, 26, 32, 26, 39, 29, 27]}, {"name": "نسل Y", "color": "yellow", "data": [61, 62, 57, 58, 57, 58, 57, 47, 44, 40, 41, 37, 39, 33, 31, 23, 20, 17]}, {"name": "نسل X", "color": "teal", "data": [65, 57, 57, 64, 47, 62, 53, 28, 47, 49, 38, 40, 35, 31, 26, 23, 22, 17]}], "decimals": 0, "genToggle": true}, "c2-p06-1": {"question": "اولین کاری که صبح بعد از بیدارشدن می‌کنید چیست؟", "caption": "اولین فعالیت‌های مردم ایران پس از بیدار شدن، به تفکیک گروه‌های سنی", "source": "src/c2-p06-1.webp", "type": "ghbar", "unit": "درصد", "cats": [{"name": "چک کردن شبکه‌های اجتماعی و پیام‌رسان‌ها", "sub": ""}, {"name": "آماده‌کردن و صرف صبحانه", "sub": ""}, {"name": "دست‌شویی و استحمام", "sub": ""}, {"name": "ورزش", "sub": ""}, {"name": "آماده‌شدن و رفتن به سرکار", "sub": ""}, {"name": "عبادت", "sub": ""}, {"name": "کارهای منزل و روزمره", "sub": ""}, {"name": "رسیدگی به فرزندان", "sub": ""}, {"name": "چک کردن قیمت دلار/ سکه", "sub": ""}, {"name": "صحبت با شریک زندگی", "sub": ""}, {"name": "سایر", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [47, 24, 13, 6, 4, 1, 1, 2, 0, 1, 4]}, {"name": "نسل Y", "color": "yellow", "data": [46, 27, 10, 4, 4, 3, 3, 2, 1, 0, 4]}, {"name": "نسل X", "color": "teal", "data": [42, 34, 9, 5, 2, 5, 2, 0, 1, 0, 2]}], "decimals": 0, "genToggle": true}, "c2-p12-1": {"question": "به‌طور میانگین چند بار در یک ماه خرید آنلاین انجام می‌دهید؟", "caption": "تعداد دفعات خرید آنلاین مردم ایران به تفکیک گروه‌های سنی", "source": "src/c2-p12-1.webp", "type": "gbar", "unit": "درصد", "cats": [{"name": "هرگز یا کم‌تر از یک‌بار در ماه", "sub": ""}, {"name": "۱ بار", "sub": ""}, {"name": "۲ تا ۳ بار", "sub": ""}, {"name": "۴ تا ۶ بار", "sub": ""}, {"name": "۷ تا ۱۰ بار", "sub": ""}, {"name": "بیش از ۱۰ بار", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [40, 22, 16, 11, 5, 8]}, {"name": "نسل Y", "color": "yellow", "data": [40, 18, 21, 11, 2, 10]}, {"name": "نسل X", "color": "teal", "data": [53, 12, 17, 10, 4, 7]}], "decimals": 0, "genToggle": true, "axisName2": "تعداد دفعات در ماه"}, "c2-p13-1": {"question": "در دوره‌های قطع اینترنت، چه فعالیت‌هایی را جایگزین استفاده از اینترنت کردید؟", "caption": "فعالیت‌های جایگزین در میان ایرانیان در دوره‌های قطع اینترنت، به تفکیک گروه‌های سنی", "source": "src/c2-p13-1.webp", "type": "ghbar", "unit": "درصد", "cats": [{"name": "گفت‌وگو با خانواده و دوستان", "sub": ""}, {"name": "ورزش و پیاده‌روی", "sub": ""}, {"name": "گشت‌وگذار در شهر", "sub": ""}, {"name": "آشپزی", "sub": ""}, {"name": "سرگرمی‌های شخصی", "sub": ""}, {"name": "گوش دادن به موسیقی", "sub": ""}, {"name": "مطالعه کتاب", "sub": ""}, {"name": "مطالعه خبر در سایت‌ها و اپلیکیشن‌ها", "sub": ""}, {"name": "تماشای تلویزیون", "sub": ""}, {"name": "یادگیری یک مهارت جدید", "sub": ""}, {"name": "بازی کردن با موبایل", "sub": ""}, {"name": "خرید حضوری", "sub": ""}, {"name": "تماشای فیلم در VODها", "sub": ""}, {"name": "تماشای فیلم به صورت آفلاین", "sub": ""}, {"name": "اینترنت‌گردی بی‌هدف", "sub": ""}, {"name": "تماشای شبکه‌های تلویزیونی غیرداخلی", "sub": ""}, {"name": "گوش دادن به رادیو", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [53, 49, 49, 34, 36, 48, 37, 22, 21, 26, 39, 21, 43, 26, 21, 7, 2]}, {"name": "نسل Y", "color": "yellow", "data": [62, 47, 48, 46, 41, 32, 33, 32, 30, 30, 26, 27, 24, 22, 16, 8, 4]}, {"name": "نسل X", "color": "teal", "data": [60, 51, 41, 52, 32, 32, 27, 36, 35, 25, 23, 33, 18, 15, 11, 15, 11]}], "decimals": 0, "genToggle": true}, "c2-p14-1": {"question": "در دوران قطع اینترنت، چه‌طور با خانواده و دوستان ارتباط برقرار کردید؟", "caption": "روش‌های ارتباطی در میان ایرانیان در دوره‌های قطع اینترنت، به تفکیک گروه‌های سنی", "source": "src/c2-p14-1.webp", "type": "gbar", "unit": "درصد", "cats": [{"name": "تماس تلفنی", "sub": ""}, {"name": "به صورت حضوری", "sub": ""}, {"name": "پیام‌رسان‌های ایرانی", "sub": ""}, {"name": "پیامک", "sub": ""}, {"name": "نتوانستم ارتباط برقرار کنم", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [49, 62, 28, 21, 2]}, {"name": "نسل Y", "color": "yellow", "data": [63, 49, 24, 16, 1]}, {"name": "نسل X", "color": "teal", "data": [70, 40, 20, 19, 3]}], "decimals": 0, "genToggle": true}, "c2-p15-1": {"question": "در دوره‌های قطع اینترنت در سال ۱۴۰۴، الگوی خرید آنلاین شما چه تغییری کرد؟", "caption": "تغییر الگوی خرید در میان ایرانیان در دوره‌های قطع اینترنت، به تفکیک گروه‌های سنی", "source": "src/c2-p15-1.webp", "type": "gbar", "unit": "درصد", "cats": [{"name": "انصراف یا تاخیر در خرید", "sub": ""}, {"name": "تغییر به خرید حضوری", "sub": ""}, {"name": "بدون تغییر", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [53, 21, 27]}, {"name": "نسل Y", "color": "yellow", "data": [47, 24, 31]}, {"name": "نسل X", "color": "teal", "data": [38, 30, 33]}], "decimals": 0, "genToggle": true}, "c2-p16-1": {"question": "وقتی در بازه‌های بحرانی (جنگ و قطع اینترنت) تبلیغ یک برند در فضای دیجیتال را دیدید، اولین واکنش‌تان چه بود؟", "caption": "واکنش مردم ایران به تبلیغات در دوران بحران به تفکیک گروه‌های سنی", "source": "src/c2-p16-1.webp", "type": "gbar", "unit": "درصد", "cats": [{"name": "بی‌تفاوتی", "sub": "مثل بقیه‌روزها، تفاوتی نداشت."}, {"name": "احترام", "sub": "برند در شرایط سخت کنار مردم ماند و حضورش را حفظ کرد."}, {"name": "ناراحتی", "sub": "به نظرم این برند داشت از موقعیت بحرانی برای دیده‌شدن سوء‌استفاده می‌کرد."}, {"name": "مخالفت کامل", "sub": "به‌طور کلی با تبلیغ در شرایط بحرانی موافق نیستم."}], "series": [{"name": "نسل Z", "color": "ink", "data": [68, 14, 12, 10]}, {"name": "نسل Y", "color": "yellow", "data": [49, 28, 15, 11]}, {"name": "نسل X", "color": "teal", "data": [61, 17, 12, 12]}], "decimals": 0, "genToggle": true}, "c2-p17-1": {"question": "در یک سال گذشته میزان استفاده از ابزارهای هوش مصنوعی برای شما چه‌قدر بوده است؟", "caption": "میزان استفاده ایرانیان از ابزارهای هوش مصنوعی، به تفکیک گروه‌های سنی", "source": "src/c2-p17-1.webp", "type": "gbar", "unit": "درصد", "cats": [{"name": "مداوم و روزانه"}, {"name": "گاهی"}, {"name": "یک بار امتحان کردم"}, {"name": "هرگز"}, {"name": "نمی‌دانم ابزار هوش مصنوعی چیست"}], "series": [{"name": "نسل Z", "color": "ink", "data": [38, 31, 3, 26, 1]}, {"name": "نسل Y", "color": "yellow", "data": [19, 32, 5, 42, 1]}, {"name": "نسل X", "color": "teal", "data": [12, 28, 5, 49, 7]}], "decimals": 0, "genToggle": true}, "c2-p18-1": {"question": "در یک سال گذشته در چه حوزه‌هایی از ابزارهای هوش مصنوعی استفاده کرده‌اید؟", "caption": "دلایل استفاده ایرانیان از ابزارهای هوش مصنوعی به تفکیک گروه‌های سنی", "source": "src/c2-p18-1.webp", "type": "ghbar", "unit": "درصد", "cats": [{"name": "کسب اطلاعات و یادگیری موضوعات مختلف", "sub": ""}, {"name": "پرسش‌های پزشکی و سلامت", "sub": ""}, {"name": "در کار (وظایف شغلی، پروژه‌های حرفه‌ای، ایمیل‌های اداری)", "sub": ""}, {"name": "پیدا کردن راه‌حل مسائل روزمره (خرید، سفر، آشپزی، تصمیم‌گیری)", "sub": ""}, {"name": "کنجکاوی و سرگرمی فکری", "sub": ""}, {"name": "مشورت در مشکلات شخصی (تصمیم‌های مهم زندگی)", "sub": ""}, {"name": "تولید محتوا و انتشار آن (در فضای حرفه‌ای یا شخصی)", "sub": ""}, {"name": "در تحصیل (تکالیف، تحقیق دانشگاهی، مطالعه)", "sub": ""}, {"name": "کسب درآمد جانبی (پروژه‌های فریلنس، خدمات مبتنی بر AI)", "sub": ""}, {"name": "درد دل و هم‌صحبتی", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [56, 33, 23, 38, 41, 35, 29, 44, 17, 17]}, {"name": "نسل Y", "color": "yellow", "data": [58, 37, 43, 33, 28, 27, 28, 13, 16, 12]}, {"name": "نسل X", "color": "teal", "data": [52, 47, 39, 38, 24, 31, 15, 13, 14, 15]}], "decimals": 0, "genToggle": true}, "c2-p21-1": {"question": "در یک سال گذشته هوش مصنوعی چه کارهای مشخصی برای شما انجام داده که قبلا خودتان یا یک نفر دیگر انجام می‌داد؟", "caption": "حوزه‌های استفاده تخصصی ایرانیان از ابزارهای هوش مصنوعی، به تفکیک گروه‌های سنی", "source": "src/c2-p21-1.webp", "type": "ghbar", "unit": "درصد", "cats": [{"name": "جست‌وجوی اطلاعات (به جای گوگل و موتورهای جست‌وجو)", "sub": ""}, {"name": "یادگیری و آموزش (تدریس و حل تمرین)", "sub": ""}, {"name": "تولید محتوای تصویری", "sub": ""}, {"name": "خلاصه‌سازی و ترجمه (متن، کتاب، مقاله، صوت)", "sub": ""}, {"name": "نوشتن متن (مقاله، ایمیل، پیام، پست، رزومه)", "sub": ""}, {"name": "تحلیل و مشاوره عمیق (تحقیق، بررسی موضوع، تصمیم‌گیری پیچیده)", "sub": ""}, {"name": "تولید یا ویرایش ویدیو", "sub": ""}, {"name": "کدنویسی و ساخت نرم‌افزار", "sub": ""}, {"name": "تحلیل داده و کار با اکسل", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [52, 55, 34, 33, 27, 25, 18, 13, 7]}, {"name": "نسل Y", "color": "yellow", "data": [64, 46, 40, 28, 29, 25, 18, 10, 9]}, {"name": "نسل X", "color": "teal", "data": [53, 37, 17, 13, 20, 35, 11, 6, 1]}], "decimals": 0, "genToggle": true}, "c2-p22-1": {"question": "در سال آینده برنامه‌تان برای استفاده از ابزارهای هوش مصنوعی چیست؟", "caption": "برنامه آینده ایرانیان برای استفاده از ابزارهای هوش مصنوعی، به تفکیک گروه‌های سنی", "source": "src/c2-p22-1.webp", "type": "ghbar", "unit": "درصد", "cats": [{"name": "می‌خواهم استفاده‌ام را خیلی بیش‌تر کنم و در بخش‌های بیش‌تری از زندگی‌ام وارد کنم.", "sub": ""}, {"name": "می‌خواهم کمی بیش‌تر از حالا استفاده کنم.", "sub": ""}, {"name": "تا الان استفاده نکرده‌ام ولی می‌خواهم سال آینده شروع کنم.", "sub": ""}, {"name": "همین سطح فعلی برایم کافی است.", "sub": ""}, {"name": "می‌خواهم کم‌تر استفاده کنم.", "sub": ""}, {"name": "می‌خواهم استفاده‌ام را کاملا قطع کنم.", "sub": ""}, {"name": "تا الان استفاده نکرده‌ام و در آینده هم قصد ندارم استفاده کنم.", "sub": ""}], "series": [{"name": "نسل Z", "color": "ink", "data": [12, 16, 13, 42, 2, 0, 14]}, {"name": "نسل Y", "color": "yellow", "data": [16, 15, 20, 24, 2, 1, 23]}, {"name": "نسل X", "color": "teal", "data": [12, 8, 27, 23, 2, 0, 28]}], "decimals": 0, "genToggle": true}, "c2-p07-1": {"question": "در یک سال گذشته از هر پیام‌رسان‌چه میزان استفاده کردید؟", "caption": "میزان استفاده مردم ایران از انواع پیام‌رسان‌ها", "source": "src/c2-p07-1.webp", "type": "stack100h", "unit": "درصد", "cats": [{"name": "دایرکت اینستاگرام", "sub": ""}, {"name": "روبیکا", "sub": ""}, {"name": "ایتا", "sub": ""}, {"name": "بله", "sub": ""}, {"name": "واتس‌اپ", "sub": ""}, {"name": "تلگرام", "sub": ""}, {"name": "شاد", "sub": ""}, {"name": "سروش‌پلاس", "sub": ""}, {"name": "دایرکت ایکس (توییتر)", "sub": ""}], "series": [{"name": "استفاده زیاد", "color": "orange", "data": [40, 28, 25, 19, 18, 18, 13, 4, 1]}, {"name": "استفاده متوسط", "color": "teal", "data": [22, 23, 16, 17, 17, 19, 5, 4, 4]}, {"name": "استفاده کم", "color": "yellow", "data": [19, 30, 28, 31, 36, 32, 7, 12, 6]}, {"name": "استفاده نکرده‌ام", "color": "ink", "data": [19, 19, 31, 33, 29, 31, 75, 80, 89]}], "decimals": 0, "focusable": true}, "c2-p08-1": {"question": "برای اطلاع از اخبار تا چه اندازه از این روش‌ها استفاده کردید؟", "caption": "میزان استفاده مردم ایران از روش‌های مختلف برای پی‌گیری اخبار به تفکیک رسانه", "source": "src/c2-p08-1.webp", "type": "stack100h", "unit": "درصد", "cats": [{"name": "پیام‌رسان‌ها", "sub": ""}, {"name": "سایت‌های خبری", "sub": ""}, {"name": "دوستان و آشنایان", "sub": ""}, {"name": "تلویزیون", "sub": ""}, {"name": "اینستاگرام", "sub": ""}, {"name": "چهره‌های فعال در فضای مجازی", "sub": ""}, {"name": "شبکه‌های تلویزیونی غیرداخلی", "sub": ""}, {"name": "پیشنهادهای گوگل در تلفن همراه", "sub": ""}, {"name": "اپلیکیشن‌های خبرخوان", "sub": ""}, {"name": "رادیو", "sub": ""}, {"name": "روزنامه", "sub": ""}, {"name": "ایکس (توییتر)", "sub": ""}], "series": [{"name": "استفاده زیاد", "color": "orange", "data": [27, 18, 14, 18, 14, 6, 7, 4, 2, 2, 1, 1]}, {"name": "استفاده متوسط", "color": "teal", "data": [28, 25, 28, 20, 12, 14, 9, 11, 4, 3, 2, 2]}, {"name": "استفاده کم", "color": "yellow", "data": [19, 22, 30, 21, 16, 14, 10, 15, 5, 8, 5, 4]}, {"name": "استفاده نکرده‌ام", "color": "ink", "data": [26, 35, 28, 41, 58, 66, 74, 70, 89, 87, 92, 93]}], "decimals": 0, "focusable": true}, "c2-p09-1": {"question": "تبلیغ برندها و کسب‌و‌کارهایی که در هر یک از رسانه‌ها دیدید، چه واکنشی در شما ایجاد کرد؟", "caption": "میزان مواجهه مردم ایران با تبلیغات به تفکیک رسانه‌های مختلف", "source": "src/c2-p09-1.webp", "type": "stack100h", "unit": "درصد", "cats": [{"name": "بیلبورد و تبلیغات محیطی", "sub": ""}, {"name": "داخل فروشگاه‌ها", "sub": "(استند، مروج تبلیغاتی، نمونه‌رایگان)"}, {"name": "پیامک", "sub": ""}, {"name": "تبلیغ روی وسایل نقلیه", "sub": "(تاکسی، مترو، اتوبوس)"}, {"name": "وب‌سایت‌ها", "sub": ""}, {"name": "اینفلوئنسرها", "sub": ""}, {"name": "تلویزیون", "sub": ""}, {"name": "اپلیکیشن‌ها", "sub": ""}, {"name": "شبکه‌های اجتماعی و پیام‌رسان‌ها", "sub": ""}, {"name": "گوگل", "sub": ""}, {"name": "شبکه‌های تلویزیونی غیرداخلی", "sub": ""}, {"name": "پادکست‌ها", "sub": ""}, {"name": "رادیو", "sub": ""}], "series": [{"name": "توجه کرده‌ام و درباره‌محصول/برند بیش‌تر جست‌وجو یا خرید کرده‌ام", "color": "orange", "data": [11, 17, 7, 6, 6, 10, 12, 8, 12, 8, 3, 1, 1]}, {"name": "توجه کرده‌ام ولی پی‌گیری نکرده‌ام", "color": "teal", "data": [25, 27, 17, 23, 16, 19, 29, 15, 16, 16, 10, 7, 7]}, {"name": "دیده‌ام ولی توجه نکرده‌ام", "color": "yellow", "data": [60, 47, 67, 61, 64, 56, 42, 59, 52, 49, 25, 12, 12]}, {"name": "اصلا در این کانال تبلیغ ندیده‌ام", "color": "ink", "data": [4, 9, 9, 10, 14, 15, 17, 18, 20, 27, 62, 80, 80]}], "decimals": 0, "focusable": true}, "c2-p19-1": {"question": "در یک سال گذشته بیش‌تر از کدام ابزارهای هوش مصنوعی استفاده کرده‌اید؟", "caption": "میزان استفاده ایرانیان از هر کدام از ابزارهای هوش مصنوعی", "source": "src/c2-p19-1.webp", "type": "stack100h", "unit": "درصد", "cats": [{"name": "ChatGPT", "sub": ""}, {"name": "Google Gemini", "sub": ""}, {"name": "دستیار بله", "sub": ""}, {"name": "گپ‌جی‌پی‌تی", "sub": ""}, {"name": "DeepSeek", "sub": ""}, {"name": "ویرا", "sub": ""}, {"name": "Grok", "sub": ""}, {"name": "Claude", "sub": ""}, {"name": "مگا جی‌پی‌تی", "sub": ""}, {"name": "Perplexity", "sub": ""}, {"name": "هوش مصنوعی AvalAI", "sub": ""}, {"name": "سایر ابزارهای ایرانی", "sub": ""}], "series": [{"name": "زیاد", "color": "yellow", "data": [34, 6, 2, 5, 5, 1, 2, 2, 1, 1, 0, 1]}, {"name": "گاهی", "color": "teal", "data": [58, 13, 15, 11, 9, 6, 3, 3, 2, 1, 1, 3]}, {"name": "اصلا", "color": "ink", "data": [8, 81, 83, 84, 86, 93, 95, 95, 97, 98, 99, 96]}], "decimals": 0, "focusable": true}, "c2-p11-1": {"question": "به تبلیغات در کدام‌یک از رسانه‌ها اعتماد دارید؟", "caption": "میزان اعتماد مردم ایران به تبلیغات به تفکیک رسانه‌های مختلف", "source": "src/c2-p11-1.webp", "type": "stack100h", "unit": "درصد", "cats": [{"name": "تلویزیون", "sub": ""}, {"name": "داخل فروشگاه‌ها", "sub": "(استند، مروج تبلیغاتی، نمونه‌رایگان)"}, {"name": "بیلبورد و تبلیغات محیطی", "sub": ""}, {"name": "شبکه‌های اجتماعی و پیام‌رسان‌ها", "sub": ""}, {"name": "گوگل", "sub": ""}, {"name": "وب‌سایت‌ها و اپلیکیشن‌ها", "sub": ""}, {"name": "پیامک", "sub": ""}, {"name": "اینفلوئنسرها", "sub": ""}, {"name": "تبلیغ روی وسایل نقلیه", "sub": "(تاکسی، مترو، اتوبوس)"}, {"name": "رادیو", "sub": ""}, {"name": "شبکه‌های تلویزیونی غیرداخلی", "sub": ""}, {"name": "پادکست‌ها", "sub": ""}], "series": [{"name": "اعتماد دارم", "color": "teal", "data": [29, 26, 20, 19, 15, 12, 12, 12, 12, 7, 4, 3]}, {"name": "بی‌تفاوتم", "color": "yellow", "data": [43, 48, 48, 47, 51, 52, 49, 47, 56, 75, 61, 76]}, {"name": "اعتماد ندارم", "color": "ink", "data": [28, 26, 32, 34, 34, 36, 39, 41, 32, 18, 35, 21]}], "decimals": 0, "focusable": true}, "c2-p10-1": {"question": null, "caption": "مقایسه عملکرد رسانه‌های مختلف در مسیر اثرگذاری تبلیغات", "source": "src/c2-p10-1.webp", "type": "funnel", "unit": "درصد", "rows": [{"name": "بیلبورد و تبلیغات محیطی", "sub": "", "seen": 96, "attn": 36, "act": 11, "r1": 38, "r2": 30}, {"name": "داخل فروشگاه‌ها", "sub": "(استند، مروج تبلیغاتی، نمونه رایگان و...)", "seen": 92, "attn": 45, "act": 17, "r1": 49, "r2": 37}, {"name": "پیامک", "sub": "", "seen": 91, "attn": 24, "act": 7, "r1": 26, "r2": 29}, {"name": "تبلیغ روی وسایل نقلیه", "sub": "(تاکسی، مترو، اتوبوس)", "seen": 90, "attn": 30, "act": 7, "r1": 33, "r2": 23}, {"name": "وب‌سایت‌ها", "sub": "", "seen": 86, "attn": 22, "act": 7, "r1": 26, "r2": 32}, {"name": "اینفلوئنسرها", "sub": "", "seen": 85, "attn": 29, "act": 9, "r1": 34, "r2": 31}, {"name": "تلویزیون", "sub": "", "seen": 83, "attn": 42, "act": 12, "r1": 50, "r2": 29}, {"name": "اپلیکیشن‌ها", "sub": "", "seen": 82, "attn": 24, "act": 8, "r1": 29, "r2": 33}, {"name": "شبکه‌های اجتماعی و پیام‌رسان‌ها", "sub": "", "seen": 80, "attn": 28, "act": 12, "r1": 35, "r2": 42}, {"name": "گوگل", "sub": "", "seen": 74, "attn": 24, "act": 8, "r1": 32, "r2": 33}], "legend": {"seen": "درصد کسانی که تبلیغات را دیده‌اند.", "attn": "درصد کسانی که به تبلیغات توجه کرده‌اند.", "act": "درصد کسانی که درباره محصول/برند بیش‌تر جست‌وجو یا خرید کرده‌اند.", "r1": "نرخ توجه از میان بینندگان", "r2": "نرخ اقدام از میان توجه‌کنندگان"}}, "c2-p20-1": {"question": "در یک سال گذشته به صورت ماهانه چه میزان برای تهیه اکانت‌های هوش مصنوعی هزینه کرده‌اید؟", "caption": "میزان هزینه‌کرد مردم ایران برای استفاده از ابزارهای هوش مصنوعی", "source": "src/c2-p20-1.webp", "type": "bar", "unit": "درصد", "axisName": "درصد", "cats": [{"name": "هیچ مبلغی هزینه نکرده‌ام"}, {"name": "کم‌تر از ۵۰۰هزار تومان"}, {"name": "۵۰۰هزار تا ۱میلیون تومان"}, {"name": "۱ تا ۲میلیون تومان"}, {"name": "۲ تا ۵میلیون تومان"}, {"name": "بیش از ۵میلیون تومان"}], "series": [{"name": "سهم پاسخ‌دهندگان", "color": "yellow", "data": [86, 7, 3, 2, 1, 1]}], "decimals": 0, "labels": true, "highlightFirst": true}}</script>
+<script src="vendor/echarts.min.js"></script>
+<script>
+/* Live charts for the Yektanet report — ECharts + a little custom SVG/HTML */
+(function () {
+  var DATA = JSON.parse(document.getElementById('chart-data').textContent);
+  var root = document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FONT = 'Vazirmatn, Vazir, Tahoma, sans-serif';
+
+  function tok(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
+  function palette() {
+    return {
+      ink: tok('--ink') || '#111', yellow: tok('--yellow') || '#ffde00', teal: tok('--teal') || '#00a59b',
+      orange: tok('--orange') || '#ffa900', muted: tok('--muted') || '#666', line: tok('--line') || '#e6e5dd',
+      bg: tok('--bg') || '#fff', card: tok('--card') || '#fff', grid: tok('--grid') || '#eee'
+    };
+  }
+  function color(c, P) { return P[c] || c; }
+  function fa(v, d) {
+    if (v === null || v === undefined || isNaN(v)) return '–';
+    return Number(v).toLocaleString('fa-IR', { minimumFractionDigits: 0, maximumFractionDigits: d || 0 });
+  }
+  function pct(v, d) { return '٪' + fa(v, d); }
+  function fmt(c, v) { return c.unit === 'درصد' ? pct(v, c.decimals) : fa(v, c.decimals); }
+  function narrow(el) { return el.clientWidth < 560; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+
+  function baseOpt(P) {
+    return {
+      animationDuration: reduce ? 0 : 1100, animationEasing: 'cubicOut',
+      animationDurationUpdate: reduce ? 0 : 600,
+      textStyle: { fontFamily: FONT, color: P.ink },
+      tooltip: {
+        confine: true, backgroundColor: P.card, borderColor: P.line, borderWidth: 1,
+        textStyle: { fontFamily: FONT, color: P.ink, fontSize: 13 }, extraCssText: 'direction:rtl;text-align:right;border-radius:10px;box-shadow:0 12px 32px -14px rgba(0,0,0,.35);'
+      }
+    };
+  }
+  function tipRows(c, params) {
+    var head = params[0] ? '<b style="display:block;margin-bottom:4px">' + esc(params[0].axisValueLabel || params[0].name) + '</b>' : '';
+    return head + params.map(function (p) {
+      return '<span style="display:flex;gap:10px;justify-content:space-between;align-items:center"><span><i style="display:inline-block;width:9px;height:9px;border-radius:2px;margin-left:6px;background:' + p.color + '"></i>' + esc(p.seriesName) + '</span><b>' + fmt(c, p.value) + '</b></span>';
+    }).join('');
+  }
+  function wrapLabel(s, n) {
+    var w = s.split(' '), lines = [], cur = '';
+    w.forEach(function (x) { if ((cur + ' ' + x).trim().length > n && cur) { lines.push(cur); cur = x; } else cur = (cur + ' ' + x).trim(); });
+    if (cur) lines.push(cur);
+    return lines.join('\n');
+  }
+
+  /* ---------- builders ---------- */
+  var B = {};
+
+  // vertical bars (single or grouped); grouped flips to horizontal on narrow screens
+  B.bar = B.gbar = function (c, el, st) {
+    var P = palette(), horiz = c.type === 'gbar' && narrow(el);
+    var cats = c.cats.map(function (k) { return k.sub && c.type === 'bar' ? k.name + '\n' + k.sub : k.name; });
+    var order = c.cats.map(function (_, i) { return i; });
+    if (st.sort) order.sort(function (a, b) { return c.series[0].data[b] - c.series[0].data[a]; });
+    var series = c.series.map(function (s, si) {
+      return {
+        name: s.name, type: 'bar', barMaxWidth: c.type === 'bar' ? 64 : 22, barGap: '18%',
+        data: order.map(function (i) {
+          var it = { value: s.data[i] };
+          if (c.forecastFrom !== undefined && i >= c.forecastFrom) it.itemStyle = { color: color(s.color, P), opacity: .55, decal: { symbol: 'rect', dashArrayX: [1, 0], dashArrayY: [3, 4], rotation: -Math.PI / 4, color: 'rgba(0,0,0,.12)' } };
+          if (c.highlightFirst && i === 0) it.itemStyle = { color: color(s.color, P) };
+          else if (c.highlightFirst) it.itemStyle = { color: P.grid };
+          return it;
+        }),
+        itemStyle: { color: color(s.color, P), borderRadius: horiz ? [0, 4, 4, 0] : [4, 4, 0, 0] },
+        label: c.labels ? { show: true, position: horiz ? 'left' : 'top', formatter: function (p) { return fmt(c, p.value); }, fontFamily: FONT, fontWeight: 700, color: P.ink } : { show: false },
+        emphasis: { focus: 'series' },
+        animationDelay: function (i) { return reduce ? 0 : i * 70 + si * 120; }
+      };
+    });
+    var catAxis = { type: 'category', data: order.map(function (i) { return cats[i]; }), axisTick: { show: false }, axisLine: { lineStyle: { color: P.line } },
+      axisLabel: { color: P.muted, fontFamily: FONT, fontSize: 12, interval: 0, lineHeight: 16, formatter: function (v) { return horiz ? wrapLabel(v, 22) : wrapLabel(v, c.cats.length > 6 ? 10 : 16); } } };
+    var valAxis = { type: 'value', name: horiz ? '' : (c.axisName || ''), nameLocation: 'middle', nameRotate: 90, nameGap: 46, nameTextStyle: { color: P.muted, fontFamily: FONT },
+      splitLine: { lineStyle: { color: P.grid } }, axisLabel: { color: P.muted, fontFamily: FONT, formatter: function (v) { return fa(v, v % 1 ? 1 : 0); } } };
+    var o = baseOpt(P);
+    o.grid = horiz ? { left: 16, right: 150, top: 16, bottom: 28, containLabel: false } : { left: 64, right: 16, top: 34, bottom: c.cats.some(function (k) { return k.sub; }) || c.cats.length > 6 ? 70 : 44 };
+    if (horiz) { catAxis.inverse = true; catAxis.position = 'right'; valAxis.inverse = true; o.xAxis = valAxis; o.yAxis = catAxis; }
+    else { o.xAxis = catAxis; o.yAxis = valAxis; }
+    o.tooltip.trigger = 'axis'; o.tooltip.axisPointer = { type: 'shadow', shadowStyle: { color: 'rgba(127,127,127,.08)' } };
+    o.tooltip.formatter = function (ps) { return tipRows(c, ps); };
+    o.series = series;
+    return o;
+  };
+
+  // grouped horizontal bars (labels on the right, bars grow to the left)
+  B.ghbar = function (c, el, st) {
+    var P = palette(), nw = narrow(el);
+    var order = c.cats.map(function (_, i) { return i; });
+    if (st.sort !== undefined && st.sort !== null) {
+      var s0 = c.series[st.sort].data; order.sort(function (a, b) { return s0[b] - s0[a]; });
+    }
+    var o = baseOpt(P);
+    o.grid = { left: 34, right: nw ? 132 : 250, top: 8, bottom: 24 };
+    o.yAxis = { type: 'category', inverse: true, position: 'right', data: order.map(function (i) { return c.cats[i].name; }), axisTick: { show: false }, axisLine: { show: false },
+      axisLabel: { color: P.ink, fontFamily: FONT, fontSize: nw ? 11 : 12.5, lineHeight: 16, margin: 12, formatter: function (v) { return wrapLabel(v, nw ? 18 : 34); } } };
+    o.xAxis = { type: 'value', inverse: true, max: function (v) { return Math.ceil(v.max / 10) * 10; }, splitLine: { lineStyle: { color: P.grid } }, axisLabel: { color: P.muted, fontFamily: FONT, formatter: function (v) { return fa(v); } } };
+    o.tooltip.trigger = 'axis'; o.tooltip.axisPointer = { type: 'shadow', shadowStyle: { color: 'rgba(127,127,127,.08)' } };
+    o.tooltip.formatter = function (ps) { return tipRows(c, ps); };
+    o.series = c.series.map(function (s, si) {
+      return { name: s.name, type: 'bar', barMaxWidth: 9, barGap: '25%', barCategoryGap: '34%', data: order.map(function (i) { return s.data[i]; }),
+        itemStyle: { color: color(s.color, P), borderRadius: [4, 0, 0, 4] }, emphasis: { focus: 'series' },
+        label: { show: !nw && c.series.length === 1, position: 'left' },
+        animationDelay: function (i) { return reduce ? 0 : i * 45 + si * 90; } };
+    });
+    return o;
+  };
+
+  // 100% stacked horizontal
+  B.stack100h = function (c, el, st) {
+    var P = palette(), nw = narrow(el);
+    var order = c.cats.map(function (_, i) { return i; });
+    if (st.sort !== undefined && st.sort !== null) { var s0 = c.series[st.sort].data; order.sort(function (a, b) { return s0[b] - s0[a]; }); }
+    var o = baseOpt(P);
+    o.grid = { left: 12, right: nw ? 128 : 230, top: 8, bottom: 26 };
+    o.yAxis = { type: 'category', inverse: true, position: 'right', data: order.map(function (i) { return c.cats[i].name + (c.cats[i].sub && !nw ? '\n{s|' + c.cats[i].sub + '}' : ''); }),
+      axisTick: { show: false }, axisLine: { show: false },
+      axisLabel: { color: P.ink, fontFamily: FONT, fontSize: nw ? 11 : 12.5, margin: 12, lineHeight: 15, rich: { s: { fontSize: 10, color: P.muted, fontFamily: FONT } } } };
+    o.xAxis = { type: 'value', max: 100, inverse: true, splitLine: { lineStyle: { color: P.grid } }, axisLabel: { color: P.muted, fontFamily: FONT, formatter: function (v) { return pct(v); } } };
+    o.tooltip.trigger = 'axis'; o.tooltip.axisPointer = { type: 'shadow', shadowStyle: { color: 'rgba(127,127,127,.08)' } };
+    o.tooltip.formatter = function (ps) { return tipRows(c, ps); };
+    o.series = c.series.map(function (s, si) {
+      var dark = s.color === 'ink' || s.color === 'teal';
+      return { name: s.name, type: 'bar', stack: 'all', barWidth: nw ? 14 : 18, data: order.map(function (i) { return s.data[i]; }),
+        itemStyle: { color: color(s.color, P), borderColor: P.card, borderWidth: 1 },
+        emphasis: { focus: 'series' },
+        label: { show: !nw, formatter: function (p) { return p.value >= (c.decimals ? 6 : 6) ? fa(p.value, c.decimals) : ''; }, fontFamily: FONT, fontSize: 11, fontWeight: 700,
+          color: s.color === 'ink' ? P.bg : (s.color === 'teal' ? '#fff' : '#111') },
+        animationDelay: function (i) { return reduce ? 0 : i * 40 + si * 160; } };
+    });
+    return o;
+  };
+
+  // stacked vertical with totals
+  B.stackv = function (c, el, st) {
+    var P = palette();
+    var o = baseOpt(P);
+    o.grid = { left: 64, right: 16, top: 30, bottom: 36 };
+    o.xAxis = { type: 'category', data: c.cats.map(function (k) { return k.name; }), axisTick: { show: false }, axisLine: { lineStyle: { color: P.line } }, axisLabel: { color: P.muted, fontFamily: FONT } };
+    o.yAxis = { type: 'value', name: c.axisName, nameLocation: 'middle', nameRotate: 90, nameGap: 46, nameTextStyle: { color: P.muted, fontFamily: FONT }, splitLine: { lineStyle: { color: P.grid } }, axisLabel: { color: P.muted, fontFamily: FONT, formatter: function (v) { return fa(v); } } };
+    o.tooltip.trigger = 'axis'; o.tooltip.axisPointer = { type: 'shadow', shadowStyle: { color: 'rgba(127,127,127,.08)' } };
+    o.tooltip.formatter = function (ps) {
+      var t = ps.reduce(function (a, p) { return a + p.value; }, 0);
+      return tipRows(c, ps) + '<span style="display:flex;justify-content:space-between;border-top:1px solid ' + P.line + ';margin-top:6px;padding-top:4px"><span>مجموع</span><b>' + fa(t, 1) + '</b></span>';
+    };
+    var active = c.series.filter(function (s, i) { return !st.off || !st.off[i]; });
+    o.series = c.series.map(function (s, si) {
+      return { name: s.name, type: 'bar', stack: 'g', barMaxWidth: 46, data: s.data, itemStyle: { color: color(s.color, P), borderColor: P.card, borderWidth: 1 }, emphasis: { focus: 'series' },
+        animationDelay: function (i) { return reduce ? 0 : i * 90 + si * 200; } };
+    });
+    return o;
+  };
+
+  B.line = function (c, el, st) {
+    var P = palette();
+    var o = baseOpt(P);
+    o.grid = { left: 66, right: 24, top: 30, bottom: 50 };
+    o.xAxis = { type: 'category', boundaryGap: false, data: c.cats.map(function (k) { return k.sub ? k.name + '\n' + k.sub : k.name; }), axisTick: { show: false }, axisLine: { lineStyle: { color: P.line } }, axisLabel: { color: P.muted, fontFamily: FONT, lineHeight: 16, interval: 0, fontSize: narrow(el) ? 10 : 12 } };
+    o.yAxis = { type: st.log ? 'log' : 'value', logBase: 10, min: st.log ? 1 : null, name: c.axisName, nameLocation: 'middle', nameRotate: 90, nameGap: 48, nameTextStyle: { color: P.muted, fontFamily: FONT },
+      splitLine: { lineStyle: { color: P.grid } }, axisLabel: { color: P.muted, fontFamily: FONT, formatter: function (v) { return fa(v); } } };
+    o.tooltip.trigger = 'axis'; o.tooltip.formatter = function (ps) { return tipRows(c, ps); };
+    if (c.forecastFrom !== undefined) {
+      o.series = [];
+    }
+    o.series = c.series.map(function (s) {
+      var col = color(s.color, P);
+      var ser = { name: s.name, type: 'line', data: s.data.map(function (v) { return st.log ? Math.max(v, 1) : v; }), smooth: .25, symbol: 'circle', symbolSize: 8,
+        lineStyle: { width: 3, color: col }, itemStyle: { color: col, borderColor: P.card, borderWidth: 2 }, emphasis: { focus: 'series' },
+        label: c.labels ? { show: true, position: 'top', fontWeight: 800, fontFamily: FONT, color: P.ink, formatter: function (p) { return fmt(c, p.value); } } : { show: false } };
+      if (c.area) ser.areaStyle = { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: col + '88' }, { offset: 1, color: col + '00' }] } };
+      return ser;
+    });
+    if (c.forecastFrom !== undefined) {
+      o.series[0].markArea = { silent: true, itemStyle: { color: 'rgba(127,127,127,.07)' }, label: { show: true, position: 'insideTop', color: P.muted, fontFamily: FONT, formatter: 'پیش‌بینی' },
+        data: [[{ xAxis: o.xAxis.data[c.forecastFrom] }, { xAxis: o.xAxis.data[o.xAxis.data.length - 1] }]] };
+    }
+    return o;
+  };
+
+  B.donut = function (c, el, st) {
+    var P = palette(), nw = narrow(el);
+    var o = baseOpt(P);
+    o.tooltip.trigger = 'item';
+    o.tooltip.formatter = function (p) { return '<b>' + esc(p.name) + '</b><br>' + pct(p.value, c.decimals); };
+    o.series = [{ type: 'pie', radius: nw ? ['42%', '70%'] : ['48%', '76%'], center: ['50%', '52%'], startAngle: 90, padAngle: 1.5, itemStyle: { borderRadius: 4, borderColor: P.card, borderWidth: 2 },
+      label: { show: true, fontFamily: FONT, color: P.ink, formatter: function (p) { return nw ? '{v|' + pct(p.value, c.decimals) + '}' : '{n|' + p.name + '}\n{v|' + pct(p.value, c.decimals) + '}'; },
+        rich: { n: { fontSize: 12, color: P.muted, fontFamily: FONT, lineHeight: 18 }, v: { fontSize: 17, fontWeight: 900, fontFamily: FONT, color: P.ink } } },
+      labelLine: { length: 12, length2: 18, lineStyle: { color: P.muted } },
+      emphasis: { scale: true, scaleSize: 8 },
+      animationType: 'expansion', animationDuration: reduce ? 0 : 1300,
+      data: c.slices.map(function (s) { return { name: s.name, value: s.value, itemStyle: { color: color(s.color, P) } }; }) }];
+    if (nw) {
+      o.series[0].label = { show: true, position: 'inside', fontFamily: FONT, fontWeight: 800, fontSize: 12, formatter: function (p) { return p.value >= 5 ? pct(p.value, c.decimals) : ''; },
+        color: '#111' };
+      o.series[0].labelLine = { show: false };
+      o.legend = { show: true, bottom: 0, left: 'center', itemWidth: 10, itemHeight: 10, textStyle: { fontFamily: FONT, color: P.ink, fontSize: 12 }, data: c.slices.map(function (s) { return s.name; }) };
+      o.series[0].center = ['50%', '44%'];
+    }
+    o.graphic = [{ type: 'text', left: 'center', top: nw ? '37%' : '44%', style: { text: c.center, font: '900 26px ' + FONT, fill: P.ink, align: 'center' } },
+      { type: 'text', left: 'center', top: nw ? '48%' : '55%', style: { text: c.centerLabel, font: '400 12px ' + FONT, fill: P.muted, align: 'center' } }];
+    return o;
+  };
+
+  /* ---------- custom renderers ---------- */
+  function bubblemap(c, el) {
+    var W = narrow(el) ? 560 : 1000, H = Math.round(W / c.aspect);
+    var pad = 30, iw = W - pad * 2, ih = H - pad * 2;
+    var max = Math.max.apply(null, c.bubbles.map(function (b) { return b.value; }));
+    var rmax = ih * 0.23;
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" class="bmap" role="img" aria-label="' + esc(c.caption) + '">';
+    svg += '<g class="bm-dots">' + c.dots.map(function (d) { return '<circle cx="' + (pad + d[0] * iw).toFixed(1) + '" cy="' + (pad + d[1] * ih).toFixed(1) + '" r="' + (W < 800 ? 1.8 : 2.6) + '"></circle>'; }).join('') + '</g>';
+    c.bubbles.forEach(function (b, i) {
+      var r = Math.max(12, rmax * Math.sqrt(b.value / max)), x = pad + b.x * iw, y = pad + b.y * ih;
+      svg += '<g class="bm-b" tabindex="0" style="--d:' + (i * 140) + 'ms" data-i="' + i + '"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r.toFixed(1) + '"></circle>' +
+        (r < 30 ? '<text x="' + (x + r + 8).toFixed(1) + '" y="' + (y + 6).toFixed(1) + '" class="bm-v out">' + fa(b.value, 1) + '</text>' : '<text x="' + x.toFixed(1) + '" y="' + (y + 6).toFixed(1) + '" class="bm-v">' + fa(b.value, 1) + '</text>') +
+        '<text x="' + x.toFixed(1) + '" y="' + (r < 30 ? y + r + 22 : y - r - 10).toFixed(1) + '" class="bm-n">' + esc(b.name) + '</text></g>';
+    });
+    svg += '</svg>';
+    el.innerHTML = svg;
+    el.classList.add('is-svg');
+    requestAnimationFrame(function () { el.classList.add('play'); });
+  }
+
+  function funnel(c, el, st) {
+    var key = st.metric || 'seen';
+    var rows = c.rows.slice().sort(function (a, b) { return b[key] - a[key]; });
+    var P = palette();
+    var html = '<div class="fn-legend"><span><i style="background:' + P.ink + '"></i>' + esc(c.legend.seen) + '</span><span><i style="background:' + P.yellow + '"></i>' + esc(c.legend.attn) + '</span><span><i style="background:' + P.orange + '"></i>' + esc(c.legend.act) + '</span><span>' + esc(c.legend.r1) + ' / ' + esc(c.legend.r2) + ' (درصد کنار هر رسانه)</span></div><div class="fn" role="list">';
+    rows.forEach(function (r, i) {
+      html += '<div class="fn-row" role="listitem" style="--d:' + (i * 60) + 'ms">' +
+        '<div class="fn-name"><b>' + esc(r.name) + '</b>' + (r.sub ? '<small>' + esc(r.sub) + '</small>' : '') + '</div>' +
+        '<div class="fn-bars">' +
+        '<span class="fn-bar seen" style="--w:' + r.seen + '%"><em>' + pct(r.seen) + '</em></span>' +
+        '<span class="fn-bar attn" style="--w:' + r.attn + '%"><em>' + pct(r.attn) + '</em></span>' +
+        '<span class="fn-bar act" style="--w:' + r.act + '%"><em>' + pct(r.act) + '</em></span>' +
+        '</div>' +
+        '<div class="fn-rates"><span title="' + esc(c.legend.r1) + '">' + pct(r.r1) + '</span><span title="' + esc(c.legend.r2) + '">' + pct(r.r2) + '</span></div>' +
+        '</div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+    el.classList.add('is-html');
+    requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add('play'); }); });
+  }
+
+  /* ---------- tools (chips) ---------- */
+  function chip(label, on, cb, title) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip' + (on ? ' on' : ''); b.textContent = label;
+    if (title) b.title = title;
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    b.addEventListener('click', cb);
+    return b;
+  }
+
+  function buildTools(fid, c, card, st, rerender, inst) {
+    var tools = card.querySelector('.cc-tools');
+    tools.innerHTML = '';
+    var P = palette();
+    function group(label) { var g = document.createElement('div'); g.className = 'chip-group'; if (label) { var s = document.createElement('span'); s.className = 'chip-label'; s.textContent = label; g.appendChild(s); } tools.appendChild(g); return g; }
+
+    if (c.series && (c.type === 'gbar' || c.type === 'ghbar' || c.type === 'stack100h' || c.type === 'stackv' || (c.type === 'line' && c.series.length > 1))) {
+      var g = group('');
+      c.series.forEach(function (s, i) {
+        var on = !st.off || !st.off[i];
+        var b = chip('', on, function () {
+          st.off = st.off || {};
+          st.off[i] = !st.off[i];
+          if (c.series.every(function (_, k) { return st.off[k]; })) st.off[i] = false;
+          inst && inst.dispatchAction({ type: st.off[i] ? 'legendUnSelect' : 'legendSelect', name: s.name });
+          b.classList.toggle('on', !st.off[i]); b.setAttribute('aria-pressed', !st.off[i]);
+        });
+        b.innerHTML = '<i style="background:' + color(s.color, P) + '"></i>' + esc(s.name);
+        b.classList.add('legend-chip');
+        g.appendChild(b);
+      });
+    }
+    if (c.type === 'ghbar' || c.type === 'stack100h') {
+      var g2 = group('مرتب‌سازی');
+      g2.appendChild(chip('ترتیب گزارش', st.sort == null, function () { st.sort = null; rerender(); }));
+      c.series.forEach(function (s, i) {
+        if (c.type === 'stack100h' && c.series.length > 3 && i === c.series.length - 1) return;
+        g2.appendChild(chip(s.name.length > 22 ? s.name.slice(0, 20) + '…' : s.name, st.sort === i, function () { st.sort = i; rerender(); }, s.name));
+      });
+    }
+    if (c.sortable) {
+      var g3 = group('مرتب‌سازی');
+      g3.appendChild(chip('ترتیب گزارش', !st.sort, function () { st.sort = false; rerender(); }));
+      g3.appendChild(chip('بیش‌ترین به کم‌ترین', !!st.sort, function () { st.sort = true; rerender(); }));
+    }
+    if (c.logToggle) {
+      var g4 = group('مقیاس');
+      g4.appendChild(chip('خطی', !st.log, function () { st.log = false; rerender(); }));
+      g4.appendChild(chip('لگاریتمی', !!st.log, function () { st.log = true; rerender(); }, 'برای دیدن کانال‌های کوچک‌تر'));
+    }
+    if (c.type === 'funnel') {
+      var g5 = group('مرتب‌سازی بر اساس');
+      [['seen', 'دیده‌شدن'], ['attn', 'توجه'], ['act', 'اقدام'], ['r1', 'نرخ توجه'], ['r2', 'نرخ اقدام']].forEach(function (m) {
+        g5.appendChild(chip(m[1], (st.metric || 'seen') === m[0], function () { st.metric = m[0]; rerender(); }));
+      });
+    }
+  }
+
+  /* ---------- data table ---------- */
+  function tableHTML(c) {
+    var h = '<table><thead><tr>';
+    if (c.type === 'funnel') {
+      h += '<th>رسانه</th><th>دیده‌شدن</th><th>توجه</th><th>اقدام</th><th>نرخ توجه</th><th>نرخ اقدام</th></tr></thead><tbody>';
+      c.rows.forEach(function (r) { h += '<tr><th>' + esc(r.name) + '</th><td>' + pct(r.seen) + '</td><td>' + pct(r.attn) + '</td><td>' + pct(r.act) + '</td><td>' + pct(r.r1) + '</td><td>' + pct(r.r2) + '</td></tr>'; });
+    } else if (c.type === 'donut') {
+      h += '<th>پاسخ</th><th>سهم</th></tr></thead><tbody>';
+      c.slices.forEach(function (s) { h += '<tr><th>' + esc(s.name) + '</th><td>' + pct(s.value, c.decimals) + '</td></tr>'; });
+    } else if (c.type === 'bubblemap') {
+      h += '<th>منطقه</th><th>' + esc(c.unit) + '</th></tr></thead><tbody>';
+      c.bubbles.forEach(function (b) { h += '<tr><th>' + esc(b.name) + '</th><td>' + fa(b.value, 1) + '</td></tr>'; });
+    } else {
+      h += '<th></th>' + c.series.map(function (s) { return '<th>' + esc(s.name) + '</th>'; }).join('') + '</tr></thead><tbody>';
+      c.cats.forEach(function (k, i) { h += '<tr><th>' + esc(k.name) + (k.sub ? ' <small>' + esc(k.sub) + '</small>' : '') + '</th>' + c.series.map(function (s) { return '<td>' + fmt(c, s.data[i]) + '</td>'; }).join('') + '</tr>'; });
+    }
+    return h + '</tbody></table>';
+  }
+
+  /* ---------- stat count-up ---------- */
+  function countUp(el, c) {
+    var target = c.value, d = c.decimals || 0, t0 = null, dur = reduce ? 0 : 1400;
+    var num = el.querySelector('.stat-num');
+    function frame(t) {
+      if (t0 === null) t0 = t;
+      var k = dur ? Math.min(1, (t - t0) / dur) : 1;
+      var e = 1 - Math.pow(1 - k, 3);
+      num.textContent = fa(target * e, d);
+      if (k < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- mount ---------- */
+  var state = {}, inst = {};
+  function height(c, el) {
+    var nw = narrow(el);
+    switch (c.type) {
+      case 'ghbar': return Math.max(260, c.cats.length * (c.series.length * (nw ? 13 : 14) + (nw ? 26 : 22)) + 40);
+      case 'stack100h': return Math.max(220, c.cats.length * (nw ? 34 : 40) + 40);
+      case 'gbar': return nw ? Math.max(320, c.cats.length * (c.series.length * 13 + 30) + 40) : 400;
+      case 'donut': return nw ? 340 : 400;
+      case 'line': return 400;
+      default: return nw ? 330 : 380;
+    }
+  }
+  function render(fid) {
+    var c = DATA[fid], card = document.querySelector('[data-chart="' + fid + '"]');
+    if (!card) return;
+    var body = card.querySelector('.cc-body'), st = state[fid] || (state[fid] = {});
+    if (c.type === 'stat') return;
+    if (c.type === 'bubblemap') { bubblemap(c, body); buildTools(fid, c, card, st, function () {}, null); return; }
+    if (c.type === 'funnel') { funnel(c, body, st); buildTools(fid, c, card, st, function () { body.classList.remove('play'); funnel(c, body, st); buildTools(fid, c, card, st, arguments.callee, null); }, null); return; }
+    body.style.height = height(c, body) + 'px';
+    var ch = inst[fid];
+    if (!ch) { ch = inst[fid] = echarts.init(body, null, { renderer: 'svg' }); }
+    var o = B[c.type](c, body, st);
+    if (!o.legend) o.legend = { show: false };
+    o.legend.selected = {};
+    c.series && c.series.forEach(function (s, i) { o.legend.selected[s.name] = !(st.off && st.off[i]); });
+    ch.setOption(o, true);
+    buildTools(fid, c, card, st, function () { render(fid); }, ch);
+  }
+
+  // mount when the card scrolls into view so the entrance animation is seen
+  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-chart]'));
+  function mount(card) {
+    var fid = card.getAttribute('data-chart');
+    if (card.dataset.mounted) return;
+    card.dataset.mounted = '1';
+    var c = DATA[fid];
+    if (c.type === 'stat') { countUp(card, c); return; }
+    render(fid);
+    var tb = card.querySelector('.cc-table');
+    if (tb) tb.addEventListener('click', function () {
+      var w = card.querySelector('.cc-tablewrap');
+      if (w.hidden) { w.innerHTML = tableHTML(c); w.hidden = false; tb.textContent = 'بستن جدول'; tb.setAttribute('aria-expanded', 'true'); }
+      else { w.hidden = true; tb.textContent = 'جدول داده‌ها'; tb.setAttribute('aria-expanded', 'false'); }
+    });
+  }
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { mount(e.target); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -12% 0px' });
+    cards.forEach(function (c) { io.observe(c); });
+    // anything already on screen at load
+    cards.forEach(function (c) { var r = c.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) { mount(c); io.unobserve(c); } });
+  } else cards.forEach(mount);
+
+  // keep sizes and theme in sync
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { Object.keys(inst).forEach(function (k) { render(k); inst[k].resize(); }); }, 160);
+  });
+  function retheme() { Object.keys(inst).forEach(function (k) { render(k); }); }
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    mq.addEventListener ? mq.addEventListener('change', retheme) : mq.addListener(retheme);
+  }
+  new MutationObserver(retheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  window.__yk = { mountAll: function () { cards.forEach(mount); }, inst: inst };
+})();
+
+</script>
+</body>
+</html>
