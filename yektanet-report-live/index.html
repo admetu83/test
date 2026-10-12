@@ -4,15 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>روایت یکتانت ۱۴۰۴</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;700;800;900&display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0}
 img{max-width:100%}
 [hidden]{display:none!important}
 
+@font-face { font-family: "IRANSansX D4"; src: url(fonts/IRANSansX-UltraLightD4.woff2) format("woff2"); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANSansX D4"; src: url(fonts/IRANSansX-LightD4.woff2) format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANSansX D4"; src: url(fonts/IRANSansX-RegularD4.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANSansX D4"; src: url(fonts/IRANSansX-MediumD4.woff2) format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANSansX D4"; src: url(fonts/IRANSansX-DemiBoldD4.woff2) format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANSansX D4"; src: url(fonts/IRANSansX-BoldD4.woff2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANSansX D4"; src: url(fonts/IRANSansX-ExtraBoldD4.woff2) format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "IRANSansX D4"; src: url(fonts/IRANSansX-BlackD4.woff2) format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
 /* Layout: a scrolling print report — yellow chapter openers, then "sheets" (text column + chart panel) in report order */
 :root {
   --yellow: #ffde00;
@@ -26,7 +31,7 @@ img{max-width:100%}
   --bar: #0d0d0b;
   --on-bar: #ffffff;
   --dot: #c9c8c0;
-  --font: "Vazirmatn", "Vazir", "IRANSans", Tahoma, "Segoe UI", sans-serif;
+  --font: "IRANSansX D4", Tahoma, "Segoe UI", sans-serif;
   --fs-body: 1.0625rem;
   --fs-small: .875rem;
   --fs-h3: clamp(1.45rem, 1.1rem + 1.4vw, 2rem);
@@ -307,8 +312,8 @@ figure { margin: 0; }
 .bm-b circle { fill: var(--yellow); fill-opacity: .92; stroke: var(--card); stroke-width: 2; transform-box: fill-box; transform-origin: center; transform: scale(0); transition: transform .9s cubic-bezier(.3,1.5,.5,1) var(--d), fill-opacity .2s; }
 .play .bm-b circle { transform: scale(1); }
 .bm-b:hover circle, .bm-b:focus circle { fill-opacity: 1; stroke: var(--ink); }
-.bm-v { font: 900 19px Vazirmatn, Tahoma, sans-serif; fill: #111; text-anchor: middle; opacity: 0; transition: opacity .4s calc(var(--d) + .6s); }
-.bm-n { font: 500 15px Vazirmatn, Tahoma, sans-serif; fill: var(--ink); text-anchor: middle; opacity: 0; transition: opacity .4s calc(var(--d) + .7s); }
+.bm-v { font: 900 19px "IRANSansX D4", Tahoma, sans-serif; fill: #111; text-anchor: middle; opacity: 0; transition: opacity .4s calc(var(--d) + .6s); }
+.bm-n { font: 500 15px "IRANSansX D4", Tahoma, sans-serif; fill: var(--ink); text-anchor: middle; opacity: 0; transition: opacity .4s calc(var(--d) + .7s); }
 .play .bm-v, .play .bm-n { opacity: 1; }
 
 /* funnel */
@@ -393,7 +398,7 @@ figure { margin: 0; }
 
 .eid-fab {
   position: fixed; z-index: 75; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: 16px;
-  font: 700 .82rem/1 Vazirmatn, Tahoma, sans-serif; background: var(--yellow); color: #111; border: 2px solid #111;
+  font: 700 .82rem/1 "IRANSansX D4", Tahoma, sans-serif; background: var(--yellow); color: #111; border: 2px solid #111;
   border-radius: 99px; padding: 10px 16px; cursor: pointer; box-shadow: 0 10px 28px -12px rgba(0,0,0,.5);
 }
 .eid-fab[aria-pressed="true"] { background: #111; color: var(--yellow); border-color: var(--yellow); }
@@ -807,7 +812,7 @@ figure { margin: 0; }
   var DATA = JSON.parse(document.getElementById('chart-data').textContent);
   var root = document.documentElement;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var FONT = 'Vazirmatn, Vazir, Tahoma, sans-serif';
+  var FONT = '\'IRANSansX D4\', Tahoma, sans-serif';
 
   function tok(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
   function palette() {
@@ -1207,6 +1212,8 @@ figure { margin: 0; }
     mq.addEventListener ? mq.addEventListener('change', retheme) : mq.addListener(retheme);
   }
   new MutationObserver(retheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  // redraw once the brand font has loaded so label widths are measured with it
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { Object.keys(inst).forEach(function (k) { render(k); }); });
   window.__yk = { mountAll: function () { cards.forEach(mount); }, inst: inst };
 })();
 
