@@ -245,9 +245,9 @@ figure { margin: 0; }
 
 .split.live { grid-template-columns: minmax(0, .85fr) minmax(0, 1.25fr); }
 .chart-card {
-  background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+  background: var(--card); border: 0; border-radius: 18px;
   padding: clamp(14px, 2.2vw, 26px); display: grid; gap: 14px; min-width: 0;
-  box-shadow: 0 1px 0 var(--line), 0 24px 48px -36px rgba(0,0,0,.25);
+  box-shadow: 0 24px 48px -30px rgba(0,0,0,.22);
 }
 .cc-head { display: grid; gap: 14px; }
 .cc-cap { font-size: 1.02rem; font-weight: 800; line-height: normal; display: flex; gap: 10px; align-items: baseline; }
@@ -665,7 +665,11 @@ figure { margin: 0; }
     var on = document.querySelector('.chapnav a.on');
     if (on && on !== lastOn) {
       lastOn = on;
-      try { on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' }); } catch (e) {}
+      // scroll the chapter strip sideways only; scrollIntoView here also moved the page and stalled scrolling
+      try {
+        var nav = on.parentNode, nr = nav.getBoundingClientRect(), lr = on.getBoundingClientRect();
+        nav.scrollBy({ left: (lr.left + lr.width / 2) - (nr.left + nr.width / 2), behavior: reduce ? 'auto' : 'smooth' });
+      } catch (e) {}
     }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -867,16 +871,26 @@ figure { margin: 0; }
     var dark = isDark(P);
     (c.icons || []).forEach(function (ic, i) {
       if (!ic) return;
-      var h = ic.color ? 18 : 15, w = Math.round(h * (ic.w / ic.h));
-      rich['i' + i] = { height: h, width: Math.min(w, 26), align: 'center', backgroundColor: { image: (!ic.color && dark) ? ic.srcLight : ic.src } };
+      var h = ic.color ? 22 : 18, w = Math.round(h * (ic.w / ic.h));
+      rich['i' + i] = { height: h, width: Math.min(w, 31), align: 'center', backgroundColor: { image: (!ic.color && dark) ? ic.srcLight : ic.src } };
     });
     var data = order.map(function (i) {
       var k = c.cats[i], lines = wrapLabel(k.name, nw ? 18 : 34).split('\n');
       var txt = lines.map(function (l) { return '{t|' + l + '}'; }).join('\n');
       if (k.sub && !nw) txt += '\n{s|' + k.sub + '}';
-      return txt + (c.icons && c.icons[i] ? '  {i' + i + '|}' : '');
+      return txt;
     });
-    return { data: data, rich: rich };
+    var icons = order.map(function (i) { return c.icons && c.icons[i] ? '{i' + i + '|}' : ''; });
+    return { data: data, rich: rich, icons: icons, has: !!(c.icons && c.icons.some(Boolean)) };
+  }
+
+  // text labels and icons on two category axes so every icon sits in one column, centred on its row
+  function iconAxes(L) {
+    var base = { type: 'category', inverse: true, position: 'left', axisTick: { show: false }, axisLine: { show: false } };
+    var text = Object.assign({}, base, { data: L.data, axisLabel: { margin: L.has ? 44 : 10, rich: L.rich, formatter: function (v) { return v; } } });
+    if (!L.has) return text;
+    var ico = Object.assign({}, base, { data: L.icons, axisLabel: { margin: 8, rich: L.rich, formatter: function (v) { return v; } } });
+    return [text, ico];
   }
 
   /* ---------- builders ---------- */
@@ -926,9 +940,8 @@ figure { margin: 0; }
     }
     var L = catLabels(c, order, P, nw, nw ? 11 : 12.5);
     var o = baseOpt(P);
-    o.grid = { left: nw ? 150 : 280, right: 28, top: 8, bottom: 24 };
-    o.yAxis = { type: 'category', inverse: true, position: 'left', data: L.data, axisTick: { show: false }, axisLine: { show: false },
-      axisLabel: { margin: 10, rich: L.rich, formatter: function (v) { return v; } } };
+    o.grid = { left: nw ? 170 : 310, right: 28, top: 8, bottom: 24 };
+    o.yAxis = iconAxes(L);
     o.xAxis = { type: 'value', max: function (v) { return Math.ceil(v.max / 10) * 10; }, splitLine: { lineStyle: { color: P.grid } }, axisLabel: { color: P.muted, fontFamily: FONT, formatter: function (v) { return fa(v); } } };
     o.tooltip.trigger = 'axis'; o.tooltip.axisPointer = { type: 'shadow', shadowStyle: { color: 'rgba(127,127,127,.08)' } };
     o.tooltip.formatter = function (ps) { ps.forEach(function (p) { p.axisValueLabel = c.cats[order[p.dataIndex]].name; }); return tipRows(c, ps); };
@@ -948,10 +961,8 @@ figure { margin: 0; }
     if (st.sort !== undefined && st.sort !== null) { var s0 = c.series[st.sort].data; order.sort(function (a, b) { return s0[b] - s0[a]; }); }
     var o = baseOpt(P);
     var L = catLabels(c, order, P, nw, nw ? 11 : 12.5);
-    o.grid = { left: nw ? 140 : 250, right: 16, top: 8, bottom: 26 };
-    o.yAxis = { type: 'category', inverse: true, position: 'left', data: L.data,
-      axisTick: { show: false }, axisLine: { show: false },
-      axisLabel: { margin: 10, rich: L.rich, formatter: function (v) { return v; } } };
+    o.grid = { left: nw ? 160 : 280, right: 16, top: 8, bottom: 26 };
+    o.yAxis = iconAxes(L);
     o.xAxis = { type: 'value', max: 100, splitLine: { lineStyle: { color: P.grid } }, axisLabel: { color: P.muted, fontFamily: FONT, formatter: function (v) { return pct(v); } } };
     o.tooltip.trigger = 'axis'; o.tooltip.axisPointer = { type: 'shadow', shadowStyle: { color: 'rgba(127,127,127,.08)' } };
     o.tooltip.formatter = function (ps) { ps.forEach(function (p) { p.axisValueLabel = c.cats[order[p.dataIndex]].name; }); return tipRows(c, ps); };
@@ -1103,30 +1114,6 @@ figure { margin: 0; }
         b.innerHTML = '<i style="background:' + color(s.color, P) + '"></i>' + esc(s.name);
         b.classList.add('legend-chip');
         g.appendChild(b);
-      });
-    }
-    if (c.type === 'ghbar' || c.type === 'stack100h') {
-      var g2 = group('مرتب‌سازی');
-      g2.appendChild(chip('ترتیب گزارش', st.sort == null, function () { st.sort = null; rerender(); }));
-      c.series.forEach(function (s, i) {
-        if (c.type === 'stack100h' && c.series.length > 3 && i === c.series.length - 1) return;
-        g2.appendChild(chip(s.name.length > 22 ? s.name.slice(0, 20) + '…' : s.name, st.sort === i, function () { st.sort = i; rerender(); }, s.name));
-      });
-    }
-    if (c.sortable) {
-      var g3 = group('مرتب‌سازی');
-      g3.appendChild(chip('ترتیب گزارش', !st.sort, function () { st.sort = false; rerender(); }));
-      g3.appendChild(chip('بیش‌ترین به کم‌ترین', !!st.sort, function () { st.sort = true; rerender(); }));
-    }
-    if (c.logToggle) {
-      var g4 = group('مقیاس');
-      g4.appendChild(chip('خطی', !st.log, function () { st.log = false; rerender(); }));
-      g4.appendChild(chip('لگاریتمی', !!st.log, function () { st.log = true; rerender(); }, 'برای دیدن کانال‌های کوچک‌تر'));
-    }
-    if (c.type === 'funnel') {
-      var g5 = group('مرتب‌سازی بر اساس');
-      [['seen', 'دیده‌شدن'], ['attn', 'توجه'], ['act', 'اقدام'], ['r1', 'نرخ توجه'], ['r2', 'نرخ اقدام']].forEach(function (m) {
-        g5.appendChild(chip(m[1], (st.metric || 'seen') === m[0], function () { st.metric = m[0]; rerender(); }));
       });
     }
   }
