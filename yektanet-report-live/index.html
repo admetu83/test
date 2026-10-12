@@ -344,6 +344,45 @@ figure { margin: 0; }
 
 .cc-body svg text { unicode-bidi: plaintext; }
 
+/* ---- edit mode (?edit) ---- */
+:root { --eid-sec: #2563eb; --eid-fig: #db2777; --eid-txt: #059669; }
+.eid { display: none; }
+.editing .eid-host { position: relative; outline: 1px dashed transparent; outline-offset: 4px; transition: outline-color .15s; }
+.editing .eid-host:hover { outline-color: color-mix(in srgb, var(--eid-c) 70%, transparent); }
+.editing .eid-sec { --eid-c: var(--eid-sec); }
+.editing .eid-fig { --eid-c: var(--eid-fig); }
+.editing .eid-txt { --eid-c: var(--eid-txt); }
+.editing .eid {
+  display: inline-flex; position: absolute; z-index: 30; top: -10px; inset-inline-end: -6px;
+  font: 700 11px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; direction: ltr;
+  background: var(--eid-c); color: #fff; border: 0; border-radius: 6px; padding: 1px 7px; cursor: copy;
+  box-shadow: 0 2px 8px -2px rgba(0,0,0,.35); white-space: nowrap; letter-spacing: 0;
+}
+.editing .eid:hover, .editing .eid:focus-visible { filter: brightness(1.15); outline: 2px solid var(--yellow); outline-offset: 1px; }
+.editing .eid-txt > .eid { position: static; vertical-align: middle; font-size: 10px; margin-inline-end: 8px; transform: translateY(-2px); opacity: .9; }
+.editing h3.eid-txt > .eid, .editing h2.eid-txt > .eid { align-self: flex-start; transform: none; }
+.editing .eid-sec > .eid { top: 6px; inset-inline-end: 0; }
+.eid-panel {
+  position: fixed; z-index: 70; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); left: 16px; max-width: min(320px, calc(100vw - 32px));
+  background: var(--bar); color: var(--on-bar); border-radius: 14px; padding: 12px 14px; display: grid; gap: 6px; font-size: .78rem; line-height: 1.7;
+  box-shadow: 0 16px 40px -16px rgba(0,0,0,.5);
+}
+.eid-panel b { color: var(--yellow); font-size: .9rem; }
+.eid-legend { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
+.eid-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-inline-end: -6px; }
+.eid-legend .k-sec { background: var(--eid-sec); } .eid-legend .k-fig { background: var(--eid-fig); } .eid-legend .k-txt { background: var(--eid-txt); }
+.eid-panel label { display: flex; gap: 6px; align-items: center; cursor: pointer; }
+.eid-toast {
+  position: fixed; z-index: 80; top: calc(70px + env(safe-area-inset-top, 0px)); left: 50%; transform: translate(-50%, -10px); opacity: 0;
+  background: var(--yellow); color: #111; font-weight: 700; font-size: .85rem; padding: 6px 14px; border-radius: 99px; pointer-events: none; transition: opacity .2s, transform .2s;
+}
+.eid-toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 560px) {
+  .eid-panel { left: 8px; right: 8px; bottom: 8px; max-width: none; padding: 8px 12px; }
+  .eid-panel > span, .eid-legend { display: none; }
+  .eid-panel { grid-template-columns: auto auto; justify-content: space-between; align-items: center; }
+}
+
 </style>
 </head>
 <body>
@@ -1153,6 +1192,77 @@ figure { margin: 0; }
   }
   new MutationObserver(retheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
   window.__yk = { mountAll: function () { cards.forEach(mount); }, inst: inst };
+})();
+
+/* Edit mode: open the page with ?edit to see an id on every chapter, section, chart and text block.
+   Click an id to copy it, then quote it in feedback (e.g. "c2-p05-1: sort by Gen Z by default"). */
+(function () {
+  var on = /[?&]edit\b/.test(location.search);
+  if (!on) return;
+  var root = document.documentElement;
+  root.classList.add('editing');
+
+  function tag(el, id, kind) {
+    if (!id || el.querySelector(':scope > .eid')) return;
+    el.setAttribute('data-eid', id);
+    el.classList.add('eid-host', 'eid-' + kind);
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'eid eid-k-' + kind; b.textContent = id;
+    b.title = 'کپی شناسه';
+    b.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); copy(id, b); });
+    el.insertBefore(b, el.firstChild);
+  }
+
+  var toastEl;
+  function toast(msg) {
+    if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'eid-toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
+    toastEl.textContent = msg; toastEl.classList.add('show');
+    clearTimeout(toastEl._t); toastEl._t = setTimeout(function () { toastEl.classList.remove('show'); }, 1600);
+  }
+  function copy(id, b) {
+    var done = function () { toast('شناسه کپی شد: ' + id); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(b);
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      toast('شناسه انتخاب شد؛ با Ctrl+C کپی کنید');
+    };
+    try { navigator.clipboard.writeText(id).then(done, fallback); } catch (e) { fallback(); }
+  }
+
+  // chapters
+  document.querySelectorAll('.chapter').forEach(function (c) {
+    var op = c.querySelector('.opener');
+    if (op) tag(op, 'ch' + c.dataset.ch + '-intro', 'sec');
+  });
+  // preface + toc
+  var pre = document.getElementById('preface'); if (pre) tag(pre, 'preface', 'sec');
+  var toc = document.querySelector('.toc'); if (toc) tag(toc, 'toc', 'sec');
+  // sheets (one per PDF page) and their text blocks
+  document.querySelectorAll('.sheet[id]').forEach(function (s) {
+    tag(s, s.id, 'sec');
+    var n = 0, h = 0, note = 0;
+    s.querySelectorAll('.txt h3, .txt h4').forEach(function (el) { h++; tag(el, s.id + '-h' + (h > 1 ? h : ''), 'txt'); });
+    s.querySelectorAll('.txt > p, .txt > ul > li').forEach(function (el) { n++; tag(el, s.id + '-p' + n, 'txt'); });
+    s.querySelectorAll('.notes > p').forEach(function (el) { note++; tag(el, s.id + '-note' + note, 'txt'); });
+  });
+  // chapter intro paragraphs
+  document.querySelectorAll('.chapter').forEach(function (c) {
+    var k = 0;
+    c.querySelectorAll('.opener h2').forEach(function (el) { tag(el, 'ch' + c.dataset.ch + '-intro-h', 'txt'); });
+    c.querySelectorAll('.opener .intro > p, .opener .intro li').forEach(function (el) { k++; tag(el, 'ch' + c.dataset.ch + '-intro-p' + k, 'txt'); });
+  });
+  // charts and stat tiles
+  document.querySelectorAll('[data-chart]').forEach(function (el) { tag(el, el.getAttribute('data-chart'), 'fig'); });
+
+  // a small panel to toggle labels and explain the ids
+  var panel = document.createElement('div');
+  panel.className = 'eid-panel';
+  panel.innerHTML = '<b>حالت ویرایش</b><span>روی هر شناسه بزنید تا کپی شود و آن را در پیام‌تان بنویسید.</span>' +
+    '<div class="eid-legend"><i class="k-sec"></i>بخش/صفحه <i class="k-fig"></i>نمودار <i class="k-txt"></i>متن</div>' +
+    '<label><input type="checkbox" id="eid-toggle" checked> نمایش شناسه‌ها</label>';
+  document.body.appendChild(panel);
+  panel.querySelector('#eid-toggle').addEventListener('change', function (e) { root.classList.toggle('editing', e.target.checked); });
+  if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 300); }
 })();
 
 </script>
