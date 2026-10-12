@@ -287,8 +287,6 @@ figure { margin: 0; }
   display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "val val" "text icon";
   gap: 18px 16px; padding: 26px 26px 28px; align-items: end; align-content: space-between;
 }
-.stat::after { content: ""; position: absolute; inset-inline-start: 0; bottom: 0; height: 4px; width: 100%; background: var(--yellow); transform: scaleX(0); transform-origin: right; transition: transform 1.2s cubic-bezier(.2,.7,.2,1) .2s; }
-.stat[data-mounted]::after { transform: scaleX(1); }
 .stat-val { grid-area: val; font-size: clamp(3rem, 2rem + 2.6vw, 4.6rem); font-weight: 900; line-height: 1; color: var(--yellow); font-variant-numeric: tabular-nums; letter-spacing: -.01em; white-space: nowrap; }
 .stat-pre { font-weight: 300; }
 .stat-text { grid-area: text; display: grid; gap: 8px; align-content: start; }
